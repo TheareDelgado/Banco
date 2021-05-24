@@ -54,4 +54,4 @@ class Banco(Cliente):
         Solicitud=('Aceptada','Rechazada')
         if saldocliente<100000:
             return Solicitud[1]
-            print("H07A")
+            
