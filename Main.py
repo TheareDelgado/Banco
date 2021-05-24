@@ -180,13 +180,33 @@ def abrirPrestamo():
 
 
 def abrirGrafico():
-    ventanaGrafico=Toplevel(root)
-    ventanaGrafico.title("Gráfico")
-    ventanaGrafico.geometry("1248x708")
-    ventanaGrafico.resizable(width=False, height=False)
+    #ventanaGrafico=Toplevel(root)
+    #ventanaGrafico.title("Gráfico")
+    #ventanaGrafico.geometry("1248x708")
+    #ventanaGrafico.resizable(width=False, height=False)
+    cantidadPrestamos = 10
+    cantidadDepositos = 6
+    cantidadRetirar = 4
+    cantidadTransferencias = 0
 
 
-    ventanaGrafico.mainloop()
+    
+    operaciones = [cantidadDepositos, cantidadTransferencias, cantidadRetirar, cantidadPrestamos]
+    normdata = colors.Normalize(min(operaciones), max(operaciones))
+    colormap = cm.get_cmap("Blues")
+    colores =colormap(normdata(operaciones))
+
+    label = ["Depositar", "Transferir", "Retirar", "Préstamo"]
+
+    plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
+    plt.show()
+    
+    #Si una de las variables es 0 que no muestre el label y solo muestre las otras operaciones!!!
+
+
+
+
+    #ventanaGrafico.mainloop()
 
 
 def abrirMostrarCola():
