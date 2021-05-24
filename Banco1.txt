@@ -1,0 +1,54 @@
+class Banco:
+    def __init__(self, nombre,rut,telefono,direccion):
+        self.nombre="Banco Touch"
+        self.rut=45111111-7
+        self.telefono=948463452
+        self.direccion="Calle artu prat 446"
+
+    def setNombre(self,nombre):
+        self.nombre="Banco Touch"
+        
+    def setRUT(self,rut):
+        self.rut=45111111-7
+
+    def setFONO(self,telefono):
+        self.telefono=948463452
+
+    def setDireccion(self,direccion):
+        self.direccion="Calle artu prat 446"
+    
+  
+    def getNombre(self):
+        return self.nombre
+
+    def getRUT(self):
+        return self.rut
+
+    def getfono(self):
+        return self.telefono
+
+    def getDireccion(self):
+        return self.direccion
+
+    def __str__(self) :
+        return self.nombre+" "+str(self.rut)+" "+str(self.telefono)+" "+self.direccion+" "
+
+    def setAceptar(self,saldo):
+        plata =('Aceptado','Rechazado')
+        if saldo>300:
+            return plata[0]
+    
+    def setRechazar(self,saldo):
+        plata=('Aceptado','Rechazado')
+        if saldo<300:
+            return plata[1]
+
+    def setAceptarPrestamo(self,saldo):
+        Solicitud=('Aceptada','Rechazada')
+        if saldo>100000:
+            return Solicitud[0]
+
+    def setRechazarPrestamo(self,saldo):
+        Solicitud=('Aceptada','Rechazada')
+        if saldo<100000:
+            return Solicitud[1]
