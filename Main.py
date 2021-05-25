@@ -188,24 +188,67 @@ def abrirGrafico():
     #ventanaGrafico.title("Gráfico")
     #ventanaGrafico.geometry("1248x708")
     #ventanaGrafico.resizable(width=False, height=False)
-    cantidadPrestamos = 10
+    cantidadPrestamos = 0
     cantidadDepositos = 6
-    cantidadRetirar = 4
-    cantidadTransferencias = 0
+    cantidadRetirar = 5
+    cantidadTransferencias = 9
 
+    if(cantidadPrestamos==0 and cantidadDepositos>=1 and cantidadRetirar>=1 and cantidadTransferencias>=1):
+        operaciones = [cantidadDepositos, cantidadTransferencias, cantidadRetirar]
+        normdata = colors.Normalize(min(operaciones), max(operaciones))
+        colormap = cm.get_cmap("Blues")
+        colores =colormap(normdata(operaciones))
 
+        label = ["Depositar", "Transferir", "Retirar"]
+
+        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
+        plt.show()
+
+    if(cantidadPrestamos>=1 and cantidadDepositos==0 and cantidadRetirar>=1 and cantidadTransferencias>=1):
+        operaciones = [cantidadTransferencias, cantidadRetirar, cantidadPrestamos]
+        normdata = colors.Normalize(min(operaciones), max(operaciones))
+        colormap = cm.get_cmap("Blues")
+        colores =colormap(normdata(operaciones))
+
+        label = ["Transferir", "Retirar", "Préstamo"]
+
+        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
+        plt.show()
+
+    if(cantidadPrestamos>=1 and cantidadDepositos>=1 and cantidadTransferencias>=1 and cantidadRetirar==0):
+        operaciones = [cantidadDepositos, cantidadTransferencias, cantidadPrestamos]
+        normdata = colors.Normalize(min(operaciones), max(operaciones))
+        colormap = cm.get_cmap("Blues")
+        colores =colormap(normdata(operaciones))
+
+        label = ["Depositar", "Transferir", "Préstamo"]
+
+        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
+        plt.show()
+
+    if(cantidadPrestamos>=1 and cantidadDepositos>=1 and cantidadRetirar>=1 and cantidadTransferencias==0):
+        operaciones = [cantidadDepositos, cantidadRetirar, cantidadPrestamos]
+        normdata = colors.Normalize(min(operaciones), max(operaciones))
+        colormap = cm.get_cmap("Blues")
+        colores =colormap(normdata(operaciones))
+
+        label = ["Depositar", "Retirar", "Préstamo"]
+
+        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
+        plt.show()
+
+    if(cantidadPrestamos>=1 and cantidadDepositos>=1 and cantidadRetirar>=1 and cantidadTransferencias>=1):
+        operaciones = [cantidadDepositos, cantidadTransferencias, cantidadRetirar, cantidadPrestamos]
+        normdata = colors.Normalize(min(operaciones), max(operaciones))
+        colormap = cm.get_cmap("Blues")
+        colores =colormap(normdata(operaciones))
+
+        label = ["Depositar", "Transferir", "Retirar", "Préstamo"]
+
+        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
+        plt.show()
     
-    operaciones = [cantidadDepositos, cantidadTransferencias, cantidadRetirar, cantidadPrestamos]
-    normdata = colors.Normalize(min(operaciones), max(operaciones))
-    colormap = cm.get_cmap("Blues")
-    colores =colormap(normdata(operaciones))
-
-    label = ["Depositar", "Transferir", "Retirar", "Préstamo"]
-
-    plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
-    plt.show()
-    
-    #Si una de las variables es 0 que no muestre el label y solo muestre las otras operaciones!!!
+#Si una de las variables es 0 que no muestre el label y solo muestre las otras operaciones!!!
 
 
 
