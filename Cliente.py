@@ -1,18 +1,20 @@
 from Persona import *
-import random
 class Cliente(Persona):
     def __init__(self, nombrecliente,apellidocliente,rutcliente,clavecliente,saldocliente):
-        Persona.__init__(nombrecliente,apellidocliente,rutcliente)
-        self.clave=["3535","1212","1213","0213"]
-        self.saldo=0
+        Persona.__init__(self,nombrecliente,apellidocliente,rutcliente)
+        self.clavecliente=clavecliente
+        self.saldocliente=saldocliente
 
     def ponerClavecliente(self,clavecliente):
-        self.clavecliente=clave
+        self.clavecliente=clavecliente
 
     def ponerSaldocliente(self,saldocliente):
-        self.saldocliente=saldo
+        self.saldocliente=saldocliente
 
     def tomarClavecliente(self):
         return self.clavecliente
-
+    def tomarSaldoCliente(self):
+        return self.saldocliente
     
+    def ClientesEnCola(self,nombrecliente,apellidocliente,rutcliente,clavecliente,saldocliente):
+        return ("Cliente : "+ nombrecliente+ " " + apellidocliente +" Con rut : "+ str(rutcliente) +" y SALDO : "+ str(saldocliente))
