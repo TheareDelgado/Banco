@@ -48,7 +48,7 @@ frame.pack()
 
 #********************BACKGROUND***********************************************
 
-background_img = Image.open("./EDD/bank.png")
+background_img = Image.open("C:/Users/Felipe/Documents/GitHub/Banco/bank.png")
 background_tkimg = ImageTk.PhotoImage(background_img)
 canvas = Canvas(root, highlightthickness=0)
 canvas.pack(expand = True, fill = "both")
@@ -65,7 +65,7 @@ def abrirDepositar():
     ventanaDepositar.resizable(width=False, height=False)
 
 
-    imagen = PhotoImage (file = "./EDD/ventanaDepositar.png") 
+    imagen = PhotoImage (file = "C:/Users/Felipe/Documents/GitHub/Banco/ventanaDepositar.png") 
     fondo=Label(ventanaDepositar, image = imagen).place( x=0, y=0)
 
     #Entry y Label
@@ -77,7 +77,7 @@ def abrirDepositar():
     ingresaMontoDeposito.place_configure(x=842, y=379 , width=270, height=20)
 
 
-    imagenConfirmaCliente2 = Image.open("./EDD/guardarCliente2.png")
+    imagenConfirmaCliente2 = Image.open("C:/Users/Felipe/Documents/GitHub/Banco/guardarCliente2.png")
     imagenConfirmaCliente2 = ImageTk.PhotoImage(imagenConfirmaCliente2)
     botonConfirmarCliente2 = ttk.Button(ventanaDepositar, image= imagenConfirmaCliente2, command = ventanaDepositar.destroy)
     botonConfirmarCliente2.place( x=838, y=525)
@@ -93,7 +93,7 @@ def abrirRetirar():
     ventanaRetirar.resizable(width=False, height=False)
 
 
-    imagen = PhotoImage (file = "./EDD/ventanaDepositar.png") 
+    imagen = PhotoImage (file = "C:/Users/Felipe/Documents/GitHub/Banco/ventanaDepositar.png") 
     fondo=Label(ventanaRetirar, image = imagen).place( x=0, y=0)
 
 
@@ -104,7 +104,7 @@ def abrirRetirar():
     ingresaMontoRetiro.place_configure(x=842, y=379 , width=270, height=20)
 
 
-    imagenConfirmaCliente3 = Image.open("./EDD/guardarCliente2.png")
+    imagenConfirmaCliente3 = Image.open("C:/Users/Felipe/Documents/GitHub/Banco/guardarCliente2.png")
     imagenConfirmaCliente3 = ImageTk.PhotoImage(imagenConfirmaCliente3)
     botonConfirmarCliente3 = ttk.Button(ventanaRetirar, image= imagenConfirmaCliente3, command = ventanaRetirar.destroy)
     botonConfirmarCliente3.place( x=838, y=525)
@@ -119,7 +119,7 @@ def abrirTransferir():
     ventanaTransferir.resizable(width=False, height=False)
 
 
-    imagen = PhotoImage (file = "./EDD/ventanaTransferir.png") 
+    imagen = PhotoImage (file = "C:/Users/Felipe/Documents/GitHub/Banco/ventanaTransferir.png") 
     fondo=Label(ventanaTransferir, image = imagen).place( x=0, y=0)
 
 
@@ -145,7 +145,7 @@ def abrirTransferir():
     ingresaBancoTransferir.place_configure(x=875, y=476 , width=270, height=20)
 
 
-    imagenConfirmaCliente4 = Image.open("./EDD/guardarCliente2.png")
+    imagenConfirmaCliente4 = Image.open("C:/Users/Felipe/Documents/GitHub/Banco/guardarCliente2.png")
     imagenConfirmaCliente4 = ImageTk.PhotoImage(imagenConfirmaCliente4)
     botonConfirmarCliente4 = ttk.Button(ventanaTransferir, image= imagenConfirmaCliente4, command = ventanaTransferir.destroy)
     botonConfirmarCliente4.place( x=836, y=525)
@@ -160,7 +160,7 @@ def abrirPrestamo():
     ventanaPrestamo.resizable(width=False, height=False)
 
 
-    imagen = PhotoImage (file = "./EDD/ventanaPrestamo.png") 
+    imagen = PhotoImage (file = "C:/Users/Felipe/Documents/GitHub/Banco/ventanaPrestamo.png") 
     fondo=Label(ventanaPrestamo, image = imagen).place( x=0, y=0)
 
     ingresaMonto = ttk.Entry(ventanaPrestamo)
@@ -190,7 +190,7 @@ def abrirPrestamo():
     ingresaCuotaPrestamo.place_configure(x=892, y=442 , width=270, height=20)
 
 
-    imagenConfirmaCliente5 = Image.open("./EDD/guardarCliente2.png")
+    imagenConfirmaCliente5 = Image.open("C:/Users/Felipe/Documents/GitHub/Banco//guardarCliente2.png")
     imagenConfirmaCliente5 = ImageTk.PhotoImage(imagenConfirmaCliente5)
     botonConfirmarCliente5 = ttk.Button(ventanaPrestamo, image= imagenConfirmaCliente5, command = ventanaPrestamo.destroy)
     botonConfirmarCliente5.place( x=840, y=535)
@@ -401,7 +401,7 @@ ingresaRutFuncionario.place( x=793, y=266, width=270, height=20)
 
 #------Depositar----
 
-imagenDepositar = Image.open("./EDD/depositar.png")
+imagenDepositar = Image.open("C:/Users/Felipe/Documents/GitHub/Banco/depositar.png")
 imagenDepositar = ImageTk.PhotoImage(imagenDepositar)
 botonDepositar = ttk.Button(canvas, image= imagenDepositar, command = abrirDepositar)
 botonDepositar.place( x=81, y=404)
@@ -409,14 +409,14 @@ botonDepositar.place( x=81, y=404)
 
 
 #------Retirar-----
-imagenRetirar = Image.open("./EDD/retirar.png")
+imagenRetirar = Image.open("C:/Users/Felipe/Documents/GitHub/Banco/retirar.png")
 imagenRetirar = imagenRetirar.resize((50,44),Image.ANTIALIAS)
 imagenRetirar = ImageTk.PhotoImage(imagenRetirar)
 botonRetirar = ttk.Button(canvas, image= imagenRetirar, command = abrirRetirar)
 botonRetirar.place( x=81, y=459)
 
 #------Transferir-----
-imagenTransferir = Image.open("./EDD/transferir.png")
+imagenTransferir = Image.open("C:/Users/Felipe/Documents/GitHub/Banco/transferir.png")
 imagenTransferir = imagenTransferir.resize((31,53),Image.ANTIALIAS)
 imagenTransferir = ImageTk.PhotoImage(imagenTransferir)
 botonTransferir = ttk.Button(canvas, image= imagenTransferir, command = abrirTransferir)
@@ -424,7 +424,7 @@ botonTransferir.place( x=88, y=509)
 
 #------Prestamo-----
 
-imagenPrestamo = Image.open("./EDD/prestamo.png")
+imagenPrestamo = Image.open("C:/Users/Felipe/Documents/GitHub/Banco/prestamo.png")
 imagenPrestamo = imagenPrestamo.resize((50,35),Image.ANTIALIAS)
 imagenPrestamo = ImageTk.PhotoImage(imagenPrestamo)
 botonPrestamo = ttk.Button(canvas, image= imagenPrestamo, command = Prestamofinal)
@@ -434,7 +434,7 @@ botonPrestamo.place( x=81, y=570)
 
 #------Analisis Estadisticos-----
 
-imagenGrafico = Image.open("./EDD/grafico.png")
+imagenGrafico = Image.open("C:/Users/Felipe/Documents/GitHub/Banco/grafico.png")
 imagenGrafico= imagenGrafico.resize((50,46),Image.ANTIALIAS)
 imagenGrafico = ImageTk.PhotoImage(imagenGrafico)
 botonGrafico = ttk.Button(canvas, image= imagenGrafico, command = abrirGrafico)
@@ -442,20 +442,20 @@ botonGrafico.place( x=675, y=400)
 
 #------Cola-----
 
-imagenCola = Image.open("./EDD/atendido.png")
+imagenCola = Image.open("C:/Users/Felipe/Documents/GitHub/Banco/atendido.png")
 imagenCola= imagenCola.resize((65,55),Image.ANTIALIAS)
 imagenCola = ImageTk.PhotoImage(imagenCola)
 botonCola = ttk.Button(canvas, image= imagenCola, command = abrirMostrarCola)
 botonCola.place( x=779, y=8)
 
 #----------Confirmar---------
-imagenConfirmaCliente1 = Image.open("./EDD/guardarCliente1.png")
+imagenConfirmaCliente1 = Image.open("C:/Users/Felipe/Documents/GitHub/Banco/guardarCliente1.png")
 imagenConfirmaCliente1 = ImageTk.PhotoImage(imagenConfirmaCliente1)
 botonConfirmarCliente1 = ttk.Button(canvas, image= imagenConfirmaCliente1,command = ConfirmarDatos)
 botonConfirmarCliente1.place( x=288, y=334)
 
 
-imagenConfirmaFuncionario = Image.open("./EDD/guardarFuncionario.png")
+imagenConfirmaFuncionario = Image.open("C:/Users/Felipe/Documents/GitHub/Banco/guardarFuncionario.png")
 imagenConfirmaFuncionario = ImageTk.PhotoImage(imagenConfirmaFuncionario)
 botonConfirmarFuncionario = ttk.Button(canvas, image= imagenConfirmaFuncionario,command = Mostrardatosfun)
 botonConfirmarFuncionario.place( x=884, y=334) 

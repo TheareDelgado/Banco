@@ -24,7 +24,7 @@ class dispensador(Persona):
             self.op=op
             A=Cliente(Nombre,Apellido,Rut,Clave,saldo)
             if  saldo>=500000:
-                PPA.append(A.ClientesEnCola)
+                PA.append(A.ClientesEnCola)
                 return (A.ClientesEnCola)
             elif  saldo<500000:
                 PB.append(A.ClientesEnCola)
