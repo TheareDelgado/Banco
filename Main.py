@@ -24,7 +24,7 @@ opciones=["1","2","3","4"]
 #DATOS DE CLIENTE
 rut=StringVar()
 Rut=["203770936","20","202","202254472"]
-Nombres=["Cesar","Felipe","Diego"," Theare"]
+Nombres=["Cesar","56949","Diego"," Theare"]
 Apellidos=["Mora","Vera","Gutierrez","Delgado"]
 saldo=(300000,600000,10000000,500000)
 #DATOS DE FUNCIONARIO
@@ -278,17 +278,25 @@ def abrirMostrarCola():
     ventanaMostrarCola.resizable(width=False, height=False)
 
     tabla = ttk.Treeview(ventanaMostrarCola)
-    tabla['columns']=("N° Atencion","N° Cola", "Operación")
+    tabla['columns']=("N° Atencion","N° Cola", "Operación", "Nombre", "Apellido", "Rut")
     tabla.column('#0', width=0, stretch=NO)
     tabla.column('N° Cola',anchor=CENTER, width=50)
     tabla.column('Operación', anchor=CENTER, width=200)
+    tabla.column('Nombre', anchor=CENTER, width=200)
+    tabla.column('Apellido', anchor=CENTER, width=200)
+    tabla.column('Rut', anchor=CENTER, width=200)
+    tabla.column("N° Atencion",anchor=CENTER, width=80)
 
 
     tabla.heading('#0', text='', anchor=CENTER)
     tabla.heading('N° Cola', text='N° Cola', anchor=CENTER)
     tabla.heading('Operación', text='Operación', anchor=CENTER)
+    tabla.heading('Nombre', text='Nombre', anchor=CENTER)
+    tabla.heading('Apellido', text='Apellido', anchor=CENTER)
+    tabla.heading('Rut', text='Rut', anchor=CENTER)
+    tabla.heading("N° Atencion" ,text="N° Atencion",anchor=CENTER)
 
-    tabla.insert("",END,text="21")
+    tabla.pack()
 
 
 
