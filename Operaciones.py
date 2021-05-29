@@ -29,7 +29,7 @@ class Operaciones(Cliente):
             saldo=saldo-montor
             return print ("Su nuevo saldo es : "+ saldo)
 
-     def Transferir(self, rut, clave, saldo, montor, rutd):
+     def Transferir(self, rut, clave, saldo, montor, rutd, validarut):
         montor=int(input("ingrese monto el cual quiere transferir de su cuenta"))
         rutd=int(input("ingrese el rut del destinatario"))
         if validarut == true and montor<saldo:
