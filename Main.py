@@ -1,4 +1,3 @@
-from pathlib import WindowsPath
 import tkinter 
 from tkinter import *
 from PIL import Image, ImageTk
@@ -7,10 +6,6 @@ from tkinter import Button
 from Cliente import *
 from Persona import *
 from dispensador import *
-import matplotlib.pyplot as plt
-from matplotlib import cm
-from matplotlib import colors
-
 
 
 
@@ -19,12 +14,10 @@ root = Tk()
 root.title("Banco") #Nombre que aparece en la ventana
 root.geometry("1248x1543")  #Define tamaño de la ventana
 root.resizable(width=False, height=False)
-#DATOS RANDOMSSS
-opciones=["1","2","3","4"]
 #DATOS DE CLIENTE
 rut=StringVar()
 Rut=["203770936","20","202","202254472"]
-Nombres=["Cesar","56949","Diego"," Theare"]
+Nombres=["Cesar","Felipe","Diego"," Theare"]
 Apellidos=["Mora","Vera","Gutierrez","Delgado"]
 saldo=(300000,600000,10000000,500000)
 #DATOS DE FUNCIONARIO
@@ -32,15 +25,6 @@ rutf=StringVar()
 Rutfu=["20377","20","202","20225"]
 Nombresfu=["Albo","LUCA","Diego"," There"]
 Apellidosfu=["FIX","Sancs","Gutierrez","Smith"]
-#LLAMANDO A CLASES
-A=dispensador("", "", 0, 0, 0)
-#DATOS PRESTAMO
-prestamosol=StringVar()
-cantidadcuotas=StringVar()
-LISTAALTA=[StringVar()]
-LISTABAJA=[StringVar()]
-
-
 
 
 
@@ -49,7 +33,7 @@ frame.pack()
 
 #********************BACKGROUND***********************************************
 
-background_img = Image.open("./EDD/bank.png")
+background_img = Image.open("C:/Users/taylo/Desktop/EDD/bank.png")
 background_tkimg = ImageTk.PhotoImage(background_img)
 canvas = Canvas(root, highlightthickness=0)
 canvas.pack(expand = True, fill = "both")
@@ -59,6 +43,7 @@ root.update()
 #****************************************************************************
 
 
+
 def abrirDepositar():
     ventanaDepositar=Toplevel(root)
     ventanaDepositar.title("Depositar")
@@ -66,7 +51,7 @@ def abrirDepositar():
     ventanaDepositar.resizable(width=False, height=False)
 
 
-    imagen = PhotoImage (file = "./EDD/ventanaDepositar.png") 
+    imagen = PhotoImage (file = "C:/Users/taylo/Desktop/EDD/ventanaDepositar.png") 
     fondo=Label(ventanaDepositar, image = imagen).place( x=0, y=0)
 
     #Entry y Label
@@ -78,7 +63,7 @@ def abrirDepositar():
     ingresaMontoDeposito.place_configure(x=842, y=379 , width=270, height=20)
 
 
-    imagenConfirmaCliente2 = Image.open("./EDD/guardarCliente2.png")
+    imagenConfirmaCliente2 = Image.open("C:/Users/taylo/Desktop/EDD/guardarCliente2.png")
     imagenConfirmaCliente2 = ImageTk.PhotoImage(imagenConfirmaCliente2)
     botonConfirmarCliente2 = ttk.Button(ventanaDepositar, image= imagenConfirmaCliente2, command = ventanaDepositar.destroy)
     botonConfirmarCliente2.place( x=838, y=525)
@@ -94,7 +79,7 @@ def abrirRetirar():
     ventanaRetirar.resizable(width=False, height=False)
 
 
-    imagen = PhotoImage (file = "./EDD/ventanaDepositar.png") 
+    imagen = PhotoImage (file = "C:/Users/taylo/Desktop/EDD/ventanaDepositar.png") 
     fondo=Label(ventanaRetirar, image = imagen).place( x=0, y=0)
 
 
@@ -105,7 +90,7 @@ def abrirRetirar():
     ingresaMontoRetiro.place_configure(x=842, y=379 , width=270, height=20)
 
 
-    imagenConfirmaCliente3 = Image.open("./EDD/guardarCliente2.png")
+    imagenConfirmaCliente3 = Image.open("C:/Users/taylo/Desktop/EDD/guardarCliente2.png")
     imagenConfirmaCliente3 = ImageTk.PhotoImage(imagenConfirmaCliente3)
     botonConfirmarCliente3 = ttk.Button(ventanaRetirar, image= imagenConfirmaCliente3, command = ventanaRetirar.destroy)
     botonConfirmarCliente3.place( x=838, y=525)
@@ -120,7 +105,7 @@ def abrirTransferir():
     ventanaTransferir.resizable(width=False, height=False)
 
 
-    imagen = PhotoImage (file = "./EDD/ventanaTransferir.png") 
+    imagen = PhotoImage (file = "C:/Users/taylo/Desktop/EDD/ventanaTransferir.png") 
     fondo=Label(ventanaTransferir, image = imagen).place( x=0, y=0)
 
 
@@ -146,9 +131,9 @@ def abrirTransferir():
     ingresaBancoTransferir.place_configure(x=875, y=476 , width=270, height=20)
 
 
-    imagenConfirmaCliente4 = Image.open("./EDD/guardarCliente2.png")
+    imagenConfirmaCliente4 = Image.open("C:/Users/taylo/Desktop/EDD/guardarCliente2.png")
     imagenConfirmaCliente4 = ImageTk.PhotoImage(imagenConfirmaCliente4)
-    botonConfirmarCliente4 = ttk.Button(ventanaTransferir, image= imagenConfirmaCliente4, command = ventanaTransferir.destroy,)
+    botonConfirmarCliente4 = ttk.Button(ventanaTransferir, image= imagenConfirmaCliente4, command = ventanaTransferir.destroy)
     botonConfirmarCliente4.place( x=836, y=525)
 
     ventanaTransferir.mainloop()
@@ -161,7 +146,7 @@ def abrirPrestamo():
     ventanaPrestamo.resizable(width=False, height=False)
 
 
-    imagen = PhotoImage (file = "./EDD/ventanaPrestamo.png") 
+    imagen = PhotoImage (file = "C:/Users/taylo/Desktop/EDD/ventanaPrestamo.png") 
     fondo=Label(ventanaPrestamo, image = imagen).place( x=0, y=0)
 
     ingresaMonto = ttk.Entry(ventanaPrestamo)
@@ -171,27 +156,17 @@ def abrirPrestamo():
     ingresaMotivoPrestamo = ttk.Entry(ventanaPrestamo)
     ingresaMotivoPrestamo.place_configure(x=892, y=364 , width=270, height=20)
 
-    ingresaMontoPrestamo = ttk.Combobox(ventanaPrestamo,values=("$150.000","$300.000","$600.000"),textvariable=prestamosol)
+    ingresaMontoPrestamo = ttk.Entry(ventanaPrestamo)
     ingresaMontoPrestamo.place_configure(x=893, y=389 , width=270, height=20)
-     
-    if (rut.get()==Rut[0]):
-       ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=saldo[0])
-       ingresaPresupuestoPrestamo.place_configure(x=892, y=415 , width=270, height=20)
-    elif (rut.get()==Rut[1]):
-       ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=saldo[1])
-       ingresaPresupuestoPrestamo.place_configure(x=892, y=415 , width=270, height=20)
-    elif (rut.get()==Rut[2]):
-       ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=saldo[2])
-       ingresaPresupuestoPrestamo.place_configure(x=892, y=415 , width=270, height=20)
-    elif (rut.get()==Rut[3]):
-       ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=saldo[3])
-       ingresaPresupuestoPrestamo.place_configure(x=892, y=415 , width=270, height=20)
 
-    ingresaCuotaPrestamo = ttk.Combobox(ventanaPrestamo,values=("3","6","9"),textvariable=cantidadcuotas)
+    ingresaPresupuestoPrestamo = ttk.Entry(ventanaPrestamo)
+    ingresaPresupuestoPrestamo.place_configure(x=892, y=415 , width=270, height=20)
+
+    ingresaCuotaPrestamo = ttk.Entry(ventanaPrestamo)
     ingresaCuotaPrestamo.place_configure(x=892, y=442 , width=270, height=20)
 
 
-    imagenConfirmaCliente5 = Image.open("./EDD/guardarCliente2.png")
+    imagenConfirmaCliente5 = Image.open("C:/Users/taylo/Desktop/EDD/guardarCliente2.png")
     imagenConfirmaCliente5 = ImageTk.PhotoImage(imagenConfirmaCliente5)
     botonConfirmarCliente5 = ttk.Button(ventanaPrestamo, image= imagenConfirmaCliente5, command = ventanaPrestamo.destroy)
     botonConfirmarCliente5.place( x=840, y=535)
@@ -199,136 +174,33 @@ def abrirPrestamo():
 
 
 def abrirGrafico():
-    #ventanaGrafico=Toplevel(root)
-    #ventanaGrafico.title("Gráfico")
-    #ventanaGrafico.geometry("1248x708")
-    #ventanaGrafico.resizable(width=False, height=False)
-    cantidadPrestamos = 0
-    cantidadDepositos = 6
-    cantidadRetirar = 5
-    cantidadTransferencias = 9
-
-    if(cantidadPrestamos==0 and cantidadDepositos>=1 and cantidadRetirar>=1 and cantidadTransferencias>=1):
-        operaciones = [cantidadDepositos, cantidadTransferencias, cantidadRetirar]
-        normdata = colors.Normalize(min(operaciones), max(operaciones))
-        colormap = cm.get_cmap("Blues")
-        colores =colormap(normdata(operaciones))
-
-        label = ["Depositar", "Transferir", "Retirar"]
-
-        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
-        plt.show()
-
-    if(cantidadPrestamos>=1 and cantidadDepositos==0 and cantidadRetirar>=1 and cantidadTransferencias>=1):
-        operaciones = [cantidadTransferencias, cantidadRetirar, cantidadPrestamos]
-        normdata = colors.Normalize(min(operaciones), max(operaciones))
-        colormap = cm.get_cmap("Blues")
-        colores =colormap(normdata(operaciones))
-
-        label = ["Transferir", "Retirar", "Préstamo"]
-
-        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
-        plt.show()
-
-    if(cantidadPrestamos>=1 and cantidadDepositos>=1 and cantidadTransferencias>=1 and cantidadRetirar==0):
-        operaciones = [cantidadDepositos, cantidadTransferencias, cantidadPrestamos]
-        normdata = colors.Normalize(min(operaciones), max(operaciones))
-        colormap = cm.get_cmap("Blues")
-        colores =colormap(normdata(operaciones))
-
-        label = ["Depositar", "Transferir", "Préstamo"]
-
-        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
-        plt.show()
-
-    if(cantidadPrestamos>=1 and cantidadDepositos>=1 and cantidadRetirar>=1 and cantidadTransferencias==0):
-        operaciones = [cantidadDepositos, cantidadRetirar, cantidadPrestamos]
-        normdata = colors.Normalize(min(operaciones), max(operaciones))
-        colormap = cm.get_cmap("Blues")
-        colores =colormap(normdata(operaciones))
-
-        label = ["Depositar", "Retirar", "Préstamo"]
-
-        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
-        plt.show()
-
-    if(cantidadPrestamos>=1 and cantidadDepositos>=1 and cantidadRetirar>=1 and cantidadTransferencias>=1):
-        operaciones = [cantidadDepositos, cantidadTransferencias, cantidadRetirar, cantidadPrestamos]
-        normdata = colors.Normalize(min(operaciones), max(operaciones))
-        colormap = cm.get_cmap("Blues")
-        colores =colormap(normdata(operaciones))
-
-        label = ["Depositar", "Transferir", "Retirar", "Préstamo"]
-
-        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
-        plt.show()
-    
-#Si una de las variables es 0 que no muestre el label y solo muestre las otras operaciones!!!
+    ventanaGrafico=Toplevel(root)
+    ventanaGrafico.title("Gráfico")
+    ventanaGrafico.geometry("1248x708")
+    ventanaGrafico.resizable(width=False, height=False)
 
 
-
-
-    #ventanaGrafico.mainloop()
+    ventanaGrafico.mainloop()
 
 
 def abrirMostrarCola():
     ventanaMostrarCola=Toplevel(root)
     ventanaMostrarCola.title("Mostrar Colas de Servicio")
-    ventanaMostrarCola.geometry("1200x350")
+    ventanaMostrarCola.geometry("1248x785")
     ventanaMostrarCola.resizable(width=False, height=False)
+    imagen = PhotoImage (file = "C:/Users/taylo/Desktop/EDD/Colaprioridad.png") 
+    fondo=Label(ventanaMostrarCola, image = imagen).place( x=0, y=0)
+ 
 
-    tabla = ttk.Treeview(ventanaMostrarCola)
-    tabla['columns']=("N° Atencion","N° Cola", "Operación", "Nombre", "Apellido", "Rut")
-    tabla.column('#0', width=0, stretch=NO)
-    tabla.column('N° Cola',anchor=CENTER, width=50)
-    tabla.column('Operación', anchor=CENTER, width=200)
-    tabla.column('Nombre', anchor=CENTER, width=200)
-    tabla.column('Apellido', anchor=CENTER, width=200)
-    tabla.column('Rut', anchor=CENTER, width=200)
-    tabla.column("N° Atencion",anchor=CENTER, width=80)
-
-
-    tabla.heading('#0', text='', anchor=CENTER)
-    tabla.heading('N° Cola', text='N° Cola', anchor=CENTER)
-    tabla.heading('Operación', text='Operación', anchor=CENTER)
-    tabla.heading('Nombre', text='Nombre', anchor=CENTER)
-    tabla.heading('Apellido', text='Apellido', anchor=CENTER)
-    tabla.heading('Rut', text='Rut', anchor=CENTER)
-    tabla.heading("N° Atencion" ,text="N° Atencion",anchor=CENTER)
-
-    tabla.pack()
-
-    tabla.insert("",END,text="1",values=(Nombres[0]))
     ventanaMostrarCola.mainloop()
 
-#_---------------------------------------------------------------
-
-#-------------------------------------------------------------------
-
-                             #DEF RANDOMS
-
+def AgregaraCola():
+    dispensador.ponerEnServicio()
 
 
 def Colass():
-    A.ListaDeEspera()
+    dispensador.ListaDeEspera()
 
-def Prestamofinal():
-    if (rut.get()==Rut[0]):
-        print("Se ah agragado a un cliente")
-        A.ponerEnServicio(Nombres[0],Apellidos[0],Rut[0],3535,saldo[0],4,LISTAALTA,LISTABAJA)
-        abrirPrestamo()
-    elif (rut.get()==Rut[1]):
-        print("Se ah agragado a un cliente")
-        A.ponerEnServicio(Nombres[1],Apellidos[1],Rut[1],3535,saldo[1],4,LISTAALTA,LISTABAJA)
-        abrirPrestamo()
-    elif (rut.get()==Rut[2]):
-        print("Se ah agragado a un cliente")
-        A.ponerEnServicio(Nombres[2],Apellidos[2],Rut[2],3535,saldo[2],4,LISTAALTA,LISTABAJA)
-        abrirPrestamo()
-    elif (rut.get()==Rut[3]):
-        print("Se ah agragado a un cliente")
-        A.ponerEnServicio(Nombres[3],Apellidos[3],Rut[3],3535,saldo[3],4,LISTAALTA,LISTABAJA)
-        abrirPrestamo()
 
 def ConfirmarDatos():
     if (rut.get()==Rut[0]):
@@ -402,7 +274,7 @@ ingresaRutFuncionario.place( x=793, y=266, width=270, height=20)
 
 #------Depositar----
 
-imagenDepositar = Image.open("./EDD/depositar.png")
+imagenDepositar = Image.open("C:/Users/taylo/Desktop/EDD/depositar.png")
 imagenDepositar = ImageTk.PhotoImage(imagenDepositar)
 botonDepositar = ttk.Button(canvas, image= imagenDepositar, command = abrirDepositar)
 botonDepositar.place( x=81, y=404)
@@ -410,14 +282,14 @@ botonDepositar.place( x=81, y=404)
 
 
 #------Retirar-----
-imagenRetirar = Image.open("./EDD/retirar.png")
+imagenRetirar = Image.open("C:/Users/taylo/Desktop/EDD/retirar.png")
 imagenRetirar = imagenRetirar.resize((50,44),Image.ANTIALIAS)
 imagenRetirar = ImageTk.PhotoImage(imagenRetirar)
 botonRetirar = ttk.Button(canvas, image= imagenRetirar, command = abrirRetirar)
 botonRetirar.place( x=81, y=459)
 
 #------Transferir-----
-imagenTransferir = Image.open("./EDD/transferir.png")
+imagenTransferir = Image.open("C:/Users/taylo/Desktop/EDD/transferir.png")
 imagenTransferir = imagenTransferir.resize((31,53),Image.ANTIALIAS)
 imagenTransferir = ImageTk.PhotoImage(imagenTransferir)
 botonTransferir = ttk.Button(canvas, image= imagenTransferir, command = abrirTransferir)
@@ -425,17 +297,16 @@ botonTransferir.place( x=88, y=509)
 
 #------Prestamo-----
 
-imagenPrestamo = Image.open("./EDD/prestamo.png")
+imagenPrestamo = Image.open("C:/Users/taylo/Desktop/EDD/prestamo.png")
 imagenPrestamo = imagenPrestamo.resize((50,35),Image.ANTIALIAS)
 imagenPrestamo = ImageTk.PhotoImage(imagenPrestamo)
-botonPrestamo = ttk.Button(canvas, image= imagenPrestamo, command = Prestamofinal)
+botonPrestamo = ttk.Button(canvas, image= imagenPrestamo, command = AgregaraCola)
+botonPrestamo = ttk.Button(canvas, image= imagenPrestamo, command = abrirPrestamo)
 botonPrestamo.place( x=81, y=570)
-
-
 
 #------Analisis Estadisticos-----
 
-imagenGrafico = Image.open("./EDD/grafico.png")
+imagenGrafico = Image.open("C:/Users/taylo/Desktop/EDD/grafico.png")
 imagenGrafico= imagenGrafico.resize((50,46),Image.ANTIALIAS)
 imagenGrafico = ImageTk.PhotoImage(imagenGrafico)
 botonGrafico = ttk.Button(canvas, image= imagenGrafico, command = abrirGrafico)
@@ -443,25 +314,26 @@ botonGrafico.place( x=675, y=400)
 
 #------Cola-----
 
-imagenCola = Image.open("./EDD/atendido.png")
+imagenCola = Image.open("C:/Users/taylo/Desktop/EDD/atendido.png")
 imagenCola= imagenCola.resize((65,55),Image.ANTIALIAS)
 imagenCola = ImageTk.PhotoImage(imagenCola)
 botonCola = ttk.Button(canvas, image= imagenCola, command = abrirMostrarCola)
 botonCola.place( x=779, y=8)
 
 #----------Confirmar---------
-imagenConfirmaCliente1 = Image.open("./EDD/guardarCliente1.png")
+imagenConfirmaCliente1 = Image.open("C:/Users/taylo/Desktop/EDD/guardarCliente1.png")
 imagenConfirmaCliente1 = ImageTk.PhotoImage(imagenConfirmaCliente1)
 botonConfirmarCliente1 = ttk.Button(canvas, image= imagenConfirmaCliente1,command = ConfirmarDatos)
 botonConfirmarCliente1.place( x=288, y=334)
 
 
-imagenConfirmaFuncionario = Image.open("./EDD/guardarFuncionario.png")
+imagenConfirmaFuncionario = Image.open("C:/Users/taylo/Desktop/EDD/guardarFuncionario.png")
 imagenConfirmaFuncionario = ImageTk.PhotoImage(imagenConfirmaFuncionario)
 botonConfirmarFuncionario = ttk.Button(canvas, image= imagenConfirmaFuncionario,command = Mostrardatosfun)
 botonConfirmarFuncionario.place( x=884, y=334) 
 
 #*****************************************************************************
+
 
 
 
