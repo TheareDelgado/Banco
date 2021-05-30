@@ -55,26 +55,23 @@ class dispensador(Persona):
             return print("En total se atendieron un total de : "+ contadorpersonas+ " de personas")
     
 #DEF PARA PARA OPERACION REALIZADA
-    def Depositos(self,ops):
-        self.contadordepositos=0
-        if ops==1:
-            contadordepositos=contadordepositos+1
-            return contadordepositos
-    def Retiros(self,ops):
-        self.contadorretiros=0
-        if ops==2:
-            contadorretiros=contadorretiros+1
-            return contadorretiros
-    def Trasnferencias(self,ops):
-        self.contadortrasnferencia=0
-        if ops==3:
-            contadortrasnferencia=contadortrasnferencia+1
-            return contadortrasnferencia
-    def Prestamos():
-        self.contadorPrestamo=0
-        if ops==4:
-            contadorPrestamo=contadorPrestamo+1
-            return contadorPrestamo
+    def numerodeticekt(self):
+        self.tiketdeposito=0
+        self.tiketretirar=0
+        self.tikettransferir=0
+        self.tiketprestamo=0
+        if self.ops==1:
+            self.tiketdeposito=self.tiketdeposito+1
+            return "Su ticket es: "+self.tiketdeposito
+        if self.ops==2:
+            self.tiketretirar=self.tiketretirar+1
+            return "Su ticket es: "+self.tiketretirar
+        if self.ops==3:
+            self.tikettransferir=self.tikettransferir+1
+            return "Su ticket es: "+self.tikettransferir
+        if self.ops==4:
+            self.tiketprestamo=self.tiketprestamor+1
+            return "Su ticket es: "+self.tiketprestamo
 #----------------------------------------------------------------------------
     #####FIN DEFS CONTADORES
 #----------------------------------------------------------------------------       
