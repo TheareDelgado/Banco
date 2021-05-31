@@ -381,19 +381,19 @@ def abrirMostrarCola():
     imagenRetirar1 = Image.open("./EDD/retirar.png")
     imagenRetirar1 = imagenRetirar1.resize((65,54),Image.ANTIALIAS)
     imagenRetirar1 = ImageTk.PhotoImage(imagenRetirar1)
-    botonRetirar1 = ttk.Button(ventanaMostrarCola, image= imagenRetirar1, command = abrirRetirar)
+    botonRetirar1 = ttk.Button(ventanaMostrarCola, image= imagenRetirar1)
     botonRetirar1.place( x=80, y=150, width=90, height=60)
     #Boton para filtrar la tabla por colas de prioridad de Transferencias
     imagenTransferir1 = Image.open("./EDD/transferir.png")
     imagenTransferir1 = imagenTransferir1.resize((42,53),Image.ANTIALIAS)
     imagenTransferir1 = ImageTk.PhotoImage(imagenTransferir1)
-    botonTransferir1 = ttk.Button(ventanaMostrarCola, image= imagenTransferir1, command = abrirTransferir)
+    botonTransferir1 = ttk.Button(ventanaMostrarCola, image= imagenTransferir1)
     botonTransferir1.place( x=1025, y=22, width=90, height=60)
     #Boton para filtrar la tabla por colas de prioridad de Prestamos
     imagenPrestamo1 = Image.open("./EDD/prestamo.png")
     imagenPrestamo1 = imagenPrestamo1.resize((60,53),Image.ANTIALIAS)
     imagenPrestamo1 = ImageTk.PhotoImage(imagenPrestamo1)
-    botonPrestamo1 = ttk.Button(ventanaMostrarCola, image= imagenPrestamo1, command = abrirPrestamo)
+    botonPrestamo1 = ttk.Button(ventanaMostrarCola, image= imagenPrestamo1)
     botonPrestamo1.place( x=1025, y=150, width=90, height=60)
 
     #Falta modificar el command de cada boton para de este modo llamar a un metodo que limpie la tabla y la actualize con las colas que se le solicitan
