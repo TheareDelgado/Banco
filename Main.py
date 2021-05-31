@@ -10,9 +10,74 @@ from dispensador import *
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib import colors
+from Funcionario import *
+
+#Creando personas
+
+p1=Persona()
+p2=Persona()
+p3=Persona()
+p4=Persona()
+
+#creando funcionarios
+
+p5=Funcionario()
+p6=Funcionario()
+p7=Funcionario()
+p8=Funcionario()
+
+#falta administrar las claves de cada usuario
+p1.setNombre("Cesar")
+p1.setApellido("Mora")
+p1.setRut("203770936")
+p1.setSaldo(300000)
+
+
+p2.setNombre("Felipe")
+p2.setApellido("Vera")
+p2.setRut("202175936")
+p2.setSaldo(600000)
+
+p3.setNombre("Diego")
+p3.setApellido("Gonzalez")
+p3.setRut("202974058")
+p3.setSaldo(10000000)
+
+p4.setNombre("Theare")
+p4.setApellido("Delgado")
+p4.setRut("202254472")
+p4.setSaldo(500000)
+
+###################################
+p5.setnombrefuncionario("Albo")
+p5.setapellidofuncionario("Fix")
+p5.setrutfuncionario("203770456")
+
+p6.setnombrefuncionario("Cesar")
+p6.setapellidofuncionario("Perez")
+p6.setrutfuncionario("203770325")
+
+p7.setnombrefuncionario("There")
+p7.setapellidofuncionario("Smith")
+p7.setrutfuncionario("203754623")
+
+p8.setnombrefuncionario("Felipino")
+p8.setapellidofuncionario("Ortiz")
+p8.setrutfuncionario("202172345")
 
 
 
+#Creando listado de personas
+
+listadoPersonas= Dispensador()
+listadoPersonas.agregarPersonas(p1)
+listadoPersonas.agregarPersonas(p2)
+listadoPersonas.agregarPersonas(p3)
+listadoPersonas.agregarPersonas(p4)
+listadoPersonas.agregarFuncionarios(p5)
+listadoPersonas.agregarFuncionarios(p6)
+listadoPersonas.agregarFuncionarios(p7)
+listadoPersonas.agregarFuncionarios(p8)
 
 
 root = Tk()
@@ -23,25 +88,20 @@ root.resizable(width=False, height=False)
 opciones=["1","2","3","4"]
 #DATOS DE CLIENTE
 rut=StringVar()
-Rut=["203770936","20","202","202254472"]
-Nombres=["Cesar","56949","Diego"," Theare"]
-Apellidos=["Mora","Vera","Gutierrez","Delgado"]
-saldo=(300000,600000,10000000,500000)
+
 #DATOS DE FUNCIONARIO
 rutf=StringVar()
 Rutfu=["20377","20","202","20225"]
 Nombresfu=["Albo","LUCA","Diego"," There"]
 Apellidosfu=["FIX","Sancs","Gutierrez","Smith"]
 #LLAMANDO A CLASES
-A=dispensador("", "", 0, 0, 0)
+
 #DATOS PRESTAMO
 prestamosol=StringVar()
 cantidadcuotas=StringVar()
 LISTAALTA=[StringVar()]
 LISTABAJA=[StringVar()]
-
-
-
+A=[]
 
 
 frame=Frame()
@@ -65,6 +125,19 @@ def abrirDepositar():
     ventanaDepositar.geometry("1248x708")
     ventanaDepositar.resizable(width=False, height=False)
 
+    def enDeposito():
+        for persona in listadoPersonas.getLista():
+            if (ingresaRutCliente.get()==persona.getRut()):
+                persona.setOperacion("Depositar")
+                listadoPersonas.agregarDeposito(persona)
+                listadoPersonas.agregarTabla(persona)
+                A.append("Depositar")
+                
+                
+                
+        
+        ventanaDepositar.destroy()
+
 
     imagen = PhotoImage (file = "./EDD/ventanaDepositar.png") 
     fondo=Label(ventanaDepositar, image = imagen).place( x=0, y=0)
@@ -80,7 +153,7 @@ def abrirDepositar():
 
     imagenConfirmaCliente2 = Image.open("./EDD/guardarCliente2.png")
     imagenConfirmaCliente2 = ImageTk.PhotoImage(imagenConfirmaCliente2)
-    botonConfirmarCliente2 = ttk.Button(ventanaDepositar, image= imagenConfirmaCliente2, command = ventanaDepositar.destroy)
+    botonConfirmarCliente2 = ttk.Button(ventanaDepositar, image= imagenConfirmaCliente2, command = enDeposito)
     botonConfirmarCliente2.place( x=838, y=525)
 
 
@@ -92,6 +165,16 @@ def abrirRetirar():
     ventanaRetirar.title("Retirar")
     ventanaRetirar.geometry("1248x708")
     ventanaRetirar.resizable(width=False, height=False)
+
+    def enRetirar():
+        for persona in listadoPersonas.getLista():
+            if (ingresaRutCliente.get()==persona.getRut()):
+                persona.setOperacion("Retirar")
+                listadoPersonas.agregarRetirar(persona)
+                listadoPersonas.agregarTabla(persona)
+                A.append("Retirar")
+
+        ventanaRetirar.destroy()
 
 
     imagen = PhotoImage (file = "./EDD/ventanaDepositar.png") 
@@ -107,7 +190,7 @@ def abrirRetirar():
 
     imagenConfirmaCliente3 = Image.open("./EDD/guardarCliente2.png")
     imagenConfirmaCliente3 = ImageTk.PhotoImage(imagenConfirmaCliente3)
-    botonConfirmarCliente3 = ttk.Button(ventanaRetirar, image= imagenConfirmaCliente3, command = ventanaRetirar.destroy)
+    botonConfirmarCliente3 = ttk.Button(ventanaRetirar, image= imagenConfirmaCliente3, command = enRetirar)
     botonConfirmarCliente3.place( x=838, y=525)
 
     ventanaRetirar.mainloop()
@@ -118,6 +201,16 @@ def abrirTransferir():
     ventanaTransferir.title("Transferir")
     ventanaTransferir.geometry("1248x708")
     ventanaTransferir.resizable(width=False, height=False)
+
+    def enTransferir():
+        for persona in listadoPersonas.getLista():
+            if (ingresaRutCliente.get()==persona.getRut()):
+                persona.setOperacion("Transferir")
+                listadoPersonas.agregarTransferir(persona)
+                listadoPersonas.agregarTabla(persona)
+                A.append("Transferir")
+
+        ventanaTransferir.destroy()
 
 
     imagen = PhotoImage (file = "./EDD/ventanaTransferir.png") 
@@ -148,7 +241,7 @@ def abrirTransferir():
 
     imagenConfirmaCliente4 = Image.open("./EDD/guardarCliente2.png")
     imagenConfirmaCliente4 = ImageTk.PhotoImage(imagenConfirmaCliente4)
-    botonConfirmarCliente4 = ttk.Button(ventanaTransferir, image= imagenConfirmaCliente4, command = ventanaTransferir.destroy,)
+    botonConfirmarCliente4 = ttk.Button(ventanaTransferir, image= imagenConfirmaCliente4, command = enTransferir)
     botonConfirmarCliente4.place( x=836, y=525)
 
     ventanaTransferir.mainloop()
@@ -160,12 +253,23 @@ def abrirPrestamo():
     ventanaPrestamo.geometry("1248x708")
     ventanaPrestamo.resizable(width=False, height=False)
 
+    def enPrestamo():
+        for persona in listadoPersonas.getLista():
+            if (ingresaRutCliente.get()==persona.getRut()):
+                persona.setOperacion("Prestamo")
+                listadoPersonas.agregarPrestamo(persona)
+                listadoPersonas.agregarTabla(persona)
+                A.append("Prestamo")
+
+        ventanaPrestamo.destroy()
+
 
     imagen = PhotoImage (file = "./EDD/ventanaPrestamo.png") 
     fondo=Label(ventanaPrestamo, image = imagen).place( x=0, y=0)
 
     ingresaMonto = ttk.Entry(ventanaPrestamo)
     ingresaMonto.place()
+    
 
 
     ingresaMotivoPrestamo = ttk.Entry(ventanaPrestamo)
@@ -173,27 +277,17 @@ def abrirPrestamo():
 
     ingresaMontoPrestamo = ttk.Combobox(ventanaPrestamo,values=("$150.000","$300.000","$600.000"),textvariable=prestamosol)
     ingresaMontoPrestamo.place_configure(x=893, y=389 , width=270, height=20)
-     
-    if (rut.get()==Rut[0]):
-       ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=saldo[0])
-       ingresaPresupuestoPrestamo.place_configure(x=892, y=415 , width=270, height=20)
-    elif (rut.get()==Rut[1]):
-       ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=saldo[1])
-       ingresaPresupuestoPrestamo.place_configure(x=892, y=415 , width=270, height=20)
-    elif (rut.get()==Rut[2]):
-       ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=saldo[2])
-       ingresaPresupuestoPrestamo.place_configure(x=892, y=415 , width=270, height=20)
-    elif (rut.get()==Rut[3]):
-       ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=saldo[3])
-       ingresaPresupuestoPrestamo.place_configure(x=892, y=415 , width=270, height=20)
-
+    for persona in listadoPersonas.getLista():
+        if (ingresaRutCliente.get()==persona.getRut()):
+            ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=persona.getSaldo())
+            ingresaPresupuestoPrestamo.place_configure(x=892, y=415 , width=270, height=20)
     ingresaCuotaPrestamo = ttk.Combobox(ventanaPrestamo,values=("3","6","9"),textvariable=cantidadcuotas)
     ingresaCuotaPrestamo.place_configure(x=892, y=442 , width=270, height=20)
-
+    
 
     imagenConfirmaCliente5 = Image.open("./EDD/guardarCliente2.png")
     imagenConfirmaCliente5 = ImageTk.PhotoImage(imagenConfirmaCliente5)
-    botonConfirmarCliente5 = ttk.Button(ventanaPrestamo, image= imagenConfirmaCliente5, command = ventanaPrestamo.destroy)
+    botonConfirmarCliente5 = ttk.Button(ventanaPrestamo, image= imagenConfirmaCliente5, command = enPrestamo)
     botonConfirmarCliente5.place( x=840, y=535)
     ventanaPrestamo.mainloop()
 
@@ -276,136 +370,65 @@ def abrirMostrarCola():
     ventanaMostrarCola.title("Mostrar Colas de Servicio")
     ventanaMostrarCola.geometry("1200x350")
     ventanaMostrarCola.resizable(width=False, height=False)
-
+    
     tabla = ttk.Treeview(ventanaMostrarCola)
-    tabla['columns']=("N° Atencion","N° Cola", "Operación", "Nombre", "Apellido", "Rut")
+    tabla['columns']=("Rut","Operacion", "N° Atencion","Estado")
     tabla.column('#0', width=0, stretch=NO)
-    tabla.column('N° Cola',anchor=CENTER, width=50)
-    tabla.column('Operación', anchor=CENTER, width=200)
-    tabla.column('Nombre', anchor=CENTER, width=200)
-    tabla.column('Apellido', anchor=CENTER, width=200)
-    tabla.column('Rut', anchor=CENTER, width=200)
-    tabla.column("N° Atencion",anchor=CENTER, width=80)
+    tabla.column("Rut", anchor=CENTER, width=200)
+    tabla.column("Operacion", anchor=CENTER, width=200)
+    tabla.column("N° Atencion", anchor=CENTER, width=80)
+    tabla.column("Estado", anchor=CENTER, width=200)
+    
 
 
     tabla.heading('#0', text='', anchor=CENTER)
-    tabla.heading('N° Cola', text='N° Cola', anchor=CENTER)
-    tabla.heading('Operación', text='Operación', anchor=CENTER)
-    tabla.heading('Nombre', text='Nombre', anchor=CENTER)
-    tabla.heading('Apellido', text='Apellido', anchor=CENTER)
-    tabla.heading('Rut', text='Rut', anchor=CENTER)
-    tabla.heading("N° Atencion" ,text="N° Atencion",anchor=CENTER)
+    tabla.heading("Rut", text="Rut", anchor=CENTER)
+    tabla.heading("Operacion", text="Operacion", anchor=CENTER)
+    tabla.heading("N° Atencion", text="N° Atencion", anchor=CENTER)
+    tabla.heading("Estado", text="Estado", anchor=CENTER)
 
+    
+    
     tabla.pack()
-
-   #lo que se hace aqui es comparar por medio de un if si el rut ingresado coincide con un rut de la lista de rut[] entonces se agregara a la tabla el nombre, apellido y rut de esa persona
-    #se creo un contador para que el numero de atencion(natencion) se vaya sumando y a su vez el numero de filas (n) para que se vayan acumulando los datos en la tabla, aunque ambos datos no estan funcionando bien
-    
     n=1
-    natencion=1
-
-    if (rut.get()==Rut[0]) :
-        tabla.insert("",END,text=n,values=(natencion,"por definir", "por definir", "Cesar","Mora","203770936" ))
+    I=0
+    for persona in listadoPersonas.getListaTabla():
+        tabla.insert("",END,text="2",values=(persona.getRut(),A[I],n,"En proceso"))
+        I=I+1
         n=n+1
-        natencion=natencion+1
-
-
-    elif (rut.get()==Rut[1]) :
-    
-        tabla.insert("",END,n,text=2,values=(natencion,"por definir", "por definir", "56949", "Vera", "20" ))
-        n=n+1
-        natencion=natencion+1
-    elif (rut.get()==Rut[2]) :
-        tabla.insert("",END,text=n,values=(natencion,"por definir", "por definir", "Diego","Gutierrez","202" ))
-        n=n+1
-        natencion=natencion+1
-    elif (rut.get()==Rut[3]) :
-        tabla.insert("",END,text=n,values=(natencion,"por definir", "por definir", "Theare","Delgado","202254472" ))
-        n=n+1
-        natencion=natencion+1
         
     ventanaMostrarCola.mainloop()
 
-#_---------------------------------------------------------------
+
+   
+    
+        
+
+  
 
 #-------------------------------------------------------------------
 
                              #DEF RANDOMS
 
 
-
-def Colass():
-    A.ListaDeEspera()
-
-def Prestamofinal():
-    if (rut.get()==Rut[0]):
-        print("Se ah agragado a un cliente")
-        A.ponerEnServicio(Nombres[0],Apellidos[0],Rut[0],3535,saldo[0],4,LISTAALTA,LISTABAJA)
-        abrirPrestamo()
-    elif (rut.get()==Rut[1]):
-        print("Se ah agragado a un cliente")
-        A.ponerEnServicio(Nombres[1],Apellidos[1],Rut[1],3535,saldo[1],4,LISTAALTA,LISTABAJA)
-        abrirPrestamo()
-    elif (rut.get()==Rut[2]):
-        print("Se ah agragado a un cliente")
-        A.ponerEnServicio(Nombres[2],Apellidos[2],Rut[2],3535,saldo[2],4,LISTAALTA,LISTABAJA)
-        abrirPrestamo()
-    elif (rut.get()==Rut[3]):
-        print("Se ah agragado a un cliente")
-        A.ponerEnServicio(Nombres[3],Apellidos[3],Rut[3],3535,saldo[3],4,LISTAALTA,LISTABAJA)
-        abrirPrestamo()
-
 def ConfirmarDatos():
-    if (rut.get()==Rut[0]):
-        ingresaNombreCliente = ttk.Label(root, text=Nombres[0])
-        ingresaNombreCliente.place(x=193, y=213, width=270, height=20)
-        ingresaApellidoCliente = ttk.Label(root,text=Apellidos[0])
-        ingresaApellidoCliente.place( x=193, y=240, width=270, height=20) 
-        ingresaSaldoCliente = ttk.Label(root,text=saldo[0])
-        ingresaSaldoCliente.place( x=193, y=292, width=270, height=20)
-    elif (rut.get()==Rut[1]):
-        ingresaNombreCliente = ttk.Label(root, text=Nombres[1])
-        ingresaNombreCliente.place(x=193, y=213, width=270, height=20)
-        ingresaApellidoCliente = ttk.Label(root,text=Apellidos[1])
-        ingresaApellidoCliente.place( x=193, y=240, width=270, height=20) 
-        ingresaSaldoCliente = ttk.Label(root,text=saldo[1])
-        ingresaSaldoCliente.place( x=193, y=292, width=270, height=20)
-    elif (rut.get()==Rut[2]):
-        ingresaNombreCliente = ttk.Label(root, text=Nombres[2])
-        ingresaNombreCliente.place(x=193, y=213, width=270, height=20)
-        ingresaApellidoCliente = ttk.Label(root,text=Apellidos[2])
-        ingresaApellidoCliente.place( x=193, y=240, width=270, height=20) 
-        ingresaSaldoCliente = ttk.Label(root,text=saldo[2])
-        ingresaSaldoCliente.place( x=193, y=292, width=270, height=20)
-    elif (rut.get()==Rut[3]):
-        ingresaNombreCliente = ttk.Label(root, text=Nombres[3])
-        ingresaNombreCliente.place(x=193, y=213, width=270, height=20)
-        ingresaApellidoCliente = ttk.Label(root,text=Apellidos[3])
-        ingresaApellidoCliente.place( x=193, y=240, width=270, height=20) 
-        ingresaSaldoCliente = ttk.Label(root,text=saldo[3])
-        ingresaSaldoCliente.place( x=193, y=292, width=270, height=20)
-
+    for persona in listadoPersonas.getLista():
+        if (ingresaRutCliente.get()==persona.getRut()):
+            ingresaNombreCliente = ttk.Label(root, text=persona.getNombre())
+            ingresaNombreCliente.place(x=193, y=213, width=270, height=20)
+            ingresaApellidoCliente = ttk.Label(root,text=persona.getApellido())
+            ingresaApellidoCliente.place( x=193, y=240, width=270, height=20) 
+            ingresaSaldoCliente = ttk.Label(root,text=persona.getSaldo())
+            ingresaSaldoCliente.place( x=193, y=292, width=270, height=20)
+       
 def Mostrardatosfun():
-    if(rutf.get()==Rutfu[0]):
-        ingresaNombreFuncionario = ttk.Label(root,text=Nombresfu[0])                         
-        ingresaNombreFuncionario.place( x=793, y=213, width=270, height=20)  
-        ingresaApellidoFuncionario = ttk.Label(root,text=Apellidosfu[0])
-        ingresaApellidoFuncionario.place( x=793, y=240, width=270, height=20)
-    elif(rutf.get()==Rutfu[1]):
-        ingresaNombreFuncionario = ttk.Label(root,text=Nombresfu[1])                         
-        ingresaNombreFuncionario.place( x=793, y=213, width=270, height=20)  
-        ingresaApellidoFuncionario = ttk.Label(root,text=Apellidosfu[1])
-        ingresaApellidoFuncionario.place( x=793, y=240, width=270, height=20)
-    elif(rutf.get()==Rutfu[2]):
-        ingresaNombreFuncionario = ttk.Label(root,text=Nombresfu[2])                         
-        ingresaNombreFuncionario.place( x=793, y=213, width=270, height=20)  
-        ingresaApellidoFuncionario = ttk.Label(root,text=Apellidosfu[2])
-        ingresaApellidoFuncionario.place( x=793, y=240, width=270, height=20)
-    elif(rutf.get()==Rutfu[3]):
-        ingresaNombreFuncionario = ttk.Label(root,text=Nombresfu[3])                         
-        ingresaNombreFuncionario.place( x=793, y=213, width=270, height=20)  
-        ingresaApellidoFuncionario = ttk-Label(root,text=Apellidosfu[3])
-        ingresaApellidoFuncionario.place( x=793, y=240, width=270, height=20)
+    for Funcionario in listadoPersonas.getListaFuncionarios():
+        if (ingresaRutFuncionario.get()==Funcionario.getrutfuncionario()):
+            ingresaNombreFuncionario = ttk.Label(root,text=Funcionario.getnombrefuncionario())                         
+            ingresaNombreFuncionario.place( x=793, y=213, width=270, height=20)  
+            ingresaApellidoFuncionario = ttk.Label(root,text=Funcionario.getapellidofuncionario())
+            ingresaApellidoFuncionario.place( x=793, y=240, width=270, height=20)
+       
 
         
 #*********************ENTRYS CLIENTE******************************************
@@ -453,7 +476,7 @@ botonTransferir.place( x=88, y=509)
 imagenPrestamo = Image.open("./EDD/prestamo.png")
 imagenPrestamo = imagenPrestamo.resize((50,35),Image.ANTIALIAS)
 imagenPrestamo = ImageTk.PhotoImage(imagenPrestamo)
-botonPrestamo = ttk.Button(canvas, image= imagenPrestamo, command = Prestamofinal)
+botonPrestamo = ttk.Button(canvas, image= imagenPrestamo, command = abrirPrestamo)
 botonPrestamo.place( x=81, y=570)
 
 
