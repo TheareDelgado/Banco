@@ -1,10 +1,12 @@
 class Persona():
      def __init__(self):
+        operaciones=["Sin Operacion","Depositar","Retirar","Transferir","Prestamo"]
         self.nombre=""
         self.apellido=""
         self.rut=""
         self.saldo = 0
-        self.operacion= ""
+        self.operacion= operaciones[0]
+        self.N_atencion= 1
         
         #AGREGAR PONER Y TOMAR DE SALDO Y OP
 
@@ -18,6 +20,8 @@ class Persona():
          self.saldo=saldo
      def setOperacion(self, operacion):
          self.operacion=operacion
+     def setN_atencion(self, N_atencion):
+         self.N_atencion=N_atencion
 
 
  
@@ -31,6 +35,8 @@ class Persona():
          return self.saldo
      def getOperacion(self):
          return self.operacion
+     def getN_atencion(self):
+         return self.N_atencion
 
      def __str__(self) :
          return self.nombre+" "+self.apellido+""+self.rut

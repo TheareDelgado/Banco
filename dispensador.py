@@ -57,6 +57,10 @@ class Dispensador():
         for persona in self.Coladeposito:
             info="el nombre  :"+ persona.getNombre()+"apellido  :"+ persona.getApellido()+ "rut :"+ persona.getRut()+ "saldo  :"+str(persona.getSaldo())+"operacion es  : "+persona.getOperacion()
             print (info)
+    def mostrarListatabla(self):
+        for persona in self.listaTabla:
+            info="el nombre  :"+ persona.getNombre()+"apellido  :"+ persona.getApellido()+ "rut :"+ persona.getRut()+ "saldo  :"+str(persona.getSaldo())+"operacion es  : "+persona.getOperacion()
+            print (info)
     
           
     

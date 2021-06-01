@@ -4,6 +4,8 @@ from tkinter import *
 from PIL import Image, ImageTk
 from tkinter import ttk
 from tkinter import Button
+
+from numpy import mat
 from Cliente import *
 from Persona import *
 from dispensador import *
@@ -79,13 +81,15 @@ listadoPersonas.agregarFuncionarios(p6)
 listadoPersonas.agregarFuncionarios(p7)
 listadoPersonas.agregarFuncionarios(p8)
 
+operaciones=["Sin Operacion","Depositar","Retirar","Transferir","Prestamo"]
+
 
 root = Tk()
 root.title("Banco") #Nombre que aparece en la ventana
 root.geometry("1248x1543")  #Define tamaño de la ventana
 root.resizable(width=False, height=False)
 #DATOS RANDOMSSS
-opciones=["1","2","3","4"]
+#opciones=["Sin Operacion","Depositar","Retirar","Transferir","Prestamo"]
 #DATOS DE CLIENTE
 rut=StringVar()
 
@@ -100,6 +104,11 @@ cantidadcuotas=StringVar()
 LISTAALTA=[StringVar()]
 LISTABAJA=[StringVar()]
 A=[]
+B=[]
+C=[]
+D=[]
+ContadorA=0
+listaBorrados=[]
 FiltroOp=StringVar()
 FiltroEs=StringVar()
 
@@ -126,16 +135,17 @@ def abrirDepositar():
     ventanaDepositar.resizable(width=False, height=False)
 
     def enDeposito():
+        ContadorA=0
         for persona in listadoPersonas.getLista():
             if (ingresaRutCliente.get()==persona.getRut()):
-                persona.setOperacion("Depositar")
+                persona.setOperacion(operaciones[1])
                 listadoPersonas.agregarDeposito(persona)
                 listadoPersonas.agregarTabla(persona)
                 A.append("Depositar")
                 
                 
                 
-        
+        ContadorA=ContadorA+1
         ventanaDepositar.destroy()
 
 
@@ -167,13 +177,14 @@ def abrirRetirar():
     ventanaRetirar.resizable(width=False, height=False)
 
     def enRetirar():
+        contadorB=0
         for persona in listadoPersonas.getLista():
             if (ingresaRutCliente.get()==persona.getRut()):
-                persona.setOperacion("Retirar")
+                persona.setOperacion(operaciones[2])
                 listadoPersonas.agregarRetirar(persona)
                 listadoPersonas.agregarTabla(persona)
-                A.append("Retirar")
-
+                B.append("Retirar")
+        ContadorB=contadorB+1
         ventanaRetirar.destroy()
 
 
@@ -203,13 +214,14 @@ def abrirTransferir():
     ventanaTransferir.resizable(width=False, height=False)
 
     def enTransferir():
+        contadorC=0
         for persona in listadoPersonas.getLista():
             if (ingresaRutCliente.get()==persona.getRut()):
-                persona.setOperacion("Transferir")
+                persona.setOperacion(operaciones[3])
                 listadoPersonas.agregarTransferir(persona)
                 listadoPersonas.agregarTabla(persona)
-                A.append("Transferir")
-
+                C.append("Transferir")
+        contadorC=contadorC+1
         ventanaTransferir.destroy()
 
 
@@ -252,15 +264,17 @@ def abrirPrestamo():
     ventanaPrestamo.title("Prestamo")
     ventanaPrestamo.geometry("1248x708")
     ventanaPrestamo.resizable(width=False, height=False)
+   
 
     def enPrestamo():
+        contadorD=0
         for persona in listadoPersonas.getLista():
             if (ingresaRutCliente.get()==persona.getRut()):
-                persona.setOperacion("Prestamo")
+                persona.setOperacion(operaciones[4])
                 listadoPersonas.agregarPrestamo(persona)
                 listadoPersonas.agregarTabla(persona)
-                A.append("Prestamo")
-
+                D.append("Prestamo")
+        contadorD=contadorD+1
         ventanaPrestamo.destroy()
 
 
@@ -366,6 +380,35 @@ def abrirGrafico():
 
 
 def abrirMostrarCola():
+    
+
+    def elimina():
+        x = tabla.selection()[0]
+        tabla.delete(x)
+    
+    def finzalizaProceso():
+        seleccionado = tabla.focus()
+        valuess = tabla.item(seleccionado, text="", values=(ru,op,num,fin))
+    
+        
+
+    
+
+
+
+
+
+        
+        
+        
+    
+        
+        
+
+
+
+
+
     ventanaMostrarCola=Toplevel(root)
     ventanaMostrarCola.title("Mostrar Colas de Servicio")
     ventanaMostrarCola.geometry("1248x775")
@@ -376,12 +419,12 @@ def abrirMostrarCola():
     #Botones para filtrar las Colas de prioridades#############
     imagenEliminar = Image.open("./eliminaServicio.png")
     imagenEliminar = ImageTk.PhotoImage(imagenEliminar)
-    botonEliminar = ttk.Button(ventanaMostrarCola, image= imagenEliminar)
+    botonEliminar = ttk.Button(ventanaMostrarCola, image= imagenEliminar, command = elimina)
     botonEliminar.place( x=1139, y=122)
 
     imagenFinalizar = Image.open("./finalizarServicio.png")
     imagenFinalizar = ImageTk.PhotoImage(imagenFinalizar)
-    botonFinalizar = ttk.Button(ventanaMostrarCola, image= imagenFinalizar)
+    botonFinalizar = ttk.Button(ventanaMostrarCola, image= imagenFinalizar, command = finzalizaProceso)
     botonFinalizar.place( x=1133, y=232)
 
     imagenActualizar = Image.open("./actualizar.png")
@@ -396,8 +439,21 @@ def abrirMostrarCola():
 
     imagenFiltro = Image.open("./confirmaFiltroEstado.png")
     imagenFiltro = ImageTk.PhotoImage(imagenFiltro)
-    botonFiltro = ttk.Button(ventanaMostrarCola, image= imagenFiltro)
+    botonFiltro = ttk.Button(ventanaMostrarCola, image= imagenFiltro,)
     botonFiltro.place( x=786, y=625)
+
+   
+
+
+
+    
+
+
+
+
+
+
+
 
     FiltrarOperaciones = ttk.Combobox(ventanaMostrarCola,values=("Depositar","Trasnferir","Retirar","Prestamo"),textvariable=FiltroOp)
     FiltrarOperaciones.place_configure(x=485, y=582 , width=280, height=20)
@@ -427,15 +483,22 @@ def abrirMostrarCola():
     tabla.heading("Operacion", text="Operacion", anchor=CENTER)
     tabla.heading("N° Atencion", text="N° Atencion", anchor=CENTER)
     tabla.heading("Estado", text="Estado", anchor=CENTER)
+    
 
     
     tabla.place(x=57,y=101)
-    n=1
+    n=0
     I=0
+    
     for persona in listadoPersonas.getListaTabla():
-        tabla.insert("",END,text="2",values=(persona.getRut(),A[I],n,"En proceso"))
-        I=I+1
+        ru=persona.getRut()
+        op=A[I]
+        num=persona.getN_atencion+n
+        est="En proceso"
+        fin="Finalizado"
+        tabla.insert("",END,text="",values=(ru,op,num,est))
         n=n+1
+        I=I+1
         
     ventanaMostrarCola.mainloop()
 
