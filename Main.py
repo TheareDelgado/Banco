@@ -86,7 +86,7 @@ operaciones=["Sin Operacion","Depositar","Retirar","Transferir","Prestamo"]
 
 root = Tk()
 root.title("Banco") #Nombre que aparece en la ventana
-root.geometry("1248x1543")  #Define tamaño de la ventana
+root.geometry("1248x708")  #Define tamaño de la ventana
 root.resizable(width=False, height=False)
 #DATOS RANDOMSSS
 #opciones=["Sin Operacion","Depositar","Retirar","Transferir","Prestamo"]
@@ -183,7 +183,7 @@ def abrirRetirar():
                 persona.setOperacion(operaciones[2])
                 listadoPersonas.agregarRetirar(persona)
                 listadoPersonas.agregarTabla(persona)
-                B.append("Retirar")
+                A.append("Retirar")
         ContadorB=contadorB+1
         ventanaRetirar.destroy()
 
@@ -220,7 +220,7 @@ def abrirTransferir():
                 persona.setOperacion(operaciones[3])
                 listadoPersonas.agregarTransferir(persona)
                 listadoPersonas.agregarTabla(persona)
-                C.append("Transferir")
+                A.append("Transferir")
         contadorC=contadorC+1
         ventanaTransferir.destroy()
 
@@ -273,7 +273,7 @@ def abrirPrestamo():
                 persona.setOperacion(operaciones[4])
                 listadoPersonas.agregarPrestamo(persona)
                 listadoPersonas.agregarTabla(persona)
-                D.append("Prestamo")
+                A.append("Prestamo")
         contadorD=contadorD+1
         ventanaPrestamo.destroy()
 
@@ -380,33 +380,30 @@ def abrirGrafico():
 
 
 def abrirMostrarCola():
-    
 
     def elimina():
         x = tabla.selection()[0]
         tabla.delete(x)
-    
     def finzalizaProceso():
         seleccionado = tabla.focus()
-        valuess = tabla.item(seleccionado, text="", values=(ru,op,num,fin))
-    
-        
-
-    
-
-
-
-
-
-        
-        
-        
-    
-        
-        
-
-
-
+        if str(seleccionado)=="I001":
+          valuess = tabla.item(seleccionado, text="", values=(ru[0],A[0],num,"Finalizado"))
+        elif str(seleccionado)=="I002":
+          valuess = tabla.item(seleccionado, text="", values=(ru[1],A[1],num,"Finalizado"))
+        elif str(seleccionado)=="I003":
+          valuess = tabla.item(seleccionado, text="", values=(ru[2],A[2],num,"Finalizado"))
+        elif str(seleccionado)=="I004":
+          valuess = tabla.item(seleccionado, text="", values=(ru[3],A[3],num,"Finalizado"))
+        elif str(seleccionado)=="I005":
+          valuess = tabla.item(seleccionado, text="", values=(ru[4],A[4],num,"Finalizado"))
+        elif str(seleccionado)=="I006":
+          valuess = tabla.item(seleccionado, text="", values=(ru[5],A[5],num,"Finalizado"))
+        elif str(seleccionado)=="I007":
+          valuess = tabla.item(seleccionado, text="", values=(ru[6],A[6],num,"Finalizado"))
+        #bbbb=tabla.focus(item)+""
+        #bbbb=tabla.item(bbbb,text="",values="Finalizado")
+        #aaaa = ttk.Label(ventanaMostrarCola, text=bbbb)
+        #aaaa.place_configure(x=50, y=450 , width=500, height=20)
 
 
     ventanaMostrarCola=Toplevel(root)
@@ -439,26 +436,14 @@ def abrirMostrarCola():
 
     imagenFiltro = Image.open("./confirmaFiltroEstado.png")
     imagenFiltro = ImageTk.PhotoImage(imagenFiltro)
-    botonFiltro = ttk.Button(ventanaMostrarCola, image= imagenFiltro,)
+    botonFiltro = ttk.Button(ventanaMostrarCola, image= imagenFiltro)
     botonFiltro.place( x=786, y=625)
-
-   
-
-
-
-    
-
-
-
-
-
-
 
 
     FiltrarOperaciones = ttk.Combobox(ventanaMostrarCola,values=("Depositar","Trasnferir","Retirar","Prestamo"),textvariable=FiltroOp)
     FiltrarOperaciones.place_configure(x=485, y=582 , width=280, height=20)
 
-    FiltrarEstados = ttk.Combobox(ventanaMostrarCola,values=("Aceptado","Rechazado"),textvariable=FiltroEs)
+    FiltrarEstados = ttk.Combobox(ventanaMostrarCola,values=("Aceptado","Rechazado","En proceso"),textvariable=FiltroEs)
     FiltrarEstados.place_configure(x=485, y=640 , width=280, height=20)
 
     #Boton para filtrar la tabla por colas de prioridad de depositos
@@ -487,27 +472,21 @@ def abrirMostrarCola():
 
     
     tabla.place(x=57,y=101)
-    n=0
+    n=1
     I=0
-    
+    b=0
+    ru=[]
     for persona in listadoPersonas.getListaTabla():
-        ru=persona.getRut()
-        op=A[I]
-        num=persona.getN_atencion+n
+        ru.append(persona.getRut())
+        num=n
         est="En proceso"
         fin="Finalizado"
-        tabla.insert("",END,text="",values=(ru,op,num,est))
+        tabla.insert("",END,text="",values=(ru[b],A[I],num,est))
         n=n+1
         I=I+1
-        
+        b=b+1
     ventanaMostrarCola.mainloop()
 
-
-   
-    
-        
-
-  
 
 #-------------------------------------------------------------------
 
