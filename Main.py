@@ -497,19 +497,19 @@ def ConfirmarDatos():
     for persona in listadoPersonas.getLista():
         if (ingresaRutCliente.get()==persona.getRut()):
             ingresaNombreCliente = ttk.Label(root, text=persona.getNombre())
-            ingresaNombreCliente.place(x=193, y=213, width=270, height=20)
+            ingresaNombreCliente.place(x=187, y=213, width=270, height=20)
             ingresaApellidoCliente = ttk.Label(root,text=persona.getApellido())
-            ingresaApellidoCliente.place( x=193, y=240, width=270, height=20) 
+            ingresaApellidoCliente.place( x=187, y=240, width=270, height=20) 
             ingresaSaldoCliente = ttk.Label(root,text=persona.getSaldo())
-            ingresaSaldoCliente.place( x=193, y=292, width=270, height=20)
+            ingresaSaldoCliente.place( x=187, y=292, width=270, height=20)
        
 def Mostrardatosfun():
     for Funcionario in listadoPersonas.getListaFuncionarios():
         if (ingresaRutFuncionario.get()==Funcionario.getrutfuncionario()):
             ingresaNombreFuncionario = ttk.Label(root,text=Funcionario.getnombrefuncionario())                         
-            ingresaNombreFuncionario.place( x=793, y=213, width=270, height=20)  
+            ingresaNombreFuncionario.place( x=782, y=213, width=270, height=20)  
             ingresaApellidoFuncionario = ttk.Label(root,text=Funcionario.getapellidofuncionario())
-            ingresaApellidoFuncionario.place( x=793, y=240, width=270, height=20)
+            ingresaApellidoFuncionario.place( x=782, y=239, width=270, height=20)
        
 
         
@@ -518,13 +518,13 @@ def Mostrardatosfun():
 #ttk.Entry(root)
 
 ingresaRutCliente = ttk.Entry(root,textvariable=rut)
-ingresaRutCliente.place( x=193, y=266, width=270, height=20)  
+ingresaRutCliente.place( x=187, y=266, width=270, height=20)  
 
 
 #************************ENTRYS FUNCIONARIO***********************************
 
 ingresaRutFuncionario = ttk.Entry(root,textvariable=rutf)
-ingresaRutFuncionario.place( x=793, y=266, width=270, height=20)  
+ingresaRutFuncionario.place( x=782, y=265, width=270, height=20)  
 
 
 #*******************BOTONES***************************************************
