@@ -535,31 +535,30 @@ ingresaRutFuncionario.place( x=793, y=266, width=270, height=20)
 imagenDepositar = Image.open("./depositar.png")
 imagenDepositar = ImageTk.PhotoImage(imagenDepositar)
 botonDepositar = ttk.Button(canvas, image= imagenDepositar, command = abrirDepositar)
-botonDepositar.place( x=81, y=404)
+botonDepositar.place( x=15, y=445)
 
 
 
 #------Retirar-----
 imagenRetirar = Image.open("./retirar.png")
-imagenRetirar = imagenRetirar.resize((50,44),Image.ANTIALIAS)
 imagenRetirar = ImageTk.PhotoImage(imagenRetirar)
 botonRetirar = ttk.Button(canvas, image= imagenRetirar, command = abrirRetirar)
-botonRetirar.place( x=81, y=459)
+botonRetirar.place( x=15, y=540)
 
 #------Transferir-----
 imagenTransferir = Image.open("./transferir.png")
-imagenTransferir = imagenTransferir.resize((31,53),Image.ANTIALIAS)
+#imagenTransferir = imagenTransferir.resize((31,53),Image.ANTIALIAS)
 imagenTransferir = ImageTk.PhotoImage(imagenTransferir)
 botonTransferir = ttk.Button(canvas, image= imagenTransferir, command = abrirTransferir)
-botonTransferir.place( x=88, y=509)
+botonTransferir.place( x=329, y=437)
 
 #------Prestamo-----
 
 imagenPrestamo = Image.open("./prestamo.png")
-imagenPrestamo = imagenPrestamo.resize((50,35),Image.ANTIALIAS)
+#imagenPrestamo = imagenPrestamo.resize((50,35),Image.ANTIALIAS)
 imagenPrestamo = ImageTk.PhotoImage(imagenPrestamo)
 botonPrestamo = ttk.Button(canvas, image= imagenPrestamo, command = abrirPrestamo)
-botonPrestamo.place( x=81, y=570)
+botonPrestamo.place( x=312, y=540)
 
 
 
