@@ -533,7 +533,7 @@ botonDepositar.place( x=15, y=445)
 imagenRetirar = Image.open("./retirar.png")
 imagenRetirar = ImageTk.PhotoImage(imagenRetirar)
 botonRetirar = ttk.Button(canvas, image= imagenRetirar, command = abrirRetirar)
-botonRetirar.place( x=15, y=540)
+botonRetirar.place( x=15, y=536)
 
 #------Transferir-----
 imagenTransferir = Image.open("./transferir.png")
@@ -558,7 +558,7 @@ imagenGrafico = Image.open("./grafico.png")
 #imagenGrafico= imagenGrafico.resize((50,46),Image.ANTIALIAS)
 imagenGrafico = ImageTk.PhotoImage(imagenGrafico)
 botonGrafico = ttk.Button(canvas, image= imagenGrafico, command = abrirGrafico)
-botonGrafico.place( x=751, y=457)
+botonGrafico.place( x=747, y=440)
 
 #------Cola-----
 
@@ -566,7 +566,7 @@ imagenCola = Image.open("./atendido.png")
 imagenCola= imagenCola.resize((65,55),Image.ANTIALIAS)
 imagenCola = ImageTk.PhotoImage(imagenCola)
 botonCola = ttk.Button(canvas, image= imagenCola, command = abrirMostrarCola)
-botonCola.place( x=779, y=8)
+botonCola.place( x=776, y=8)
 
 #----------Confirmar---------
 imagenConfirmaCliente1 = Image.open("./guardarCliente1.png")
@@ -578,7 +578,7 @@ botonConfirmarCliente1.place( x=278, y=329)
 imagenConfirmaFuncionario = Image.open("./guardarFuncionario.png")
 imagenConfirmaFuncionario = ImageTk.PhotoImage(imagenConfirmaFuncionario)
 botonConfirmarFuncionario = ttk.Button(canvas, image= imagenConfirmaFuncionario,command = Mostrardatosfun)
-botonConfirmarFuncionario.place( x=884, y=334) 
+botonConfirmarFuncionario.place( x=870, y=334) 
 
 #*****************************************************************************
 
