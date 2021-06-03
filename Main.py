@@ -581,7 +581,7 @@ botonCola.place( x=779, y=8)
 imagenConfirmaCliente1 = Image.open("./guardarCliente1.png")
 imagenConfirmaCliente1 = ImageTk.PhotoImage(imagenConfirmaCliente1)
 botonConfirmarCliente1 = ttk.Button(canvas, image= imagenConfirmaCliente1,command = ConfirmarDatos)
-botonConfirmarCliente1.place( x=288, y=334)
+botonConfirmarCliente1.place( x=278, y=329)
 
 
 imagenConfirmaFuncionario = Image.open("./guardarFuncionario.png")
