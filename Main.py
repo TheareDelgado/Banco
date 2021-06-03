@@ -131,7 +131,7 @@ root.update()
 def abrirDepositar():
     ventanaDepositar=Toplevel(root)
     ventanaDepositar.title("Depositar")
-    ventanaDepositar.geometry("1248x708")
+    ventanaDepositar.geometry("600x400")
     ventanaDepositar.resizable(width=False, height=False)
 
     def enDeposito():
@@ -155,16 +155,16 @@ def abrirDepositar():
     #Entry y Label
 
     ingresaCuentaDeposito = ttk.Entry(ventanaDepositar)
-    ingresaCuentaDeposito.place_configure(x=842, y=353 , width=270, height=20)
+    ingresaCuentaDeposito.place_configure(x=405, y=216 , width=155, height=11)
 
     ingresaMontoDeposito = ttk.Entry(ventanaDepositar)
-    ingresaMontoDeposito.place_configure(x=842, y=379 , width=270, height=20)
+    ingresaMontoDeposito.place_configure(x=405, y=235 , width=155, height=11)
 
 
     imagenConfirmaCliente2 = Image.open("./guardarCliente2.png")
     imagenConfirmaCliente2 = ImageTk.PhotoImage(imagenConfirmaCliente2)
     botonConfirmarCliente2 = ttk.Button(ventanaDepositar, image= imagenConfirmaCliente2, command = enDeposito)
-    botonConfirmarCliente2.place( x=838, y=525)
+    botonConfirmarCliente2.place( x=420, y=273)
 
 
     ventanaDepositar.mainloop()
@@ -173,7 +173,7 @@ def abrirDepositar():
 def abrirRetirar():
     ventanaRetirar=Toplevel(root)
     ventanaRetirar.title("Retirar")
-    ventanaRetirar.geometry("1248x708")
+    ventanaRetirar.geometry("600x400")
     ventanaRetirar.resizable(width=False, height=False)
 
     def enRetirar():
@@ -193,10 +193,10 @@ def abrirRetirar():
 
 
     ingresaCuentaRetiro = ttk.Entry(ventanaRetirar)
-    ingresaCuentaRetiro.place_configure(x=842, y=353 , width=270, height=20)
+    ingresaCuentaRetiro.place_configure(x=405, y=216 , width=155, height=11)
 
     ingresaMontoRetiro = ttk.Entry(ventanaRetirar)
-    ingresaMontoRetiro.place_configure(x=842, y=379 , width=270, height=20)
+    ingresaMontoRetiro.place_configure(x=405, y=235 , width=155, height=11)
 
 
     imagenConfirmaCliente3 = Image.open("./guardarCliente2.png")
@@ -210,7 +210,7 @@ def abrirRetirar():
 def abrirTransferir():
     ventanaTransferir=Toplevel(root)
     ventanaTransferir.title("Transferir")
-    ventanaTransferir.geometry("1248x708")
+    ventanaTransferir.geometry("600x400")
     ventanaTransferir.resizable(width=False, height=False)
 
     def enTransferir():
@@ -233,22 +233,22 @@ def abrirTransferir():
 
 
     ingresaNombreTransferir = ttk.Entry(ventanaTransferir)
-    ingresaNombreTransferir.place_configure(x=875, y=349 , width=270, height=20)
+    ingresaNombreTransferir.place_configure(x=416, y=196 , width=155, height=11)
 
     ingresaApellidoTransferir = ttk.Entry(ventanaTransferir)
-    ingresaApellidoTransferir.place_configure(x=875, y=375 , width=270, height=20)
+    ingresaApellidoTransferir.place_configure(x=416, y=214 , width=155, height=11)
 
     ingresaCorreoTransferir = ttk.Entry(ventanaTransferir)
-    ingresaCorreoTransferir.place_configure(x=875, y=402 , width=270, height=20)
+    ingresaCorreoTransferir.place_configure(x=416, y=236 , width=155, height=11)
 
     ingresaCuentaTransferir = ttk.Entry(ventanaTransferir)
-    ingresaCuentaTransferir.place_configure(x=875, y=428 , width=270, height=20)
+    ingresaCuentaTransferir.place_configure(x=416, y=255 , width=155, height=11)
 
     ingresaMontoTransferir = ttk.Entry(ventanaTransferir)
-    ingresaMontoTransferir.place_configure(x=875, y=452 , width=270, height=20)
+    ingresaMontoTransferir.place_configure(x=416, y=275 , width=155, height=11)
 
     ingresaBancoTransferir = ttk.Entry(ventanaTransferir)
-    ingresaBancoTransferir.place_configure(x=875, y=476 , width=270, height=20)
+    ingresaBancoTransferir.place_configure(x=416, y=294 , width=155, height=11)
 
 
     imagenConfirmaCliente4 = Image.open("./guardarCliente2.png")
@@ -262,7 +262,7 @@ def abrirTransferir():
 def abrirPrestamo():
     ventanaPrestamo=Toplevel(root)
     ventanaPrestamo.title("Prestamo")
-    ventanaPrestamo.geometry("1248x708")
+    ventanaPrestamo.geometry("600x400")
     ventanaPrestamo.resizable(width=False, height=False)
    
 
@@ -287,16 +287,16 @@ def abrirPrestamo():
 
 
     ingresaMotivoPrestamo = ttk.Entry(ventanaPrestamo)
-    ingresaMotivoPrestamo.place_configure(x=892, y=364 , width=270, height=20)
+    ingresaMotivoPrestamo.place_configure(x=425, y=216 , width=155, height=15)
 
     ingresaMontoPrestamo = ttk.Combobox(ventanaPrestamo,values=("$150.000","$300.000","$600.000"),textvariable=prestamosol)
-    ingresaMontoPrestamo.place_configure(x=893, y=389 , width=270, height=20)
+    ingresaMontoPrestamo.place_configure(x=425, y=235 , width=155, height=15)
     for persona in listadoPersonas.getLista():
         if (ingresaRutCliente.get()==persona.getRut()):
             ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=persona.getSaldo())
-            ingresaPresupuestoPrestamo.place_configure(x=892, y=415 , width=270, height=20)
+            ingresaPresupuestoPrestamo.place_configure(x=425, y=254 , width=155, height=15)
     ingresaCuotaPrestamo = ttk.Combobox(ventanaPrestamo,values=("3","6","9"),textvariable=cantidadcuotas)
-    ingresaCuotaPrestamo.place_configure(x=892, y=442 , width=270, height=20)
+    ingresaCuotaPrestamo.place_configure(x=425, y=273 , width=155, height=15)
     
 
     imagenConfirmaCliente5 = Image.open("./guardarCliente2.png")
@@ -408,7 +408,7 @@ def abrirMostrarCola():
 
     ventanaMostrarCola=Toplevel(root)
     ventanaMostrarCola.title("Mostrar Colas de Servicio")
-    ventanaMostrarCola.geometry("1248x775")
+    ventanaMostrarCola.geometry("1000x400")
     ventanaMostrarCola.resizable(width=False, height=False)
     #Fondo de la ventanaMostrarcola
     imagen = PhotoImage (file = "./ventanaCola.png") 
@@ -417,34 +417,24 @@ def abrirMostrarCola():
     imagenEliminar = Image.open("./eliminaServicio.png")
     imagenEliminar = ImageTk.PhotoImage(imagenEliminar)
     botonEliminar = ttk.Button(ventanaMostrarCola, image= imagenEliminar, command = elimina)
-    botonEliminar.place( x=1139, y=122)
+    botonEliminar.place( x=827, y=70)
 
     imagenFinalizar = Image.open("./finalizarServicio.png")
     imagenFinalizar = ImageTk.PhotoImage(imagenFinalizar)
     botonFinalizar = ttk.Button(ventanaMostrarCola, image= imagenFinalizar, command = finzalizaProceso)
-    botonFinalizar.place( x=1133, y=232)
+    botonFinalizar.place( x=827, y=153)
 
     imagenActualizar = Image.open("./actualizar.png")
     imagenActualizar = ImageTk.PhotoImage(imagenActualizar)
     botonActualizar = ttk.Button(ventanaMostrarCola, image= imagenActualizar)
-    botonActualizar.place( x=1138, y=345)
-
-    imagenOperaciones = Image.open("./confirmaFiltroOperaciones.png")
-    imagenOperaciones = ImageTk.PhotoImage(imagenOperaciones)
-    botonOperaciones = ttk.Button(ventanaMostrarCola, image= imagenOperaciones)
-    botonOperaciones.place( x=786, y=567)
-
-    imagenFiltro = Image.open("./confirmaFiltroEstado.png")
-    imagenFiltro = ImageTk.PhotoImage(imagenFiltro)
-    botonFiltro = ttk.Button(ventanaMostrarCola, image= imagenFiltro)
-    botonFiltro.place( x=786, y=625)
+    botonActualizar.place( x=827, y=233)
 
 
     FiltrarOperaciones = ttk.Combobox(ventanaMostrarCola,values=("Depositar","Trasnferir","Retirar","Prestamo"),textvariable=FiltroOp)
-    FiltrarOperaciones.place_configure(x=485, y=582 , width=280, height=20)
+    FiltrarOperaciones.place_configure(x=199, y=326 , width=280, height=20)
 
     FiltrarEstados = ttk.Combobox(ventanaMostrarCola,values=("Aceptado","Rechazado","En proceso"),textvariable=FiltroEs)
-    FiltrarEstados.place_configure(x=485, y=640 , width=280, height=20)
+    FiltrarEstados.place_configure(x=199, y=349 , width=280, height=20)
 
     #Boton para filtrar la tabla por colas de prioridad de depositos
     
@@ -471,7 +461,7 @@ def abrirMostrarCola():
     
 
     
-    tabla.place(x=57,y=101)
+    tabla.place(x=57,y=70)
     n=1
     I=0
     b=0
@@ -543,7 +533,7 @@ botonDepositar.place( x=15, y=445)
 imagenRetirar = Image.open("./retirar.png")
 imagenRetirar = ImageTk.PhotoImage(imagenRetirar)
 botonRetirar = ttk.Button(canvas, image= imagenRetirar, command = abrirRetirar)
-botonRetirar.place( x=15, y=534)
+botonRetirar.place( x=15, y=540)
 
 #------Transferir-----
 imagenTransferir = Image.open("./transferir.png")
@@ -565,9 +555,10 @@ botonPrestamo.place( x=312, y=540)
 #------Analisis Estadisticos-----
 
 imagenGrafico = Image.open("./grafico.png")
+#imagenGrafico= imagenGrafico.resize((50,46),Image.ANTIALIAS)
 imagenGrafico = ImageTk.PhotoImage(imagenGrafico)
 botonGrafico = ttk.Button(canvas, image= imagenGrafico, command = abrirGrafico)
-botonGrafico.place( x=746, y=441)
+botonGrafico.place( x=751, y=457)
 
 #------Cola-----
 
@@ -585,10 +576,9 @@ botonConfirmarCliente1.place( x=288, y=334)
 
 
 imagenConfirmaFuncionario = Image.open("./guardarFuncionario.png")
-#imagenConfirmaFuncionario= imagenConfirmaFuncionario.resize((171,53),Image.ANTIALIAS)
 imagenConfirmaFuncionario = ImageTk.PhotoImage(imagenConfirmaFuncionario)
 botonConfirmarFuncionario = ttk.Button(canvas, image= imagenConfirmaFuncionario,command = Mostrardatosfun)
-botonConfirmarFuncionario.place( x=870, y=334) 
+botonConfirmarFuncionario.place( x=884, y=334) 
 
 #*****************************************************************************
 
