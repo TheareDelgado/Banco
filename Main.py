@@ -155,16 +155,16 @@ def abrirDepositar():
     #Entry y Label
 
     ingresaCuentaDeposito = ttk.Entry(ventanaDepositar)
-    ingresaCuentaDeposito.place_configure(x=405, y=216 , width=155, height=11)
+    ingresaCuentaDeposito.place_configure(x=400, y=220 , width=169, height=17)
 
     ingresaMontoDeposito = ttk.Entry(ventanaDepositar)
-    ingresaMontoDeposito.place_configure(x=405, y=235 , width=155, height=11)
+    ingresaMontoDeposito.place_configure(x=400, y=248 , width=169, height=17)
 
 
-    imagenConfirmaCliente2 = Image.open("./guardarCliente2.png")
-    imagenConfirmaCliente2 = ImageTk.PhotoImage(imagenConfirmaCliente2)
-    botonConfirmarCliente2 = ttk.Button(ventanaDepositar, image= imagenConfirmaCliente2, command = enDeposito)
-    botonConfirmarCliente2.place( x=420, y=273)
+    imagenConfirmaDepositar = Image.open("./confirmaDepositar.png")
+    imagenConfirmaDepositar = ImageTk.PhotoImage(imagenConfirmaDepositar)
+    botonConfirmarCliente2 = ttk.Button(ventanaDepositar, image= imagenConfirmaDepositar, command = enDeposito)
+    botonConfirmarCliente2.place( x=434, y=288)
 
 
     ventanaDepositar.mainloop()
@@ -193,16 +193,17 @@ def abrirRetirar():
 
 
     ingresaCuentaRetiro = ttk.Entry(ventanaRetirar)
-    ingresaCuentaRetiro.place_configure(x=405, y=216 , width=155, height=11)
+    ingresaCuentaRetiro.place_configure(x=400, y=220  , width=169, height=17)
 
     ingresaMontoRetiro = ttk.Entry(ventanaRetirar)
-    ingresaMontoRetiro.place_configure(x=405, y=235 , width=155, height=11)
+    ingresaMontoRetiro.place_configure(x=400, y=248 , width=169, height=17)
 
 
-    imagenConfirmaCliente3 = Image.open("./guardarCliente2.png")
-    imagenConfirmaCliente3 = ImageTk.PhotoImage(imagenConfirmaCliente3)
-    botonConfirmarCliente3 = ttk.Button(ventanaRetirar, image= imagenConfirmaCliente3, command = enRetirar)
-    botonConfirmarCliente3.place( x=838, y=525)
+    imagenConfirmaRetirar = Image.open("./confirmaDepositar.png")
+    imagenConfirmaRetirar = ImageTk.PhotoImage(imagenConfirmaRetirar)
+    botonConfirmarRetiro = ttk.Button(ventanaRetirar, image= imagenConfirmaRetirar, command = enRetirar)
+    botonConfirmarRetiro.place( x=434, y=288)
+
 
     ventanaRetirar.mainloop()
 
@@ -233,28 +234,28 @@ def abrirTransferir():
 
 
     ingresaNombreTransferir = ttk.Entry(ventanaTransferir)
-    ingresaNombreTransferir.place_configure(x=416, y=196 , width=155, height=11)
+    ingresaNombreTransferir.place_configure(x=416, y=133 , width=169, height=17)
 
     ingresaApellidoTransferir = ttk.Entry(ventanaTransferir)
-    ingresaApellidoTransferir.place_configure(x=416, y=214 , width=155, height=11)
+    ingresaApellidoTransferir.place_configure(x=416, y=160 , width=169, height=17)
 
     ingresaCorreoTransferir = ttk.Entry(ventanaTransferir)
-    ingresaCorreoTransferir.place_configure(x=416, y=236 , width=155, height=11)
+    ingresaCorreoTransferir.place_configure(x=416, y=190 , width=169, height=17)
 
     ingresaCuentaTransferir = ttk.Entry(ventanaTransferir)
-    ingresaCuentaTransferir.place_configure(x=416, y=255 , width=155, height=11)
+    ingresaCuentaTransferir.place_configure(x=416, y=218 , width=169, height=17)
 
     ingresaMontoTransferir = ttk.Entry(ventanaTransferir)
-    ingresaMontoTransferir.place_configure(x=416, y=275 , width=155, height=11)
+    ingresaMontoTransferir.place_configure(x=417, y=248 , width=169, height=17)
 
     ingresaBancoTransferir = ttk.Entry(ventanaTransferir)
-    ingresaBancoTransferir.place_configure(x=416, y=294 , width=155, height=11)
+    ingresaBancoTransferir.place_configure(x=417, y=276 , width=169, height=17)
 
 
-    imagenConfirmaCliente4 = Image.open("./guardarCliente2.png")
+    imagenConfirmaCliente4 = Image.open("./confirmarPrestamo.png")
     imagenConfirmaCliente4 = ImageTk.PhotoImage(imagenConfirmaCliente4)
     botonConfirmarCliente4 = ttk.Button(ventanaTransferir, image= imagenConfirmaCliente4, command = enTransferir)
-    botonConfirmarCliente4.place( x=836, y=525)
+    botonConfirmarCliente4.place( x=434, y=316)
 
     ventanaTransferir.mainloop()
 
@@ -287,22 +288,22 @@ def abrirPrestamo():
 
 
     ingresaMotivoPrestamo = ttk.Entry(ventanaPrestamo)
-    ingresaMotivoPrestamo.place_configure(x=425, y=216 , width=155, height=15)
+    ingresaMotivoPrestamo.place_configure(x=416, y=201 , width=169, height=17)
 
     ingresaMontoPrestamo = ttk.Combobox(ventanaPrestamo,values=("$150.000","$300.000","$600.000"),textvariable=prestamosol)
-    ingresaMontoPrestamo.place_configure(x=425, y=235 , width=155, height=15)
+    ingresaMontoPrestamo.place_configure(x=416, y=227 , width=169, height=17)
     for persona in listadoPersonas.getLista():
         if (ingresaRutCliente.get()==persona.getRut()):
             ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=persona.getSaldo())
-            ingresaPresupuestoPrestamo.place_configure(x=425, y=254 , width=155, height=15)
+            ingresaPresupuestoPrestamo.place_configure(x=416, y=253 , width=169, height=17)
     ingresaCuotaPrestamo = ttk.Combobox(ventanaPrestamo,values=("3","6","9"),textvariable=cantidadcuotas)
-    ingresaCuotaPrestamo.place_configure(x=425, y=273 , width=155, height=15)
+    ingresaCuotaPrestamo.place_configure(x=417, y=282 , width=169, height=17)
     
 
-    imagenConfirmaCliente5 = Image.open("./guardarCliente2.png")
+    imagenConfirmaCliente5 = Image.open("./confirmarPrestamo.png")
     imagenConfirmaCliente5 = ImageTk.PhotoImage(imagenConfirmaCliente5)
     botonConfirmarCliente5 = ttk.Button(ventanaPrestamo, image= imagenConfirmaCliente5, command = enPrestamo)
-    botonConfirmarCliente5.place( x=840, y=535)
+    botonConfirmarCliente5.place( x=435, y=315)
     ventanaPrestamo.mainloop()
 
 
