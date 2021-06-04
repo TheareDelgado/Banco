@@ -487,19 +487,19 @@ def abrirMostrarCola():
 def ConfirmarDatos():
     for persona in listadoPersonas.getLista():
         if (ingresaRutCliente.get()==persona.getRut()):
-            ingresaNombreCliente = ttk.Label(root, text=persona.getNombre())
+            ingresaNombreCliente = ttk.Label(root, text=persona.getNombre(), background="gray")
             ingresaNombreCliente.place(x=187, y=213, width=270, height=20)
-            ingresaApellidoCliente = ttk.Label(root,text=persona.getApellido())
+            ingresaApellidoCliente = ttk.Label(root,text=persona.getApellido(), background="gray")
             ingresaApellidoCliente.place( x=187, y=240, width=270, height=20) 
-            ingresaSaldoCliente = ttk.Label(root,text=persona.getSaldo())
+            ingresaSaldoCliente = ttk.Label(root,text=persona.getSaldo(), background="gray")
             ingresaSaldoCliente.place( x=187, y=292, width=270, height=20)
        
 def Mostrardatosfun():
     for Funcionario in listadoPersonas.getListaFuncionarios():
         if (ingresaRutFuncionario.get()==Funcionario.getrutfuncionario()):
-            ingresaNombreFuncionario = ttk.Label(root,text=Funcionario.getnombrefuncionario())                         
+            ingresaNombreFuncionario = ttk.Label(root,text=Funcionario.getnombrefuncionario(), background="gray")                         
             ingresaNombreFuncionario.place( x=782, y=213, width=270, height=20)  
-            ingresaApellidoFuncionario = ttk.Label(root,text=Funcionario.getapellidofuncionario())
+            ingresaApellidoFuncionario = ttk.Label(root,text=Funcionario.getapellidofuncionario(), background="gray")
             ingresaApellidoFuncionario.place( x=782, y=239, width=270, height=20)
        
 
