@@ -16,10 +16,7 @@ from matplotlib import colors
 from Funcionario import *
 
 #Creando banco
-c1=Cliente()
-c2=Cliente()
-c3=Cliente()
-c4=Cliente()
+
 #Creando personas
 
 p1=Persona()
@@ -113,6 +110,7 @@ cont1=1
 cont2=1
 cont3=1
 cont4=1
+contadortabla=False
 listaBorrados=[]
 FiltroOp=StringVar()
 FiltroEs=StringVar()
@@ -398,8 +396,10 @@ def abrirGrafico():
 def abrirMostrarCola():
 
     def elimina():
-        x = tabla.selection()[0]
+        x = tabla.selection()
         tabla.delete(x)
+        global contadortabla
+        contadortabla=True
     def finzalizaProceso():
         seleccionado = tabla.focus()
         if str(seleccionado)=="I001":
@@ -498,6 +498,9 @@ def abrirMostrarCola():
         I=I+1
         b=b+1
         m=m+1
+        global contadortabla
+        if contadortabla==True:
+            elimina()
     ventanaMostrarCola.mainloop()
 
 
@@ -505,9 +508,6 @@ def abrirMostrarCola():
 
                              #DEF RANDOMS
 
-def actualizarTabla():
-    for persona in listadoPersonas.getLista():
-        B1.setAceptar(persona.getSaldo())
 def ConfirmarDatos():
     for persona in listadoPersonas.getLista():
         if (ingresaRutCliente.get()==persona.getRut()):
