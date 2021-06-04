@@ -49,6 +49,9 @@ class Dispensador():
     
     def agregarPersonas(self, persona):
         self.listaPersonas.append(persona)
+       
+    def agregarCliente(self, cliente):
+        self.listaPersonas.append(cliente)    
     def mostrar(self):
         for persona in self.listaPersonas:
             info="el nombre  :"+ persona.getNombre()+"apellido  :"+ persona.getApellido()+ "rut :"+ persona.getRut()+ "saldo  :"+str(persona.getSaldo())+"operacion es  : "+persona.getOperacion()
