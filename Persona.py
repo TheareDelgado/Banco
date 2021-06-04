@@ -4,7 +4,7 @@ class Persona():
         self.nombre=""
         self.apellido=""
         self.rut=""
-        self.saldo = 0
+        self.saldo=0
         self.operacion= operaciones[0]
         self.N_atencion= 1
         
@@ -16,8 +16,8 @@ class Persona():
          self.apellido=apellido        
      def setRut(self,rut):
          self.rut=rut
-     def setSaldo(self, saldo):
-         self.saldo=saldo
+     def setSaldo(self,saldo):
+        self.saldo=saldo
      def setOperacion(self, operacion):
          self.operacion=operacion
      def setN_atencion(self, N_atencion):

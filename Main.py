@@ -9,11 +9,17 @@ from numpy import mat
 from Cliente import *
 from Persona import *
 from dispensador import *
+from Banco import *
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib import colors
 from Funcionario import *
 
+#Creando banco
+c1=Cliente()
+c2=Cliente()
+c3=Cliente()
+c4=Cliente()
 #Creando personas
 
 p1=Persona()
@@ -47,7 +53,7 @@ p3.setSaldo(10000000)
 
 p4.setNombre("Theare")
 p4.setApellido("Delgado")
-p4.setRut("202254472")
+p4.setRut("202254772")
 p4.setSaldo(500000)
 
 ###################################
@@ -101,13 +107,12 @@ rutf=StringVar()
 #DATOS PRESTAMO
 prestamosol=StringVar()
 cantidadcuotas=StringVar()
-LISTAALTA=[StringVar()]
-LISTABAJA=[StringVar()]
 A=[]
 B=[]
-C=[]
-D=[]
-ContadorA=0
+cont1=1
+cont2=1
+cont3=1
+cont4=1
 listaBorrados=[]
 FiltroOp=StringVar()
 FiltroEs=StringVar()
@@ -133,21 +138,19 @@ def abrirDepositar():
     ventanaDepositar.title("Depositar")
     ventanaDepositar.geometry("600x400")
     ventanaDepositar.resizable(width=False, height=False)
-
+    global cont1
     def enDeposito():
-        ContadorA=0
         for persona in listadoPersonas.getLista():
             if (ingresaRutCliente.get()==persona.getRut()):
                 persona.setOperacion(operaciones[1])
                 listadoPersonas.agregarDeposito(persona)
                 listadoPersonas.agregarTabla(persona)
                 A.append("Depositar")
-                
-                
-                
-        ContadorA=ContadorA+1
+        
+        global cont1
+        B.append(cont1)  
+        cont1=cont1+1              
         ventanaDepositar.destroy()
-
 
     imagen = PhotoImage (file = "./ventanaDepositar.png") 
     fondo=Label(ventanaDepositar, image = imagen).place( x=0, y=0)
@@ -175,16 +178,20 @@ def abrirRetirar():
     ventanaRetirar.title("Retirar")
     ventanaRetirar.geometry("600x400")
     ventanaRetirar.resizable(width=False, height=False)
+    global cont2
 
     def enRetirar():
-        contadorB=0
+
         for persona in listadoPersonas.getLista():
             if (ingresaRutCliente.get()==persona.getRut()):
                 persona.setOperacion(operaciones[2])
                 listadoPersonas.agregarRetirar(persona)
                 listadoPersonas.agregarTabla(persona)
                 A.append("Retirar")
-        ContadorB=contadorB+1
+
+        global cont2
+        B.append(cont2)   
+        cont2=cont2+1
         ventanaRetirar.destroy()
 
 
@@ -213,16 +220,20 @@ def abrirTransferir():
     ventanaTransferir.title("Transferir")
     ventanaTransferir.geometry("600x400")
     ventanaTransferir.resizable(width=False, height=False)
+    global cont3
 
     def enTransferir():
-        contadorC=0
+
         for persona in listadoPersonas.getLista():
             if (ingresaRutCliente.get()==persona.getRut()):
                 persona.setOperacion(operaciones[3])
                 listadoPersonas.agregarTransferir(persona)
                 listadoPersonas.agregarTabla(persona)
                 A.append("Transferir")
-        contadorC=contadorC+1
+                 
+        global cont3
+        B.append(cont3)         
+        cont3=cont3+1
         ventanaTransferir.destroy()
 
 
@@ -265,17 +276,21 @@ def abrirPrestamo():
     ventanaPrestamo.title("Prestamo")
     ventanaPrestamo.geometry("600x400")
     ventanaPrestamo.resizable(width=False, height=False)
+    global cont4
    
 
     def enPrestamo():
-        contadorD=0
+
         for persona in listadoPersonas.getLista():
             if (ingresaRutCliente.get()==persona.getRut()):
                 persona.setOperacion(operaciones[4])
                 listadoPersonas.agregarPrestamo(persona)
                 listadoPersonas.agregarTabla(persona)
                 A.append("Prestamo")
-        contadorD=contadorD+1
+
+        global cont4
+        B.append(cont4)    
+        cont4=cont4+1
         ventanaPrestamo.destroy()
 
 
@@ -335,20 +350,28 @@ def abrirMostrarCola():
     def finzalizaProceso():
         seleccionado = tabla.focus()
         if str(seleccionado)=="I001":
-          valuess = tabla.item(seleccionado, text="", values=(ru[0],A[0],num,"Finalizado"))
+          valuess = tabla.item(seleccionado, text="", values=(B[0],A[0],ru[0],"Finalizado"))
         elif str(seleccionado)=="I002":
-          valuess = tabla.item(seleccionado, text="", values=(ru[1],A[1],num,"Finalizado"))
+          valuess = tabla.item(seleccionado, text="", values=(B[1],A[1],ru[1],"Finalizado"))
         elif str(seleccionado)=="I003":
-          valuess = tabla.item(seleccionado, text="", values=(ru[2],A[2],num,"Finalizado"))
+          valuess = tabla.item(seleccionado, text="", values=(B[2],A[2],ru[2],"Finalizado"))
         elif str(seleccionado)=="I004":
-          valuess = tabla.item(seleccionado, text="", values=(ru[3],A[3],num,"Finalizado"))
+          valuess = tabla.item(seleccionado, text="", values=(B[3],A[3],ru[3],"Finalizado"))
         elif str(seleccionado)=="I005":
-          valuess = tabla.item(seleccionado, text="", values=(ru[4],A[4],num,"Finalizado"))
+          valuess = tabla.item(seleccionado, text="", values=(B[4],A[4],ru[4],"Finalizado"))
         elif str(seleccionado)=="I006":
-          valuess = tabla.item(seleccionado, text="", values=(ru[5],A[5],num,"Finalizado"))
+          valuess = tabla.item(seleccionado, text="", values=(B[5],A[5],ru[5],"Finalizado"))
         elif str(seleccionado)=="I007":
-          valuess = tabla.item(seleccionado, text="", values=(ru[6],A[6],num,"Finalizado"))
-        
+          valuess = tabla.item(seleccionado, text="", values=(B[6],A[6],ru[6],"Finalizado"))
+        elif str(seleccionado)=="I008":
+          valuess = tabla.item(seleccionado, text="", values=(B[7],A[7],ru[7],"Finalizado"))
+        elif str(seleccionado)=="I009":
+          valuess = tabla.item(seleccionado, text="", values=(B[8],A[8],ru[8],"Finalizado"))
+        elif str(seleccionado)=="I010":
+          valuess = tabla.item(seleccionado, text="", values=(B[9],A[9],ru[9],"Finalizado"))
+        elif str(seleccionado)=="I011":
+          valuess = tabla.item(seleccionado, text="", values=(B[10],A[10],ru[10],"Finalizado"))
+    
 
 
     ventanaMostrarCola=Toplevel(root)
@@ -390,7 +413,7 @@ def abrirMostrarCola():
     
     #Creacion de la tabla
     tabla = ttk.Treeview(ventanaMostrarCola)
-    tabla['columns']=("Rut","Operacion", "N° Atencion","Estado")
+    tabla['columns']=("N° Atencion","Operacion", "Rut","Estado")
     tabla.column('#0', width=0, stretch=NO)
     tabla.column("Rut", anchor=CENTER, width=200)
     tabla.column("Operacion", anchor=CENTER, width=200)
@@ -411,16 +434,18 @@ def abrirMostrarCola():
     n=1
     I=0
     b=0
+    m=0
     ru=[]
     for persona in listadoPersonas.getListaTabla():
         ru.append(persona.getRut())
         num=n
         est="En proceso"
         fin="Finalizado"
-        tabla.insert("",END,text="",values=(ru[b],A[I],num,est))
+        tabla.insert("",END,text="",values=(B[m],A[I],ru[b],est))
         n=n+1
         I=I+1
         b=b+1
+        m=m+1
     ventanaMostrarCola.mainloop()
 
 
@@ -428,14 +453,16 @@ def abrirMostrarCola():
 
                              #DEF RANDOMS
 
-
+def actualizarTabla():
+    for persona in listadoPersonas.getLista():
+        B1.setAceptar(persona.getSaldo())
 def ConfirmarDatos():
     for persona in listadoPersonas.getLista():
         if (ingresaRutCliente.get()==persona.getRut()):
             ingresaNombreCliente = ttk.Label(root, text=persona.getNombre(), background="gray")
             ingresaNombreCliente.place(x=187, y=213, width=270, height=20)
             ingresaApellidoCliente = ttk.Label(root,text=persona.getApellido(), background="gray")
-            ingresaApellidoCliente.place( x=187, y=240, width=270, height=20) 
+            ingresaApellidoCliente.place( x=187, y=240, width=270, height=20)
             ingresaSaldoCliente = ttk.Label(root,text=persona.getSaldo(), background="gray")
             ingresaSaldoCliente.place( x=187, y=292, width=270, height=20)
        

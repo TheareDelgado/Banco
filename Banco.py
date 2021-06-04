@@ -1,6 +1,6 @@
 from Cliente import *
 class Banco(Cliente):
-    def __init__(self, nombrebanco,rutbanco,telefonobanco,direccionbanco):
+    def __init__(self):
         self.nombrebanco="Banco Touch"
         self.rutbanco="45111111-7"
         self.telefonobanco=948463452
