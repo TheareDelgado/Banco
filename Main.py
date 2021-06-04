@@ -321,70 +321,17 @@ def abrirPrestamo():
 
 
 def abrirGrafico():
-    #ventanaGrafico=Toplevel(root)
-    #ventanaGrafico.title("Gráfico")
-    #ventanaGrafico.geometry("1248x708")
-    #ventanaGrafico.resizable(width=False, height=False)
-    cantidadPrestamos = 0
-    cantidadDepositos = 6
-    cantidadRetirar = 5
-    cantidadTransferencias = 9
+    ventanaGrafico=Toplevel(root)
+    ventanaGrafico.title("Análisis esttadísticos")
+    ventanaGrafico.geometry("1248x708")
+    ventanaGrafico.resizable(width=False, height=False)
 
-    if(cantidadPrestamos==0 and cantidadDepositos>=1 and cantidadRetirar>=1 and cantidadTransferencias>=1):
-        operaciones = [cantidadDepositos, cantidadTransferencias, cantidadRetirar]
-        normdata = colors.Normalize(min(operaciones), max(operaciones))
-        colormap = cm.get_cmap("Blues")
-        colores =colormap(normdata(operaciones))
 
-        label = ["Depositar", "Transferir", "Retirar"]
 
-        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
-        plt.show()
 
-    if(cantidadPrestamos>=1 and cantidadDepositos==0 and cantidadRetirar>=1 and cantidadTransferencias>=1):
-        operaciones = [cantidadTransferencias, cantidadRetirar, cantidadPrestamos]
-        normdata = colors.Normalize(min(operaciones), max(operaciones))
-        colormap = cm.get_cmap("Blues")
-        colores =colormap(normdata(operaciones))
 
-        label = ["Transferir", "Retirar", "Préstamo"]
 
-        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
-        plt.show()
-
-    if(cantidadPrestamos>=1 and cantidadDepositos>=1 and cantidadTransferencias>=1 and cantidadRetirar==0):
-        operaciones = [cantidadDepositos, cantidadTransferencias, cantidadPrestamos]
-        normdata = colors.Normalize(min(operaciones), max(operaciones))
-        colormap = cm.get_cmap("Blues")
-        colores =colormap(normdata(operaciones))
-
-        label = ["Depositar", "Transferir", "Préstamo"]
-
-        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
-        plt.show()
-
-    if(cantidadPrestamos>=1 and cantidadDepositos>=1 and cantidadRetirar>=1 and cantidadTransferencias==0):
-        operaciones = [cantidadDepositos, cantidadRetirar, cantidadPrestamos]
-        normdata = colors.Normalize(min(operaciones), max(operaciones))
-        colormap = cm.get_cmap("Blues")
-        colores =colormap(normdata(operaciones))
-
-        label = ["Depositar", "Retirar", "Préstamo"]
-
-        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
-        plt.show()
-
-    if(cantidadPrestamos>=1 and cantidadDepositos>=1 and cantidadRetirar>=1 and cantidadTransferencias>=1):
-        operaciones = [cantidadDepositos, cantidadTransferencias, cantidadRetirar, cantidadPrestamos]
-        normdata = colors.Normalize(min(operaciones), max(operaciones))
-        colormap = cm.get_cmap("Blues")
-        colores =colormap(normdata(operaciones))
-
-        label = ["Depositar", "Transferir", "Retirar", "Préstamo"]
-
-        plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
-        plt.show()
-    
+    ventanaGrafico.mainloop()
 #Si una de las variables es 0 que no muestre el label y solo muestre las otras operaciones!!!
 
 
@@ -451,18 +398,19 @@ def abrirMostrarCola():
     botonActualizar.place( x=827, y=233)
 
 
+    #La idea que tenemos para los botones eliminar, actualizar y finalizar es que al apretarse cualquiera de estos botones
+    #aparezca un nuevo topLevel (uno por cada botón) que pida RUT junto a un botón de confirmar, de modo que si el rut coincide con uno de los que están
+    #registrados, la operación se realice, de otro modo, aparezca un mensaje de que la operación/rut es inválido (showmessage)
+
+
+
     FiltrarOperaciones = ttk.Combobox(ventanaMostrarCola,values=("Depositar","Trasnferir","Retirar","Prestamo"),textvariable=FiltroOp)
     FiltrarOperaciones.place_configure(x=199, y=326 , width=280, height=20)
 
     FiltrarEstados = ttk.Combobox(ventanaMostrarCola,values=("Aceptado","Rechazado","En proceso"),textvariable=FiltroEs)
     FiltrarEstados.place_configure(x=199, y=349 , width=280, height=20)
 
-    #Boton para filtrar la tabla por colas de prioridad de depositos
     
-
-    #Falta modificar el command de cada boton para de este modo llamar a un metodo que limpie la tabla y la actualize con las colas que se le solicitan
-    #Falta agregar label en la tabla colocando a que cola pertenece cada boton,(ejemplo: en el boton de depositar colocar un label que diga "Cola de depositos", y asi con los demas botones)
-
     #Creacion de la tabla
     tabla = ttk.Treeview(ventanaMostrarCola)
     tabla['columns']=("N° Atencion","Operacion", "Rut","Estado")
@@ -606,7 +554,6 @@ botonConfirmarFuncionario = ttk.Button(canvas, image= imagenConfirmaFuncionario,
 botonConfirmarFuncionario.place( x=870, y=334) 
 
 #*****************************************************************************
-
 
 
 
