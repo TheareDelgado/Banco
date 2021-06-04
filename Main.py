@@ -18,7 +18,7 @@ from Funcionario import *
 #Creando banco
 
 #Creando personas
-
+Aaaaaaa=1
 p1=Persona()
 p2=Persona()
 p3=Persona()
