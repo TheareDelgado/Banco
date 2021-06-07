@@ -4,7 +4,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 from tkinter import ttk
 from tkinter import Button
-
+from tkinter import messagebox
 from numpy import mat
 from Cliente import *
 from Persona import *
@@ -131,6 +131,9 @@ root.update()
 #****************************************************************************
 
 
+
+
+
 def abrirDepositar():
     ventanaDepositar=Toplevel(root)
     ventanaDepositar.title("Depositar")
@@ -144,15 +147,17 @@ def abrirDepositar():
                 listadoPersonas.agregarDeposito(persona)
                 listadoPersonas.agregarTabla(persona)
                 A.append("Depositar")
-        
+    
+       
         global cont1
-        B.append(cont1)  
+        B.append(cont1)
+        messagebox.showinfo(message="Usted es el n°"+str(cont1)+" en la cola", title="N° Cola")  
         cont1=cont1+1              
         ventanaDepositar.destroy()
 
     imagen = PhotoImage (file = "./ventanaDepositar.png") 
     fondo=Label(ventanaDepositar, image = imagen).place( x=0, y=0)
-
+    
     #Entry y Label
 
     ingresaCuentaDeposito = ttk.Entry(ventanaDepositar)
@@ -189,9 +194,9 @@ def abrirRetirar():
 
         global cont2
         B.append(cont2)   
+        messagebox.showinfo(message="Usted es el n°"+str(cont2)+" en la cola", title="N° Cola")
         cont2=cont2+1
         ventanaRetirar.destroy()
-
 
     imagen = PhotoImage (file = "./ventanaDepositar.png") 
     fondo=Label(ventanaRetirar, image = imagen).place( x=0, y=0)
@@ -230,7 +235,8 @@ def abrirTransferir():
                 A.append("Transferir")
                  
         global cont3
-        B.append(cont3)         
+        B.append(cont3)
+        messagebox.showinfo(message="Usted es el n°"+str(cont3)+" en la cola", title="N° Cola")         
         cont3=cont3+1
         ventanaTransferir.destroy()
 
@@ -287,7 +293,8 @@ def abrirPrestamo():
                 A.append("Prestamo")
 
         global cont4
-        B.append(cont4)    
+        B.append(cont4)
+        messagebox.showinfo(message="Usted es el n°"+str(cont4)+" en la cola", title="N° Cola")    
         cont4=cont4+1
         ventanaPrestamo.destroy()
 
@@ -332,15 +339,76 @@ def abrirGrafico():
 
 
     ventanaGrafico.mainloop()
-#Si una de las variables es 0 que no muestre el label y solo muestre las otras operaciones!!!
 
 
 
 
-    #ventanaGrafico.mainloop()
+
 
 
 def abrirMostrarCola():
+
+
+
+    def abrirConfirmaRutFinalizar():
+
+        def confirmaFinaliza():
+            for Funcionario in listadoPersonas.getListaFuncionarios():
+                if (confirmaRut.get()==Funcionario.getrutfuncionario()):
+                    finzalizaProceso()
+                    ventanaConfirmaRut.destroy()
+
+        ventanaConfirmaRut=Toplevel(root)
+        ventanaConfirmaRut.title("RUT del Funcionario")
+        ventanaConfirmaRut.geometry("300x100")
+        ventanaConfirmaRut.resizable(width=False, height=False)
+
+        imagenRUT = PhotoImage (file = "./ventanaFuncionario.png") 
+        fondo=Label(ventanaConfirmaRut, image = imagenRUT).place( x=0, y=0)
+
+        imagenConfirmarRut = Image.open("./confirmarVentana.png")
+        imagenConfirmarRut = ImageTk.PhotoImage(imagenConfirmarRut)
+        botonConfirmarRut = ttk.Button(ventanaConfirmaRut, image= imagenConfirmarRut, command= confirmaFinaliza)
+        botonConfirmarRut.place( x=157, y=54)
+
+
+        confirmaRut = ttk.Entry(ventanaConfirmaRut)
+        confirmaRut.place( x=91, y=21, width=172, height=20)
+
+
+
+        ventanaConfirmaRut.mainloop()
+
+    def abrirConfirmaRutElimina():
+
+        def confirmaElimina():
+            for Funcionario in listadoPersonas.getListaFuncionarios():
+                if (confirmaRut.get()==Funcionario.getrutfuncionario()):
+                    elimina()
+                    ventanaConfirmaRut.destroy()
+
+
+        ventanaConfirmaRut=Toplevel(root)
+        ventanaConfirmaRut.title("RUT del Funcionario")
+        ventanaConfirmaRut.geometry("300x100")
+        ventanaConfirmaRut.resizable(width=False, height=False)
+
+        imagenRUT = PhotoImage (file = "./ventanaFuncionario.png") 
+        fondo=Label(ventanaConfirmaRut, image = imagenRUT).place( x=0, y=0)
+
+        imagenConfirmarRut = Image.open("./confirmarVentana.png")
+        imagenConfirmarRut = ImageTk.PhotoImage(imagenConfirmarRut)
+        botonConfirmarRut = ttk.Button(ventanaConfirmaRut, image= imagenConfirmarRut, command = confirmaElimina)
+        botonConfirmarRut.place( x=157, y=54)
+
+
+        confirmaRut = ttk.Entry(ventanaConfirmaRut)
+        confirmaRut.place( x=91, y=21, width=172, height=20)
+
+
+
+
+        ventanaConfirmaRut.mainloop()
 
     def elimina():
         x = tabla.selection()
@@ -384,24 +452,18 @@ def abrirMostrarCola():
     #Botones para filtrar las Colas de prioridades#############
     imagenEliminar = Image.open("./eliminaServicio.png")
     imagenEliminar = ImageTk.PhotoImage(imagenEliminar)
-    botonEliminar = ttk.Button(ventanaMostrarCola, image= imagenEliminar, command = elimina)
+    botonEliminar = ttk.Button(ventanaMostrarCola, image= imagenEliminar, command = abrirConfirmaRutElimina)
     botonEliminar.place( x=827, y=70)
 
     imagenFinalizar = Image.open("./finalizarServicio.png")
     imagenFinalizar = ImageTk.PhotoImage(imagenFinalizar)
-    botonFinalizar = ttk.Button(ventanaMostrarCola, image= imagenFinalizar, command = finzalizaProceso)
+    botonFinalizar = ttk.Button(ventanaMostrarCola, image= imagenFinalizar, command = abrirConfirmaRutFinalizar)
     botonFinalizar.place( x=827, y=153)
 
     imagenActualizar = Image.open("./actualizar.png")
     imagenActualizar = ImageTk.PhotoImage(imagenActualizar)
     botonActualizar = ttk.Button(ventanaMostrarCola, image= imagenActualizar)
     botonActualizar.place( x=827, y=233)
-
-
-    #La idea que tenemos para los botones eliminar, actualizar y finalizar es que al apretarse cualquiera de estos botones
-    #aparezca un nuevo topLevel (uno por cada botón) que pida RUT junto a un botón de confirmar, de modo que si el rut coincide con uno de los que están
-    #registrados, la operación se realice, de otro modo, aparezca un mensaje de que la operación/rut es inválido (showmessage)
-
 
 
     FiltrarOperaciones = ttk.Combobox(ventanaMostrarCola,values=("Depositar","Trasnferir","Retirar","Prestamo"),textvariable=FiltroOp)
