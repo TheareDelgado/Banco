@@ -1,37 +1,62 @@
-from Cliente import *
+from Persona import *
 
-class Operaciones(Cliente):
-    def __init__(self, nombrecliente, apellidocliente, rutcliente, clavecliente, saldocliente):
-     Cliente.__init__(self,nombrecliente, apellidocliente, rutcliente, clavecliente, saldocliente)
-     self.nombreop=nombrecliente
-     self.apellidoop=apellidocliente
-     self.rutop=rutcliente
+class Operaciones():
+    def __init__(self):
+     self.nombreop=""
+     self.apellidoop=""
+     self.rutop=""
 
-     self.claveop=clavecliente
-     self.saldoop=saldocliente
+     self.claveop=0
+     self.saldoop=0
+     self.vrut=0
+     self.monto=0
+     self.montor=0
+    def setNombreop(self,nombreop):
+         self.nombreop=nombreop
+    def setApellidoop(self,apellidoop):
+         self.apellidoop=apellidoop        
+    def setRutop(self,rutop):
+         self.rutop=rutop
+    def setSaldoop(self,saldoop):
+        self.saldoop=saldoop
+    def setVrut(self,vrut):
+        self.vrut=vrut
+    def setMonto(self,monto):
+          self.monto=monto
+    def setMontor(self,montor):
+         self.montor=montor
+    def setClave(self,claveop):
+         self.claveop=claveop 
+ 
+    def getNombreop(self):
+         return self.nombreop          
+    def getApellidoop(self):
+         return self.apellidoop
+    def getRutop(self):
+         return self.rutop
+    def getSaldoop(self):
+         return self.saldoop
+    def getvrut(self):
+         return self.vrut
+    def getmonto(self):
+         return self.monto
+    def getMontor(self):
+         return self.montor 
+    def getClave(self):
+         return self.claveop   
+ 
+    def depositar (self, rutop,saldoop,monto,vrut):
+          self.saldoop=saldoop+self.monto
+          return self.saldoop
 
-     def depositar (self, rut, monto, saldo,vrut):
-        vrut=str(input("ingrese su rut sin puntos ni guion"))
-        monto=int(input("ingrese monto que quiere depositar"))
-        if vrut==rut:
-                  saldo=saldo+monto
-                  return print ("Su nuevo saldo es : "+ saldo)
+    def retirar (self, rutop, saldoop,montor, vrut):
+            self.saldoop=saldoop-self.montor
+            return self.saldoop
 
-        else:
-                  return print ("no se puede depositar el monto debido a que el rut no es valido")
-
-     def retirar (self, rut, clave, montor, saldo, vrut, vclave):
-        vrut=str(input("ingrese su rut sin puntos ni guion"))
-        vclave=int(input("ingrese su clave de 4 digitos"))
-        montor=int(input("ingrese monto que quiere retirar de su cuenta"))
-
-        if vrut == rut and vclave == clave and montor < saldo:
-            saldo=saldo-montor
-            return print ("Su nuevo saldo es : "+ saldo)
-
-     def Transferir(self, rut, clave, saldo, montor, rutd, validarut):
-        montor=int(input("ingrese monto el cual quiere transferir de su cuenta"))
-        rutd=int(input("ingrese el rut del destinatario"))
-        if validarut == true and montor<saldo:
-            rutd=rutd+montor
-            return print ("se ha depositado con exito un monto de "+ montor+ "al rut  : "+ rutd)
+    def TransferirUsuario(self, vrut, clave, saldoop, montor):
+            self.saldoop=saldoop-self.montor
+            return self.saldoop
+    def TransferirCliente(self, vrut,saldoop, montor):
+            self.saldoop=saldoop+self.montor
+            return self.saldoop
+ 

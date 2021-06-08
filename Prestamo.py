@@ -1,11 +1,10 @@
 from Persona import *
 class Prestamo(Persona):
-    def __init__(self, nombrepersona,apellidopersona,rutpersona,clave,saldo,Cantidadpres,cantidadCuo,Interes,estadoPrestamo):
-        Persona.__init__(self,nombrecliente,apellidocliente,rutcliente,clavecliente,saldocliente)
-        self.Cantidadpres=Cantidadpres
-        self.cantidadCuo=cantidadCuo
-        self.interes=Interes
-        self.estadoPrestamo=estadoPrestamo
+    def __init__(self):
+        self.Cantidadpres=0
+        self.cantidadCuo=0
+        self.interes=0
+        self.estadoPrestamo=""
 #getter
     def getCantidadPrestamo(self):
         return self.Cantidadpres
@@ -47,17 +46,16 @@ class Prestamo(Persona):
 
     def saberestadoprestamo(self,estadoPrestamo):
             if self.estadoPrestamo==False:
-                return activarprestamo()
+                return "Ahora tiene prestamo"
             else:
-                return "Ya tiene un prestamo"
-
+                return self.estadoPrestamo==True
 
     def activarprestamo(self,Cantidadpres,cantidadCuo):
-            if Cantidadpres==150000 and cantidadCuo==3:
+            if self.Cantidadpres=="150000" and self.cantidadCuo=="3":
                 self.estadoPrestamo=True
-                pagomensual=Cantidadpres/cantidadCuo
-                interes=Prestamo*0.1
-                pagofinal=pagomensual+Interes
+                self.pagomensual=self.Cantidadpres/self.cantidadCuo
+                self.interes=Prestamo*0.1
+                self.pagofinal=pagomensual+Interes
                 return pagofinal
             elif Cantidadpres==150000 and cantidadCuo==6:
                 self.estadoPrestamo=True

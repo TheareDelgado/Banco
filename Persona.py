@@ -7,6 +7,7 @@ class Persona():
         self.saldo=0
         self.operacion= operaciones[0]
         self.N_atencion= 1
+        self.clave=""
         
         #AGREGAR PONER Y TOMAR DE SALDO Y OP
 
@@ -22,7 +23,8 @@ class Persona():
          self.operacion=operacion
      def setN_atencion(self, N_atencion):
          self.N_atencion=N_atencion
-
+     def setClave(self,clave):
+         self.clave=clave
 
  
      def getNombre(self):
@@ -37,6 +39,8 @@ class Persona():
          return self.operacion
      def getN_atencion(self):
          return self.N_atencion
+     def getClave(self):
+         return self.clave
 
      def __str__(self) :
          return self.nombre+" "+self.apellido+""+self.rut

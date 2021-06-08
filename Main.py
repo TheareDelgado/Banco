@@ -10,6 +10,8 @@ from Cliente import *
 from Persona import *
 from dispensador import *
 from Banco import *
+from Operaciones import *
+from Prestamo import *
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib import colors
@@ -18,7 +20,8 @@ from Funcionario import *
 #Creando banco
 
 #Creando personas
-Aaaaaaa=1
+Op=Operaciones()
+Prest=Prestamo()
 p1=Persona()
 p2=Persona()
 p3=Persona()
@@ -36,22 +39,25 @@ p1.setNombre("Cesar")
 p1.setApellido("Mora")
 p1.setRut("203770936")
 p1.setSaldo(300000)
-
+p1.setClave("3535")
 
 p2.setNombre("Felipe")
 p2.setApellido("Vera")
 p2.setRut("202175936")
 p2.setSaldo(600000)
+p2.setClave("0213")
 
 p3.setNombre("Diego")
 p3.setApellido("Gonzalez")
 p3.setRut("202974058")
 p3.setSaldo(10000000)
+p3.setClave("1010")
 
 p4.setNombre("Theare")
 p4.setApellido("Delgado")
 p4.setRut("202254772")
 p4.setSaldo(500000)
+p4.setClave("2020")
 
 ###################################
 p5.setnombrefuncionario("Albo")
@@ -95,9 +101,13 @@ root.resizable(width=False, height=False)
 #opciones=["Sin Operacion","Depositar","Retirar","Transferir","Prestamo"]
 #DATOS DE CLIENTE
 rut=StringVar()
-
+rutv=StringVar()
 #DATOS DE FUNCIONARIO
 rutf=StringVar()
+A1=""
+B1=""
+C1=""
+C2=False
 
 #LLAMANDO A CLASES
 
@@ -150,6 +160,12 @@ def abrirDepositar():
                     persona.setOperacion(operaciones[1])
                     listadoPersonas.agregarDeposito(persona)
                     listadoPersonas.agregarTabla(persona)
+                    if (rutv.get()==ingresaRutCliente.get()):
+                      Op.setSaldoop(persona.getSaldo())
+                      Op.setMonto(int(ingresaMontoDeposito.get()))
+                      A1=(Op.depositar(persona.getRut(), Op.getSaldoop(), Op.getmonto(), rutv))
+                    print(A1)
+                    persona.setSaldo(A1)
                     A.append("Depositar")
         
         
@@ -163,7 +179,7 @@ def abrirDepositar():
         
         #Entry y Label
 
-        ingresaCuentaDeposito = ttk.Entry(ventanaDepositar)
+        ingresaCuentaDeposito = ttk.Entry(ventanaDepositar,text=rutv)
         ingresaCuentaDeposito.place_configure(x=400, y=220 , width=169, height=17)
 
         ingresaMontoDeposito = ttk.Entry(ventanaDepositar)
@@ -192,12 +208,18 @@ def abrirRetirar():
 
 
         def enRetirar():
-
+            global B1
             for persona in listadoPersonas.getLista():
                 if (ingresaRutCliente.get()==persona.getRut()):
                     persona.setOperacion(operaciones[2])
                     listadoPersonas.agregarRetirar(persona)
                     listadoPersonas.agregarTabla(persona)
+                    Op.setSaldoop(persona.getSaldo())
+                    Op.setMontor(int(ingresaMontoRetiro.get()))
+                    if ((rutv.get() == ingresaRutCliente.get()) and ( Op.getMontor()< Op.getSaldoop())):
+                       B1=(Op.retirar(persona.getRut(), Op.getSaldoop(), Op.getMontor(), rutv))
+                    print(B1)
+                    persona.setSaldo(B1)
                     A.append("Retirar")
 
             global cont2
@@ -209,7 +231,7 @@ def abrirRetirar():
         fondo=Label(ventanaRetirar, image = imagen).place( x=0, y=0)
 
 
-        ingresaCuentaRetiro = ttk.Entry(ventanaRetirar)
+        ingresaCuentaRetiro = ttk.Entry(ventanaRetirar,text=rutv)
         ingresaCuentaRetiro.place_configure(x=400, y=220  , width=169, height=17)
 
         ingresaMontoRetiro = ttk.Entry(ventanaRetirar)
@@ -239,11 +261,29 @@ def abrirTransferir():
 
         def enTransferir():
 
+            global C1  
+            global C2
             for persona in listadoPersonas.getLista():
                 if (ingresaRutCliente.get()==persona.getRut()):
                     persona.setOperacion(operaciones[3])
                     listadoPersonas.agregarTransferir(persona)
                     listadoPersonas.agregarTabla(persona)
+                    Op.setClave(persona.getClave())
+                    Op.setSaldoop(persona.getSaldo())
+                    Op.setMontor(int(ingresaMontoTransferir.get()))
+                    if (Op.getMontor()<Op.getSaldoop()):
+                        C1=Op.TransferirUsuario(rutv.get(), Op.getClave(), Op.getSaldoop(), Op.getMontor())
+                        C2=True   
+                    print(C1)
+                    persona.setSaldo(C1)
+            for persona in listadoPersonas.getLista():
+                if rutv.get()==persona.getRut() and C2==True:
+                    Op.setSaldoop(persona.getSaldo())
+                    Op.setMontor(int(ingresaMontoTransferir.get()))
+                    C1=Op.TransferirCliente(rutv.get(), Op.getSaldoop(), Op.getMontor())
+                    print(C1)
+                    persona.setSaldo(C1)
+                    C2=False
                     A.append("Transferir")
                     
             global cont3
@@ -268,7 +308,7 @@ def abrirTransferir():
         ingresaCorreoTransferir = ttk.Entry(ventanaTransferir)
         ingresaCorreoTransferir.place_configure(x=416, y=190 , width=169, height=17)
 
-        ingresaCuentaTransferir = ttk.Entry(ventanaTransferir)
+        ingresaCuentaTransferir = ttk.Entry(ventanaTransferir,text=rutv)
         ingresaCuentaTransferir.place_configure(x=416, y=218 , width=169, height=17)
 
         ingresaMontoTransferir = ttk.Entry(ventanaTransferir)
@@ -300,13 +340,15 @@ def abrirPrestamo():
     
 
         def enPrestamo():
-
+            
+            global C2
             for persona in listadoPersonas.getLista():
                 if (ingresaRutCliente.get()==persona.getRut()):
                     persona.setOperacion(operaciones[4])
                     listadoPersonas.agregarPrestamo(persona)
                     listadoPersonas.agregarTabla(persona)
                     A.append("Prestamo")
+                    
 
             global cont4
             B.append(cont4)  
@@ -401,7 +443,6 @@ def abrirMostrarCola():
                 if (confirmaRut.get()==Funcionario.getrutfuncionario()):
                     elimina()
                     ventanaConfirmaRut.destroy()
-
 
         ventanaConfirmaRut=Toplevel(root)
         ventanaConfirmaRut.title("RUT del Funcionario")
@@ -517,9 +558,6 @@ def abrirMostrarCola():
         I=I+1
         b=b+1
         m=m+1
-        global contadortabla
-        if contadortabla==True:
-            elimina()
 
 
     #***************FILTROS********************
