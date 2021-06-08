@@ -135,199 +135,211 @@ root.update()
 
 
 def abrirDepositar():
-    global cont1
-    messagebox.showinfo(message="Usted es el n°"+str(cont1)+" en la cola", title="Depositar")  
-    ventanaDepositar=Toplevel(root)
-    ventanaDepositar.title("Depositar")
-    ventanaDepositar.geometry("600x400")
-    ventanaDepositar.resizable(width=False, height=False)
-    def enDeposito():
-        for persona in listadoPersonas.getLista():
-            if (ingresaRutCliente.get()==persona.getRut()):
-                persona.setOperacion(operaciones[1])
-                listadoPersonas.agregarDeposito(persona)
-                listadoPersonas.agregarTabla(persona)
-                A.append("Depositar")
-    
-       
+    if(ingresaRutCliente.get()==""):
+        messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
+    else:
         global cont1
-        B.append(cont1)
-        cont1=cont1+1              
-        ventanaDepositar.destroy()
+        messagebox.showinfo(message="Usted es el n°"+str(cont1)+" en la cola", title="Depositar")  
+        ventanaDepositar=Toplevel(root)
+        ventanaDepositar.title("Depositar")
+        ventanaDepositar.geometry("600x400")
+        ventanaDepositar.resizable(width=False, height=False)
+        def enDeposito():
+            for persona in listadoPersonas.getLista():
+                if (ingresaRutCliente.get()==persona.getRut()):
+                    persona.setOperacion(operaciones[1])
+                    listadoPersonas.agregarDeposito(persona)
+                    listadoPersonas.agregarTabla(persona)
+                    A.append("Depositar")
+        
+        
+            global cont1
+            B.append(cont1)
+            cont1=cont1+1              
+            ventanaDepositar.destroy()
 
-    imagen = PhotoImage (file = "./ventanaDepositar.png") 
-    fondo=Label(ventanaDepositar, image = imagen).place( x=0, y=0)
-    
-    #Entry y Label
+        imagen = PhotoImage (file = "./ventanaDepositar.png") 
+        fondo=Label(ventanaDepositar, image = imagen).place( x=0, y=0)
+        
+        #Entry y Label
 
-    ingresaCuentaDeposito = ttk.Entry(ventanaDepositar)
-    ingresaCuentaDeposito.place_configure(x=400, y=220 , width=169, height=17)
+        ingresaCuentaDeposito = ttk.Entry(ventanaDepositar)
+        ingresaCuentaDeposito.place_configure(x=400, y=220 , width=169, height=17)
 
-    ingresaMontoDeposito = ttk.Entry(ventanaDepositar)
-    ingresaMontoDeposito.place_configure(x=400, y=248 , width=169, height=17)
-
-
-    imagenConfirmaDepositar = Image.open("./confirmaDepositar.png")
-    imagenConfirmaDepositar = ImageTk.PhotoImage(imagenConfirmaDepositar)
-    botonConfirmarCliente2 = ttk.Button(ventanaDepositar, image= imagenConfirmaDepositar, command = enDeposito)
-    botonConfirmarCliente2.place( x=434, y=288)
+        ingresaMontoDeposito = ttk.Entry(ventanaDepositar)
+        ingresaMontoDeposito.place_configure(x=400, y=248 , width=169, height=17)
 
 
-    ventanaDepositar.mainloop()
+        imagenConfirmaDepositar = Image.open("./confirmaDepositar.png")
+        imagenConfirmaDepositar = ImageTk.PhotoImage(imagenConfirmaDepositar)
+        botonConfirmarCliente2 = ttk.Button(ventanaDepositar, image= imagenConfirmaDepositar, command = enDeposito)
+        botonConfirmarCliente2.place( x=434, y=288)
+
+
+        ventanaDepositar.mainloop()
 
 
 def abrirRetirar():
-    global cont2
-    messagebox.showinfo(message="Usted es el n°"+str(cont2)+" en la cola", title="Retirar")
-    ventanaRetirar=Toplevel(root)
-    ventanaRetirar.title("Retirar")
-    ventanaRetirar.geometry("600x400")
-    ventanaRetirar.resizable(width=False, height=False)
-
-
-    def enRetirar():
-
-        for persona in listadoPersonas.getLista():
-            if (ingresaRutCliente.get()==persona.getRut()):
-                persona.setOperacion(operaciones[2])
-                listadoPersonas.agregarRetirar(persona)
-                listadoPersonas.agregarTabla(persona)
-                A.append("Retirar")
-
+    if(ingresaRutCliente.get()==""):
+        messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
+    else:
         global cont2
-        B.append(cont2)   
-        cont2=cont2+1
-        ventanaRetirar.destroy()
-
-    imagen = PhotoImage (file = "./ventanaDepositar.png") 
-    fondo=Label(ventanaRetirar, image = imagen).place( x=0, y=0)
-
-
-    ingresaCuentaRetiro = ttk.Entry(ventanaRetirar)
-    ingresaCuentaRetiro.place_configure(x=400, y=220  , width=169, height=17)
-
-    ingresaMontoRetiro = ttk.Entry(ventanaRetirar)
-    ingresaMontoRetiro.place_configure(x=400, y=248 , width=169, height=17)
+        messagebox.showinfo(message="Usted es el n°"+str(cont2)+" en la cola", title="Retirar")
+        ventanaRetirar=Toplevel(root)
+        ventanaRetirar.title("Retirar")
+        ventanaRetirar.geometry("600x400")
+        ventanaRetirar.resizable(width=False, height=False)
 
 
-    imagenConfirmaRetirar = Image.open("./confirmaDepositar.png")
-    imagenConfirmaRetirar = ImageTk.PhotoImage(imagenConfirmaRetirar)
-    botonConfirmarRetiro = ttk.Button(ventanaRetirar, image= imagenConfirmaRetirar, command = enRetirar)
-    botonConfirmarRetiro.place( x=434, y=288)
+        def enRetirar():
+
+            for persona in listadoPersonas.getLista():
+                if (ingresaRutCliente.get()==persona.getRut()):
+                    persona.setOperacion(operaciones[2])
+                    listadoPersonas.agregarRetirar(persona)
+                    listadoPersonas.agregarTabla(persona)
+                    A.append("Retirar")
+
+            global cont2
+            B.append(cont2)   
+            cont2=cont2+1
+            ventanaRetirar.destroy()
+
+        imagen = PhotoImage (file = "./ventanaDepositar.png") 
+        fondo=Label(ventanaRetirar, image = imagen).place( x=0, y=0)
 
 
-    ventanaRetirar.mainloop()
+        ingresaCuentaRetiro = ttk.Entry(ventanaRetirar)
+        ingresaCuentaRetiro.place_configure(x=400, y=220  , width=169, height=17)
+
+        ingresaMontoRetiro = ttk.Entry(ventanaRetirar)
+        ingresaMontoRetiro.place_configure(x=400, y=248 , width=169, height=17)
+
+
+        imagenConfirmaRetirar = Image.open("./confirmaDepositar.png")
+        imagenConfirmaRetirar = ImageTk.PhotoImage(imagenConfirmaRetirar)
+        botonConfirmarRetiro = ttk.Button(ventanaRetirar, image= imagenConfirmaRetirar, command = enRetirar)
+        botonConfirmarRetiro.place( x=434, y=288)
+
+
+        ventanaRetirar.mainloop()
 
 
 def abrirTransferir():
-    global cont3
-    messagebox.showinfo(message="Usted es el n°"+str(cont3)+" en la cola", title="Transferir")  
-    ventanaTransferir=Toplevel(root)
-    ventanaTransferir.title("Transferir")
-    ventanaTransferir.geometry("600x400")
-    ventanaTransferir.resizable(width=False, height=False)
-    
-
-    def enTransferir():
-
-        for persona in listadoPersonas.getLista():
-            if (ingresaRutCliente.get()==persona.getRut()):
-                persona.setOperacion(operaciones[3])
-                listadoPersonas.agregarTransferir(persona)
-                listadoPersonas.agregarTabla(persona)
-                A.append("Transferir")
-                 
+    if(ingresaRutCliente.get()==""):
+        messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
+    else:
         global cont3
-        B.append(cont3)       
-        cont3=cont3+1
-        ventanaTransferir.destroy()
+        messagebox.showinfo(message="Usted es el n°"+str(cont3)+" en la cola", title="Transferir")  
+        ventanaTransferir=Toplevel(root)
+        ventanaTransferir.title("Transferir")
+        ventanaTransferir.geometry("600x400")
+        ventanaTransferir.resizable(width=False, height=False)
+        
+
+        def enTransferir():
+
+            for persona in listadoPersonas.getLista():
+                if (ingresaRutCliente.get()==persona.getRut()):
+                    persona.setOperacion(operaciones[3])
+                    listadoPersonas.agregarTransferir(persona)
+                    listadoPersonas.agregarTabla(persona)
+                    A.append("Transferir")
+                    
+            global cont3
+            B.append(cont3)       
+            cont3=cont3+1
+            ventanaTransferir.destroy()
 
 
-    imagen = PhotoImage (file = "./ventanaTransferir.png") 
-    fondo=Label(ventanaTransferir, image = imagen).place( x=0, y=0)
+        imagen = PhotoImage (file = "./ventanaTransferir.png") 
+        fondo=Label(ventanaTransferir, image = imagen).place( x=0, y=0)
 
 
 
 
 
-    ingresaNombreTransferir = ttk.Entry(ventanaTransferir)
-    ingresaNombreTransferir.place_configure(x=416, y=133 , width=169, height=17)
+        ingresaNombreTransferir = ttk.Entry(ventanaTransferir)
+        ingresaNombreTransferir.place_configure(x=416, y=133 , width=169, height=17)
 
-    ingresaApellidoTransferir = ttk.Entry(ventanaTransferir)
-    ingresaApellidoTransferir.place_configure(x=416, y=160 , width=169, height=17)
+        ingresaApellidoTransferir = ttk.Entry(ventanaTransferir)
+        ingresaApellidoTransferir.place_configure(x=416, y=160 , width=169, height=17)
 
-    ingresaCorreoTransferir = ttk.Entry(ventanaTransferir)
-    ingresaCorreoTransferir.place_configure(x=416, y=190 , width=169, height=17)
+        ingresaCorreoTransferir = ttk.Entry(ventanaTransferir)
+        ingresaCorreoTransferir.place_configure(x=416, y=190 , width=169, height=17)
 
-    ingresaCuentaTransferir = ttk.Entry(ventanaTransferir)
-    ingresaCuentaTransferir.place_configure(x=416, y=218 , width=169, height=17)
+        ingresaCuentaTransferir = ttk.Entry(ventanaTransferir)
+        ingresaCuentaTransferir.place_configure(x=416, y=218 , width=169, height=17)
 
-    ingresaMontoTransferir = ttk.Entry(ventanaTransferir)
-    ingresaMontoTransferir.place_configure(x=417, y=248 , width=169, height=17)
+        ingresaMontoTransferir = ttk.Entry(ventanaTransferir)
+        ingresaMontoTransferir.place_configure(x=417, y=248 , width=169, height=17)
 
-    ingresaBancoTransferir = ttk.Entry(ventanaTransferir)
-    ingresaBancoTransferir.place_configure(x=417, y=276 , width=169, height=17)
+        ingresaBancoTransferir = ttk.Entry(ventanaTransferir)
+        ingresaBancoTransferir.place_configure(x=417, y=276 , width=169, height=17)
 
 
-    imagenConfirmaCliente4 = Image.open("./confirmarPrestamo.png")
-    imagenConfirmaCliente4 = ImageTk.PhotoImage(imagenConfirmaCliente4)
-    botonConfirmarCliente4 = ttk.Button(ventanaTransferir, image= imagenConfirmaCliente4, command = enTransferir)
-    botonConfirmarCliente4.place( x=434, y=316)
+        imagenConfirmaCliente4 = Image.open("./confirmarPrestamo.png")
+        imagenConfirmaCliente4 = ImageTk.PhotoImage(imagenConfirmaCliente4)
+        botonConfirmarCliente4 = ttk.Button(ventanaTransferir, image= imagenConfirmaCliente4, command = enTransferir)
+        botonConfirmarCliente4.place( x=434, y=316)
 
-    ventanaTransferir.mainloop()
+        ventanaTransferir.mainloop()
 
 
 def abrirPrestamo():
-    global cont4
-    messagebox.showinfo(message="Usted es el n°"+str(cont4)+" en la cola", title="Préstamo") 
-    ventanaPrestamo=Toplevel(root)
-    ventanaPrestamo.title("Préstamo")
-    ventanaPrestamo.geometry("600x400")
-    ventanaPrestamo.resizable(width=False, height=False)
+    if(ingresaRutCliente.get()==""):
+        messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
+    else:
+        global cont4
+        messagebox.showinfo(message="Usted es el n°"+str(cont4)+" en la cola", title="Préstamo") 
+        ventanaPrestamo=Toplevel(root)
+        ventanaPrestamo.title("Préstamo")
+        ventanaPrestamo.geometry("600x400")
+        ventanaPrestamo.resizable(width=False, height=False)
+        
     
-   
 
-    def enPrestamo():
+        def enPrestamo():
 
+            for persona in listadoPersonas.getLista():
+                if (ingresaRutCliente.get()==persona.getRut()):
+                    persona.setOperacion(operaciones[4])
+                    listadoPersonas.agregarPrestamo(persona)
+                    listadoPersonas.agregarTabla(persona)
+                    A.append("Prestamo")
+
+            global cont4
+            B.append(cont4)  
+            cont4=cont4+1
+            ventanaPrestamo.destroy()
+
+
+        imagen = PhotoImage (file = "./ventanaPrestamo.png") 
+        fondo=Label(ventanaPrestamo, image = imagen).place( x=0, y=0)
+
+        ingresaMonto = ttk.Entry(ventanaPrestamo)
+        ingresaMonto.place()
+        
+
+
+        ingresaMotivoPrestamo = ttk.Entry(ventanaPrestamo)
+        ingresaMotivoPrestamo.place_configure(x=416, y=201 , width=169, height=17)
+
+        ingresaMontoPrestamo = ttk.Combobox(ventanaPrestamo,values=("$150.000","$300.000","$600.000"),textvariable=prestamosol)
+        ingresaMontoPrestamo.place_configure(x=416, y=227 , width=169, height=17)
         for persona in listadoPersonas.getLista():
             if (ingresaRutCliente.get()==persona.getRut()):
-                persona.setOperacion(operaciones[4])
-                listadoPersonas.agregarPrestamo(persona)
-                listadoPersonas.agregarTabla(persona)
-                A.append("Prestamo")
+                ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=persona.getSaldo())
+                ingresaPresupuestoPrestamo.place_configure(x=416, y=253 , width=169, height=17)
+        ingresaCuotaPrestamo = ttk.Combobox(ventanaPrestamo,values=("3","6","9"),textvariable=cantidadcuotas)
+        ingresaCuotaPrestamo.place_configure(x=417, y=282 , width=169, height=17)
+        
 
-        global cont4
-        B.append(cont4)  
-        cont4=cont4+1
-        ventanaPrestamo.destroy()
-
-
-    imagen = PhotoImage (file = "./ventanaPrestamo.png") 
-    fondo=Label(ventanaPrestamo, image = imagen).place( x=0, y=0)
-
-    ingresaMonto = ttk.Entry(ventanaPrestamo)
-    ingresaMonto.place()
-    
-
-
-    ingresaMotivoPrestamo = ttk.Entry(ventanaPrestamo)
-    ingresaMotivoPrestamo.place_configure(x=416, y=201 , width=169, height=17)
-
-    ingresaMontoPrestamo = ttk.Combobox(ventanaPrestamo,values=("$150.000","$300.000","$600.000"),textvariable=prestamosol)
-    ingresaMontoPrestamo.place_configure(x=416, y=227 , width=169, height=17)
-    for persona in listadoPersonas.getLista():
-        if (ingresaRutCliente.get()==persona.getRut()):
-            ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=persona.getSaldo())
-            ingresaPresupuestoPrestamo.place_configure(x=416, y=253 , width=169, height=17)
-    ingresaCuotaPrestamo = ttk.Combobox(ventanaPrestamo,values=("3","6","9"),textvariable=cantidadcuotas)
-    ingresaCuotaPrestamo.place_configure(x=417, y=282 , width=169, height=17)
-    
-
-    imagenConfirmaCliente5 = Image.open("./confirmarPrestamo.png")
-    imagenConfirmaCliente5 = ImageTk.PhotoImage(imagenConfirmaCliente5)
-    botonConfirmarCliente5 = ttk.Button(ventanaPrestamo, image= imagenConfirmaCliente5, command = enPrestamo)
-    botonConfirmarCliente5.place( x=435, y=315)
-    ventanaPrestamo.mainloop()
+        imagenConfirmaCliente5 = Image.open("./confirmarPrestamo.png")
+        imagenConfirmaCliente5 = ImageTk.PhotoImage(imagenConfirmaCliente5)
+        botonConfirmarCliente5 = ttk.Button(ventanaPrestamo, image= imagenConfirmaCliente5, command = enPrestamo)
+        botonConfirmarCliente5.place( x=435, y=315)
+        ventanaPrestamo.mainloop()
 
 
 def abrirGrafico():
