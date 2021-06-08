@@ -135,11 +135,12 @@ root.update()
 
 
 def abrirDepositar():
+    global cont1
+    messagebox.showinfo(message="Usted es el n°"+str(cont1)+" en la cola", title="Depositar")  
     ventanaDepositar=Toplevel(root)
     ventanaDepositar.title("Depositar")
     ventanaDepositar.geometry("600x400")
     ventanaDepositar.resizable(width=False, height=False)
-    global cont1
     def enDeposito():
         for persona in listadoPersonas.getLista():
             if (ingresaRutCliente.get()==persona.getRut()):
@@ -151,7 +152,6 @@ def abrirDepositar():
        
         global cont1
         B.append(cont1)
-        messagebox.showinfo(message="Usted es el n°"+str(cont1)+" en la cola", title="N° Cola")  
         cont1=cont1+1              
         ventanaDepositar.destroy()
 
@@ -177,11 +177,13 @@ def abrirDepositar():
 
 
 def abrirRetirar():
+    global cont2
+    messagebox.showinfo(message="Usted es el n°"+str(cont2)+" en la cola", title="Retirar")
     ventanaRetirar=Toplevel(root)
     ventanaRetirar.title("Retirar")
     ventanaRetirar.geometry("600x400")
     ventanaRetirar.resizable(width=False, height=False)
-    global cont2
+
 
     def enRetirar():
 
@@ -194,7 +196,6 @@ def abrirRetirar():
 
         global cont2
         B.append(cont2)   
-        messagebox.showinfo(message="Usted es el n°"+str(cont2)+" en la cola", title="N° Cola")
         cont2=cont2+1
         ventanaRetirar.destroy()
 
@@ -219,11 +220,13 @@ def abrirRetirar():
 
 
 def abrirTransferir():
+    global cont3
+    messagebox.showinfo(message="Usted es el n°"+str(cont3)+" en la cola", title="Transferir")  
     ventanaTransferir=Toplevel(root)
     ventanaTransferir.title("Transferir")
     ventanaTransferir.geometry("600x400")
     ventanaTransferir.resizable(width=False, height=False)
-    global cont3
+    
 
     def enTransferir():
 
@@ -235,8 +238,7 @@ def abrirTransferir():
                 A.append("Transferir")
                  
         global cont3
-        B.append(cont3)
-        messagebox.showinfo(message="Usted es el n°"+str(cont3)+" en la cola", title="N° Cola")         
+        B.append(cont3)       
         cont3=cont3+1
         ventanaTransferir.destroy()
 
@@ -276,11 +278,13 @@ def abrirTransferir():
 
 
 def abrirPrestamo():
+    global cont4
+    messagebox.showinfo(message="Usted es el n°"+str(cont4)+" en la cola", title="Préstamo") 
     ventanaPrestamo=Toplevel(root)
-    ventanaPrestamo.title("Prestamo")
+    ventanaPrestamo.title("Préstamo")
     ventanaPrestamo.geometry("600x400")
     ventanaPrestamo.resizable(width=False, height=False)
-    global cont4
+    
    
 
     def enPrestamo():
@@ -293,8 +297,7 @@ def abrirPrestamo():
                 A.append("Prestamo")
 
         global cont4
-        B.append(cont4)
-        messagebox.showinfo(message="Usted es el n°"+str(cont4)+" en la cola", title="N° Cola")    
+        B.append(cont4)  
         cont4=cont4+1
         ventanaPrestamo.destroy()
 
@@ -466,12 +469,6 @@ def abrirMostrarCola():
     botonActualizar.place( x=827, y=233)
 
 
-    FiltrarOperaciones = ttk.Combobox(ventanaMostrarCola,values=("Depositar","Trasnferir","Retirar","Prestamo"),textvariable=FiltroOp)
-    FiltrarOperaciones.place_configure(x=199, y=326 , width=280, height=20)
-
-    FiltrarEstados = ttk.Combobox(ventanaMostrarCola,values=("Aceptado","Rechazado","En proceso"),textvariable=FiltroEs)
-    FiltrarEstados.place_configure(x=199, y=349 , width=280, height=20)
-
     
     #Creacion de la tabla
     tabla = ttk.Treeview(ventanaMostrarCola)
@@ -511,6 +508,26 @@ def abrirMostrarCola():
         global contadortabla
         if contadortabla==True:
             elimina()
+
+
+    #***************FILTROS********************
+
+
+
+
+    def callbackFunc(event):
+     print("Seleccionó un nuevo elemento")
+
+    FiltrarOperaciones = ttk.Combobox(ventanaMostrarCola,values=("Mostrar todo","Depositar","Trasnferir","Retirar","Prestamo"),textvariable=FiltroOp, state="readonly")
+    FiltrarOperaciones.place_configure(x=199, y=326 , width=280, height=20)
+    FiltrarOperaciones.bind("<<ComboboxSelected>>", callbackFunc)
+
+    FiltrarEstados = ttk.Combobox(ventanaMostrarCola,values=("Mostrar todo","Aceptado","Rechazado","En proceso"),textvariable=FiltroEs, state="readonly")
+    FiltrarEstados.place_configure(x=199, y=349 , width=280, height=20)
+
+
+
+
     ventanaMostrarCola.mainloop()
 
 
@@ -521,20 +538,20 @@ def abrirMostrarCola():
 def ConfirmarDatos():
     for persona in listadoPersonas.getLista():
         if (ingresaRutCliente.get()==persona.getRut()):
-            ingresaNombreCliente = ttk.Label(root, text=persona.getNombre(), background="gray")
-            ingresaNombreCliente.place(x=187, y=213, width=270, height=20)
-            ingresaApellidoCliente = ttk.Label(root,text=persona.getApellido(), background="gray")
-            ingresaApellidoCliente.place( x=187, y=240, width=270, height=20)
-            ingresaSaldoCliente = ttk.Label(root,text=persona.getSaldo(), background="gray")
-            ingresaSaldoCliente.place( x=187, y=292, width=270, height=20)
+            ingresaNombreCliente = ttk.Label(root, text=persona.getNombre())
+            ingresaNombreCliente.place(x=188, y=201, width=279, height=20)
+            ingresaApellidoCliente = ttk.Label(root,text=persona.getApellido())
+            ingresaApellidoCliente.place( x=188, y=229, width=279, height=20)
+            ingresaSaldoCliente = ttk.Label(root,text=persona.getSaldo())
+            ingresaSaldoCliente.place( x=188, y=284, width=279, height=20)
        
 def Mostrardatosfun():
     for Funcionario in listadoPersonas.getListaFuncionarios():
         if (ingresaRutFuncionario.get()==Funcionario.getrutfuncionario()):
-            ingresaNombreFuncionario = ttk.Label(root,text=Funcionario.getnombrefuncionario(), background="gray")                         
-            ingresaNombreFuncionario.place( x=782, y=213, width=270, height=20)  
-            ingresaApellidoFuncionario = ttk.Label(root,text=Funcionario.getapellidofuncionario(), background="gray")
-            ingresaApellidoFuncionario.place( x=782, y=239, width=270, height=20)
+            ingresaNombreFuncionario = ttk.Label(root,text=Funcionario.getnombrefuncionario())                         
+            ingresaNombreFuncionario.place( x=811, y=201, width=279, height=20)  
+            ingresaApellidoFuncionario = ttk.Label(root,text=Funcionario.getapellidofuncionario())
+            ingresaApellidoFuncionario.place( x=811, y=229, width=279, height=20)
        
 
         
@@ -543,13 +560,13 @@ def Mostrardatosfun():
 #ttk.Entry(root)
 
 ingresaRutCliente = ttk.Entry(root,textvariable=rut)
-ingresaRutCliente.place( x=187, y=266, width=270, height=20)  
+ingresaRutCliente.place( x=188, y=257, width=279, height=20)  
 
 
 #************************ENTRYS FUNCIONARIO***********************************
 
 ingresaRutFuncionario = ttk.Entry(root,textvariable=rutf)
-ingresaRutFuncionario.place( x=782, y=265, width=270, height=20)  
+ingresaRutFuncionario.place( x=811, y=257, width=279, height=20)  
 
 
 #*******************BOTONES***************************************************
@@ -560,7 +577,7 @@ ingresaRutFuncionario.place( x=782, y=265, width=270, height=20)
 imagenDepositar = Image.open("./depositar.png")
 imagenDepositar = ImageTk.PhotoImage(imagenDepositar)
 botonDepositar = ttk.Button(canvas, image= imagenDepositar, command = abrirDepositar)
-botonDepositar.place( x=15, y=445)
+botonDepositar.place( x=49, y=425)
 
 
 
@@ -568,14 +585,14 @@ botonDepositar.place( x=15, y=445)
 imagenRetirar = Image.open("./retirar.png")
 imagenRetirar = ImageTk.PhotoImage(imagenRetirar)
 botonRetirar = ttk.Button(canvas, image= imagenRetirar, command = abrirRetirar)
-botonRetirar.place( x=15, y=536)
+botonRetirar.place( x=49, y=555)
 
 #------Transferir-----
 imagenTransferir = Image.open("./transferir.png")
 #imagenTransferir = imagenTransferir.resize((31,53),Image.ANTIALIAS)
 imagenTransferir = ImageTk.PhotoImage(imagenTransferir)
 botonTransferir = ttk.Button(canvas, image= imagenTransferir, command = abrirTransferir)
-botonTransferir.place( x=329, y=437)
+botonTransferir.place( x=357, y=425)
 
 #------Prestamo-----
 
@@ -583,7 +600,7 @@ imagenPrestamo = Image.open("./prestamo.png")
 #imagenPrestamo = imagenPrestamo.resize((50,35),Image.ANTIALIAS)
 imagenPrestamo = ImageTk.PhotoImage(imagenPrestamo)
 botonPrestamo = ttk.Button(canvas, image= imagenPrestamo, command = abrirPrestamo)
-botonPrestamo.place( x=312, y=540)
+botonPrestamo.place( x=357, y=555)
 
 
 
@@ -593,27 +610,27 @@ imagenGrafico = Image.open("./grafico.png")
 #imagenGrafico= imagenGrafico.resize((50,46),Image.ANTIALIAS)
 imagenGrafico = ImageTk.PhotoImage(imagenGrafico)
 botonGrafico = ttk.Button(canvas, image= imagenGrafico, command = abrirGrafico)
-botonGrafico.place( x=747, y=440)
+botonGrafico.place( x=793, y=425)
 
 #------Cola-----
 
 imagenCola = Image.open("./atendido.png")
-imagenCola= imagenCola.resize((65,55),Image.ANTIALIAS)
+imagenCola= imagenCola.resize((62,51),Image.ANTIALIAS)
 imagenCola = ImageTk.PhotoImage(imagenCola)
 botonCola = ttk.Button(canvas, image= imagenCola, command = abrirMostrarCola)
-botonCola.place( x=776, y=8)
+botonCola.place( x=750, y=1)
 
 #----------Confirmar---------
 imagenConfirmaCliente1 = Image.open("./guardarCliente1.png")
 imagenConfirmaCliente1 = ImageTk.PhotoImage(imagenConfirmaCliente1)
 botonConfirmarCliente1 = ttk.Button(canvas, image= imagenConfirmaCliente1,command = ConfirmarDatos)
-botonConfirmarCliente1.place( x=278, y=329)
+botonConfirmarCliente1.place( x=280, y=325)
 
 
 imagenConfirmaFuncionario = Image.open("./guardarFuncionario.png")
 imagenConfirmaFuncionario = ImageTk.PhotoImage(imagenConfirmaFuncionario)
 botonConfirmarFuncionario = ttk.Button(canvas, image= imagenConfirmaFuncionario,command = Mostrardatosfun)
-botonConfirmarFuncionario.place( x=870, y=334) 
+botonConfirmarFuncionario.place( x=900, y=325) 
 
 #*****************************************************************************
 
