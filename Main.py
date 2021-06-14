@@ -249,10 +249,10 @@ def abrirRetirar():
                     if ((rutv.get() == ingresaRutCliente.get()) and ( Op.getMontor()< Op.getSaldoop())):
                        B1=(Op.retirar(persona.getRut(), Op.getSaldoop(), Op.getMontor(), rutv))
                        Op.setEstado("Aceptado")
+                       persona.setSaldo(B1)
                     else:
                         Op.setEstado("Rechazado")
                     print(B1)
-                    persona.setSaldo(B1)
                     A.append("Retirar")
                     C.append(Op.getEstado())
 
@@ -313,10 +313,11 @@ def abrirTransferir():
                         C1=Op.TransferirUsuario(rutv.get(), Op.getClave(), Op.getSaldoop(), Op.getMontor())
                         C2=True
                         Op.setEstado("Aceptado")
+                        persona.setSaldo(C1)
                     else:
+                        C2=False
                         Op.setEstado("Rechazado")   
                     print(C1)
-                    persona.setSaldo(C1)
             for persona in listadoPersonas.getLista():
                 if rutv.get()==persona.getRut() and C2==True:
                     Op.setSaldoop(persona.getSaldo())
@@ -325,6 +326,9 @@ def abrirTransferir():
                     print(C1)
                     persona.setSaldo(C1)
                     C2=False
+                    A.append("Transferir")
+                    C.append(Op.getEstado())
+                else:
                     A.append("Transferir")
                     C.append(Op.getEstado())
                     
@@ -855,8 +859,9 @@ def abrirMostrarCola():
     def actualizarTabla():
         global C
         i=0
-        for x in get_children:
-            tabla.set(x,"Estado",C[i])    
+        records = tabla.get_children()
+        for x in records:
+            tabla.set(x,"Estado",C[i])
             i=i+1
 
 
@@ -933,16 +938,16 @@ def abrirMostrarCola():
 
     def callbackFunc(event):
      print("Seleccionó un nuevo elemento")
-     for persona in listadoPersonas.getListaTabla():
-        ru.append(persona.getRut())
-        num=n
-        est="En proceso"
-        fin="Finalizado"
-        tabla.insert("",END,text="",values=(B[m],A[I],ru[b],est))
-        n=n+1
-        I=I+1
-        b=b+1
-        m=m+1
+     global C
+     i=0
+     records = tabla.get_children()
+     for x in records:
+        tabla.set(x,"Estado",C[i])
+        A=C[i]
+        if A!=FiltroEs.get():
+            tabla.detach(x,"Estado",C[i])
+        i=i+1
+            
 
     FiltrarOperaciones = ttk.Combobox(ventanaMostrarCola,values=("Mostrar todo","Depositar","Transferir","Retirar","Prestamo"),textvariable=FiltroOp, state="readonly")
     FiltrarOperaciones.place_configure(x=199, y=326 , width=280, height=20)
@@ -950,6 +955,7 @@ def abrirMostrarCola():
 
     FiltrarEstados = ttk.Combobox(ventanaMostrarCola,values=("Mostrar todo","Aceptado","Rechazado","En proceso"),textvariable=FiltroEs, state="readonly")
     FiltrarEstados.place_configure(x=199, y=349 , width=280, height=20)
+    FiltrarOperaciones.bind("<<ComboboxSelected>>", callbackFunc)
 
 
 
