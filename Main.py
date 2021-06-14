@@ -17,6 +17,8 @@ from matplotlib import cm
 from matplotlib import colors
 from Funcionario import *
 
+
+
 #Creando banco
 
 #Creando personas
@@ -108,7 +110,11 @@ A1=""
 B1=""
 C1=""
 C2=False
-
+#Creando Variables para guardar dinero
+Dep=0
+Ret=0
+Trans=0
+Presta=0
 #LLAMANDO A CLASES
 
 #DATOS PRESTAMO
@@ -116,10 +122,16 @@ prestamosol=StringVar()
 cantidadcuotas=StringVar()
 A=[]
 B=[]
-cont1=1
-cont2=1
-cont3=1
-cont4=1
+contadorfinal=0
+contadorfinal2=0
+media=0
+mediana=0
+moda=0
+desviacionEs=0
+cont1=0
+cont2=0
+cont3=0
+cont4=0
 contadortabla=False
 listaBorrados=[]
 FiltroOp=StringVar()
@@ -149,7 +161,7 @@ def abrirDepositar():
         messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
     else:
         global cont1
-        messagebox.showinfo(message="Usted es el n°"+str(cont1)+" en la cola", title="Depositar")  
+        messagebox.showinfo(message="Usted es el n°"+str(cont1+1)+" en la cola", title="Depositar")  
         ventanaDepositar=Toplevel(root)
         ventanaDepositar.title("Depositar")
         ventanaDepositar.geometry("600x400")
@@ -170,8 +182,11 @@ def abrirDepositar():
         
         
             global cont1
+            global Dep
+            cont1=cont1+1   
             B.append(cont1)
-            cont1=cont1+1              
+            Dep=Dep+(int(ingresaMontoDeposito.get()))
+                      
             ventanaDepositar.destroy()
 
         imagen = PhotoImage (file = "./ventanaDepositar.png") 
@@ -200,7 +215,7 @@ def abrirRetirar():
         messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
     else:
         global cont2
-        messagebox.showinfo(message="Usted es el n°"+str(cont2)+" en la cola", title="Retirar")
+        messagebox.showinfo(message="Usted es el n°"+str(cont2+1)+" en la cola", title="Retirar")
         ventanaRetirar=Toplevel(root)
         ventanaRetirar.title("Retirar")
         ventanaRetirar.geometry("600x400")
@@ -223,8 +238,10 @@ def abrirRetirar():
                     A.append("Retirar")
 
             global cont2
-            B.append(cont2)   
+            global Ret
             cont2=cont2+1
+            B.append(cont2)
+            Ret=Ret+(int(ingresaMontoRetiro.get()))   
             ventanaRetirar.destroy()
 
         imagen = PhotoImage (file = "./ventanaDepositar.png") 
@@ -252,7 +269,7 @@ def abrirTransferir():
         messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
     else:
         global cont3
-        messagebox.showinfo(message="Usted es el n°"+str(cont3)+" en la cola", title="Transferir")  
+        messagebox.showinfo(message="Usted es el n°"+str(cont3+1)+" en la cola", title="Transferir")  
         ventanaTransferir=Toplevel(root)
         ventanaTransferir.title("Transferir")
         ventanaTransferir.geometry("600x400")
@@ -287,8 +304,10 @@ def abrirTransferir():
                     A.append("Transferir")
                     
             global cont3
-            B.append(cont3)       
+            global Trans
             cont3=cont3+1
+            B.append(cont3)  
+            Trans=Trans+(int(ingresaMontoTransferir.get()))     
             ventanaTransferir.destroy()
 
 
@@ -331,7 +350,7 @@ def abrirPrestamo():
         messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
     else:
         global cont4
-        messagebox.showinfo(message="Usted es el n°"+str(cont4)+" en la cola", title="Préstamo") 
+        messagebox.showinfo(message="Usted es el n°"+str(cont4+1)+" en la cola", title="Préstamo") 
         ventanaPrestamo=Toplevel(root)
         ventanaPrestamo.title("Préstamo")
         ventanaPrestamo.geometry("600x400")
@@ -351,8 +370,10 @@ def abrirPrestamo():
                     
 
             global cont4
-            B.append(cont4)  
+            global Presta
             cont4=cont4+1
+            B.append(cont4)  
+            Presta=Presta+(int(ingresaMontoPrestamo.get()))
             ventanaPrestamo.destroy()
 
 
@@ -387,13 +408,208 @@ def abrirPrestamo():
 def abrirGrafico():
     ventanaGrafico=Toplevel(root)
     ventanaGrafico.title("Análisis esttadísticos")
-    ventanaGrafico.geometry("1248x708")
+    ventanaGrafico.geometry("600x400")
     ventanaGrafico.resizable(width=False, height=False)
 
+    def MostrarGrafico():
+        global cont1,cont2,cont3,cont4
+        if(cont4==0 and cont1>=1 and cont2>=1 and cont3>=1):
+            operaciones = [cont1, cont2, cont3]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Depositar", "Retirar", "Trasnferir"]
+
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            grafico=plt.show()
+
+        elif(cont4>=1 and cont1==0 and cont2>=1 and cont3>=1):
+            operaciones = [cont3, cont2, cont4]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+
+            label = ["Transferir", "Retirar", "Préstamo"]
+
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            plt.show()
+
+        elif(cont4>=1 and cont1>=1 and cont3>=1 and cont2==0):
+            operaciones = [cont1,cont3,cont4]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+
+            label = ["Depositar", "Transferir", "Préstamo"]
+
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
+            plt.show()
+
+        elif(cont4>=1 and cont1>=1 and cont2>=1 and cont3==0):
+            operaciones = [cont1, cont2, cont4]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+
+            label = ["Depositar", "Retirar", "Préstamo"]
+
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            plt.show()
+
+        elif(cont4>=1 and cont1>=1 and cont2>=1 and cont3>=1):
+            operaciones = [cont1, cont3, cont2, cont4]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Depositar", "Transferir", "Retirar", "Préstamo"]
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            plt.show()
+
+        elif(cont4>=1 and cont1==0 and cont2==0 and cont3==0):
+            operaciones = [cont4]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Préstamo"]
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            plt.show()
+        elif(cont4==0 and cont1>=1 and cont2==0 and cont3==0):
+            operaciones = [cont1]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Depositar"]
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            plt.show()
+        elif(cont4==0 and cont1==0 and cont2>=1 and cont3==0):
+            operaciones = [cont2]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["PRetirar"]
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            plt.show()
+        elif(cont4==0 and cont1==0 and cont2==0 and cont3>=1):
+            operaciones = [cont3]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Transferir"]
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            plt.show()
+    def MovimientoDinero():
+        global Dep,Ret,Trans,Presta
+        if(Presta==0 and Dep>=1 and Ret>=1 and Trans>=1):
+            operaciones = [Dep, Ret, Trans]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Dinero-Depositar", "Dinero-Retirar", "Dinero-Transferir"]
+
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            grafico=plt.show()
+        elif(Presta>=1 and Dep==0 and Ret>=1 and Trans>=1):
+            operaciones = [Presta, Ret, Trans]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Dinero-Prestamo", "Dinero-Retirar", "Dinero-Transferir"]
+
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            grafico=plt.show()
+        elif(Presta>=1 and Dep>=1 and Ret==0 and Trans>=1):
+            operaciones = [Presta, Dep, Trans]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Dinero-Prestamo", "Dinero-Depositar", "Dinero-Transferir"]
+
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            grafico=plt.show()
+        elif(Presta>=1 and Dep>=1 and Ret>=1 and Trans==0):
+            operaciones = [Presta, DeP, Ret]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Dinero-Prestamo", "Dinero-Depositar", "Dinero-Retirar"]
+
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            grafico=plt.show()
+        elif(Presta>=1 and Dep>=1 and Ret>=1 and Trans>=1):
+            operaciones = [Presta,Dep,Ret, Trans]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Dinero-Prestamo","Dinero-Depositar", "Dinero-Retirar", "Dinero-Transferir"]
+
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            grafico=plt.show()
+        elif(Presta>=1 and Dep==0 and Ret==0 and Trans==0):
+            operaciones = [Presta]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Dinero-Prestamo"]
+
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            grafico=plt.show()
+        elif(Presta==0 and Dep>=1 and Ret==0 and Trans==0):
+            operaciones = [Dep]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Dinero-Depositar"]
+
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            grafico=plt.show()
+        elif(Presta==0 and Dep==0 and Ret>=1 and Trans==0):
+            operaciones = [Ret]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Dinero-Retiro"]
+
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            grafico=plt.show()
+        elif(Presta==0 and Dep==0 and Ret==0 and Trans>=1):
+            operaciones = [Trans]
+            normdata = colors.Normalize(min(operaciones), max(operaciones))
+            colormap = cm.get_cmap("Blues")
+            colores =colormap(normdata(operaciones))
+            label = ["Dinero-Transferir"]
+
+            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+            grafico=plt.show()
+    def TotalClientes():
+        global cont1,cont2,cont3,cont4,contadorfinal
+        contadorfinal=contadorfinal+cont1+cont2+cont3+cont4
+        Graficos=ttk.Label(ventanaGrafico,text=contadorfinal)
+        Graficos.place(x=50,y=180)
+        contadorfinal=0
+    def TotalDinero():
+        global Dep,Ret,Trans,Presta,contadorfinal2
+        contadorfinal2=contadorfinal2+Dep+Ret+Trans+Presta    
+        Dinero=ttk.Label(ventanaGrafico,text=contadorfinal2)
+        Dinero.place(x=50,y=230)
+        contadorfinal2=0
+    #def CalculosMat():
+        #global media,mediana,moda,desviacionEs,contadorfinal2,contadorfinal
+        #media=(media+contadorfinal2)/contadorfinal
+        #MediaD=ttk.Label(ventanaGrafico,text=media)
+        #mediaD.place(x=50,y=280)
+        #media=0
 
 
-
-
+    botonMostrarGrafico = ttk.Button(ventanaGrafico,text="Mostrar grafico de operaciones realizadas", command = MostrarGrafico)
+    botonMostrarGrafico.place( x=50, y=50)
+    botonMostrarDinero = ttk.Button(ventanaGrafico,text="Mostrar grafico de dinero trabajado", command = MovimientoDinero)
+    botonMostrarDinero.place( x=50, y=100)
+    botonMostrarClientes = ttk.Button(ventanaGrafico,text="Mostrar total clientes", command = TotalClientes)
+    botonMostrarClientes.place( x=50, y=150)
+    botonMostrardinerototal = ttk.Button(ventanaGrafico,text="Mostrar total dinero", command = TotalDinero)
+    botonMostrardinerototal.place( x=50, y=200)
+    #botonMostrarCalculos = ttk.Button(ventanaGrafico,text="Mostrar datos", command = CalculosMat)
+    #botonMostrarCalculos.place( x=50, y=250)
 
     ventanaGrafico.mainloop()
 
