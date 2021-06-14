@@ -5,6 +5,7 @@ class Operaciones():
      self.nombreop=""
      self.apellidoop=""
      self.rutop=""
+     self.Estado=""
 
      self.claveop=0
      self.saldoop=0
@@ -27,6 +28,9 @@ class Operaciones():
          self.montor=montor
     def setClave(self,claveop):
          self.claveop=claveop 
+    def setEstado(self,Estado):
+          self.Estado=Estado
+
  
     def getNombreop(self):
          return self.nombreop          
@@ -44,6 +48,8 @@ class Operaciones():
          return self.montor 
     def getClave(self):
          return self.claveop   
+    def getEstado(self):
+         return self.Estado
  
     def depositar (self, rutop,saldoop,monto,vrut):
           self.saldoop=saldoop+self.monto
@@ -59,4 +65,5 @@ class Operaciones():
     def TransferirCliente(self, vrut,saldoop, montor):
             self.saldoop=saldoop+self.montor
             return self.saldoop
+    
  

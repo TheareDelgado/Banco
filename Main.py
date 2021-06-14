@@ -16,6 +16,7 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib import colors
 from Funcionario import *
+import statistics as stats
 
 
 
@@ -122,12 +123,20 @@ prestamosol=StringVar()
 cantidadcuotas=StringVar()
 A=[]
 B=[]
+C=[]
+ListaDep=[]
+ListaRet=[]
+ListaTrans=[]
+ListaPresta=[]
+ListaTo=[]
+contadorDep=0
+contadorRet=0
+contadorTrans=0
+contadorPresta=0
 contadorfinal=0
 contadorfinal2=0
-media=0
-mediana=0
-moda=0
-desviacionEs=0
+contadorfinal3=0
+contadorfinal4=0
 cont1=0
 cont2=0
 cont3=0
@@ -160,7 +169,7 @@ def abrirDepositar():
     if(ingresaRutCliente.get()==""):
         messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
     else:
-        global cont1
+        global cont1,ListaDep,ListaTo,C
         messagebox.showinfo(message="Usted es el n°"+str(cont1+1)+" en la cola", title="Depositar")  
         ventanaDepositar=Toplevel(root)
         ventanaDepositar.title("Depositar")
@@ -176,15 +185,21 @@ def abrirDepositar():
                       Op.setSaldoop(persona.getSaldo())
                       Op.setMonto(int(ingresaMontoDeposito.get()))
                       A1=(Op.depositar(persona.getRut(), Op.getSaldoop(), Op.getmonto(), rutv))
+                      Op.setEstado("Aceptado")
+                    else:
+                      Op.setEstado("Rechazado")
                     print(A1)
                     persona.setSaldo(A1)
                     A.append("Depositar")
+                    C.append(Op.getEstado())
         
         
             global cont1
-            global Dep
+            global Dep,ListaDep,ListaTo
             cont1=cont1+1   
             B.append(cont1)
+            ListaDep.append(int(ingresaMontoDeposito.get()))
+            ListaTo.append(int(ingresaMontoDeposito.get()))
             Dep=Dep+(int(ingresaMontoDeposito.get()))
                       
             ventanaDepositar.destroy()
@@ -214,7 +229,7 @@ def abrirRetirar():
     if(ingresaRutCliente.get()==""):
         messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
     else:
-        global cont2
+        global cont2,ListaRet,ListaTo,C
         messagebox.showinfo(message="Usted es el n°"+str(cont2+1)+" en la cola", title="Retirar")
         ventanaRetirar=Toplevel(root)
         ventanaRetirar.title("Retirar")
@@ -233,14 +248,20 @@ def abrirRetirar():
                     Op.setMontor(int(ingresaMontoRetiro.get()))
                     if ((rutv.get() == ingresaRutCliente.get()) and ( Op.getMontor()< Op.getSaldoop())):
                        B1=(Op.retirar(persona.getRut(), Op.getSaldoop(), Op.getMontor(), rutv))
+                       Op.setEstado("Aceptado")
+                    else:
+                        Op.setEstado("Rechazado")
                     print(B1)
                     persona.setSaldo(B1)
                     A.append("Retirar")
+                    C.append(Op.getEstado())
 
             global cont2
-            global Ret
+            global Ret,ListaRet,ListaTo
             cont2=cont2+1
             B.append(cont2)
+            ListaRet.append(int(ingresaMontoRetiro.get()))
+            ListaTo.append(int(ingresaMontoRetiro.get()))
             Ret=Ret+(int(ingresaMontoRetiro.get()))   
             ventanaRetirar.destroy()
 
@@ -268,7 +289,7 @@ def abrirTransferir():
     if(ingresaRutCliente.get()==""):
         messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
     else:
-        global cont3
+        global cont3,ListaTrans,ListaTo,C
         messagebox.showinfo(message="Usted es el n°"+str(cont3+1)+" en la cola", title="Transferir")  
         ventanaTransferir=Toplevel(root)
         ventanaTransferir.title("Transferir")
@@ -288,9 +309,12 @@ def abrirTransferir():
                     Op.setClave(persona.getClave())
                     Op.setSaldoop(persona.getSaldo())
                     Op.setMontor(int(ingresaMontoTransferir.get()))
-                    if (Op.getMontor()<Op.getSaldoop()):
+                    if (Op.getMontor()<=Op.getSaldoop()):
                         C1=Op.TransferirUsuario(rutv.get(), Op.getClave(), Op.getSaldoop(), Op.getMontor())
-                        C2=True   
+                        C2=True
+                        Op.setEstado("Aceptado")
+                    else:
+                        Op.setEstado("Rechazado")   
                     print(C1)
                     persona.setSaldo(C1)
             for persona in listadoPersonas.getLista():
@@ -302,11 +326,14 @@ def abrirTransferir():
                     persona.setSaldo(C1)
                     C2=False
                     A.append("Transferir")
+                    C.append(Op.getEstado())
                     
             global cont3
-            global Trans
+            global Trans,ListaTrans,ListaTo
             cont3=cont3+1
             B.append(cont3)  
+            ListaTrans.append(int(ingresaMontoTransferir.get()))
+            ListaTo.append(int(ingresaMontoTransferir.get()))
             Trans=Trans+(int(ingresaMontoTransferir.get()))     
             ventanaTransferir.destroy()
 
@@ -349,7 +376,7 @@ def abrirPrestamo():
     if(ingresaRutCliente.get()==""):
         messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
     else:
-        global cont4
+        global cont4,ListaPresta,ListaTo,C
         messagebox.showinfo(message="Usted es el n°"+str(cont4+1)+" en la cola", title="Préstamo") 
         ventanaPrestamo=Toplevel(root)
         ventanaPrestamo.title("Préstamo")
@@ -367,12 +394,18 @@ def abrirPrestamo():
                     listadoPersonas.agregarPrestamo(persona)
                     listadoPersonas.agregarTabla(persona)
                     A.append("Prestamo")
+                    Op.setEstado("Aceptado")
+                    C.append(Op.getEstado())
+                else:
+                    Op.setEstado("Rechazado")
                     
 
             global cont4
-            global Presta
+            global Presta,ListaPresta,ListaTo
             cont4=cont4+1
             B.append(cont4)  
+            ListaPresta.append(int(ingresaMontoPrestamo.get()))
+            ListaTo.append(int(ingresaMontoPrestamo.get()))
             Presta=Presta+(int(ingresaMontoPrestamo.get()))
             ventanaPrestamo.destroy()
 
@@ -388,7 +421,7 @@ def abrirPrestamo():
         ingresaMotivoPrestamo = ttk.Entry(ventanaPrestamo)
         ingresaMotivoPrestamo.place_configure(x=416, y=201 , width=169, height=17)
 
-        ingresaMontoPrestamo = ttk.Combobox(ventanaPrestamo,values=("$150.000","$300.000","$600.000"),textvariable=prestamosol)
+        ingresaMontoPrestamo = ttk.Combobox(ventanaPrestamo,values=("150000","300000","600000"),textvariable=prestamosol)
         ingresaMontoPrestamo.place_configure(x=416, y=227 , width=169, height=17)
         for persona in listadoPersonas.getLista():
             if (ingresaRutCliente.get()==persona.getRut()):
@@ -414,16 +447,20 @@ def abrirGrafico():
     def MostrarGrafico():
         global cont1,cont2,cont3,cont4
         if(cont4==0 and cont1>=1 and cont2>=1 and cont3>=1):
+            fig, ax = plt.subplots()
+            ax.set_title('Cantidad de operaciones')
             operaciones = [cont1, cont2, cont3]
             normdata = colors.Normalize(min(operaciones), max(operaciones))
             colormap = cm.get_cmap("Blues")
             colores =colormap(normdata(operaciones))
-            label = ["Depositar", "Retirar", "Trasnferir"]
+            label = ["Depositar", "Retirar", "Transferir"]
 
             plt.pie(operaciones, labels=label, autopct="%0.1f %%")
             grafico=plt.show()
 
         elif(cont4>=1 and cont1==0 and cont2>=1 and cont3>=1):
+            fig, ax = plt.subplots()
+            ax.set_title('Cantidad de operaciones')
             operaciones = [cont3, cont2, cont4]
             normdata = colors.Normalize(min(operaciones), max(operaciones))
             colormap = cm.get_cmap("Blues")
@@ -435,6 +472,8 @@ def abrirGrafico():
             plt.show()
 
         elif(cont4>=1 and cont1>=1 and cont3>=1 and cont2==0):
+            fig, ax = plt.subplots()
+            ax.set_title('Cantidad de operaciones')
             operaciones = [cont1,cont3,cont4]
             normdata = colors.Normalize(min(operaciones), max(operaciones))
             colormap = cm.get_cmap("Blues")
@@ -446,6 +485,8 @@ def abrirGrafico():
             plt.show()
 
         elif(cont4>=1 and cont1>=1 and cont2>=1 and cont3==0):
+            fig, ax = plt.subplots()
+            ax.set_title('Cantidad de operaciones')
             operaciones = [cont1, cont2, cont4]
             normdata = colors.Normalize(min(operaciones), max(operaciones))
             colormap = cm.get_cmap("Blues")
@@ -457,6 +498,8 @@ def abrirGrafico():
             plt.show()
 
         elif(cont4>=1 and cont1>=1 and cont2>=1 and cont3>=1):
+            fig, ax = plt.subplots()
+            ax.set_title('Cantidad de operaciones')
             operaciones = [cont1, cont3, cont2, cont4]
             normdata = colors.Normalize(min(operaciones), max(operaciones))
             colormap = cm.get_cmap("Blues")
@@ -466,6 +509,8 @@ def abrirGrafico():
             plt.show()
 
         elif(cont4>=1 and cont1==0 and cont2==0 and cont3==0):
+            fig, ax = plt.subplots()
+            ax.set_title('Cantidad de operaciones')
             operaciones = [cont4]
             normdata = colors.Normalize(min(operaciones), max(operaciones))
             colormap = cm.get_cmap("Blues")
@@ -474,6 +519,8 @@ def abrirGrafico():
             plt.pie(operaciones, labels=label, autopct="%0.1f %%")
             plt.show()
         elif(cont4==0 and cont1>=1 and cont2==0 and cont3==0):
+            fig, ax = plt.subplots()
+            ax.set_title('Cantidad de operaciones')
             operaciones = [cont1]
             normdata = colors.Normalize(min(operaciones), max(operaciones))
             colormap = cm.get_cmap("Blues")
@@ -482,6 +529,8 @@ def abrirGrafico():
             plt.pie(operaciones, labels=label, autopct="%0.1f %%")
             plt.show()
         elif(cont4==0 and cont1==0 and cont2>=1 and cont3==0):
+            fig, ax = plt.subplots()
+            ax.set_title('Cantidad de operaciones')
             operaciones = [cont2]
             normdata = colors.Normalize(min(operaciones), max(operaciones))
             colormap = cm.get_cmap("Blues")
@@ -490,6 +539,8 @@ def abrirGrafico():
             plt.pie(operaciones, labels=label, autopct="%0.1f %%")
             plt.show()
         elif(cont4==0 and cont1==0 and cont2==0 and cont3>=1):
+            fig, ax = plt.subplots()
+            ax.set_title('Cantidad de operaciones')
             operaciones = [cont3]
             normdata = colors.Normalize(min(operaciones), max(operaciones))
             colormap = cm.get_cmap("Blues")
@@ -500,116 +551,226 @@ def abrirGrafico():
     def MovimientoDinero():
         global Dep,Ret,Trans,Presta
         if(Presta==0 and Dep>=1 and Ret>=1 and Trans>=1):
+            fig, ax = plt.subplots()
+            #Colocamos una etiqueta en el eje Y
+            ax.set_ylabel('Dinero')
+            #Colocamos una etiqueta en el eje X
+            ax.set_title('Cantidad de dinero por operaciones')
             operaciones = [Dep, Ret, Trans]
-            normdata = colors.Normalize(min(operaciones), max(operaciones))
-            colormap = cm.get_cmap("Blues")
-            colores =colormap(normdata(operaciones))
-            label = ["Dinero-Depositar", "Dinero-Retirar", "Dinero-Transferir"]
-
-            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
-            grafico=plt.show()
+            label = ["Depositar", "Retirar", "Transferir"]
+            plt.bar(label, operaciones)
+            plt.show()
         elif(Presta>=1 and Dep==0 and Ret>=1 and Trans>=1):
+            fig, ax = plt.subplots()
+            #Colocamos una etiqueta en el eje Y
+            ax.set_ylabel('Dinero')
+            #Colocamos una etiqueta en el eje X
+            ax.set_title('Cantidad de dinero por operaciones')
             operaciones = [Presta, Ret, Trans]
-            normdata = colors.Normalize(min(operaciones), max(operaciones))
-            colormap = cm.get_cmap("Blues")
-            colores =colormap(normdata(operaciones))
-            label = ["Dinero-Prestamo", "Dinero-Retirar", "Dinero-Transferir"]
-
-            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
-            grafico=plt.show()
+            label = ["Prestamo", "Retirar", "Transferir"]
+            plt.bar(label, operaciones)
+            plt.show()
         elif(Presta>=1 and Dep>=1 and Ret==0 and Trans>=1):
-            operaciones = [Presta, Dep, Trans]
-            normdata = colors.Normalize(min(operaciones), max(operaciones))
-            colormap = cm.get_cmap("Blues")
-            colores =colormap(normdata(operaciones))
-            label = ["Dinero-Prestamo", "Dinero-Depositar", "Dinero-Transferir"]
-
-            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
-            grafico=plt.show()
+            fig, ax = plt.subplots()
+            #Colocamos una etiqueta en el eje Y
+            ax.set_ylabel('Dinero')
+            #Colocamos una etiqueta en el eje X
+            ax.set_title('Cantidad de dinero por operaciones')
+            operaciones = [Presta,Dep, Trans]
+            label = ["Prestamo", "Depositar", "Transferir"]
+            plt.bar(label, operaciones)
+            plt.show()
         elif(Presta>=1 and Dep>=1 and Ret>=1 and Trans==0):
-            operaciones = [Presta, DeP, Ret]
-            normdata = colors.Normalize(min(operaciones), max(operaciones))
-            colormap = cm.get_cmap("Blues")
-            colores =colormap(normdata(operaciones))
-            label = ["Dinero-Prestamo", "Dinero-Depositar", "Dinero-Retirar"]
-
-            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
-            grafico=plt.show()
+            fig, ax = plt.subplots()
+            #Colocamos una etiqueta en el eje Y
+            ax.set_ylabel('Dinero')
+            #Colocamos una etiqueta en el eje X
+            ax.set_title('Cantidad de dinero por operaciones')
+            operaciones = [Presta,Dep, Ret]
+            label = ["Prestamo", "Depositar", "Retirar"]
+            plt.bar(label, operaciones)
+            plt.show()
         elif(Presta>=1 and Dep>=1 and Ret>=1 and Trans>=1):
+            fig, ax = plt.subplots()
+            #Colocamos una etiqueta en el eje Y
+            ax.set_ylabel('Dinero')
+            #Colocamos una etiqueta en el eje X
+            ax.set_title('Cantidad de dinero por operaciones')
             operaciones = [Presta,Dep,Ret, Trans]
-            normdata = colors.Normalize(min(operaciones), max(operaciones))
-            colormap = cm.get_cmap("Blues")
-            colores =colormap(normdata(operaciones))
-            label = ["Dinero-Prestamo","Dinero-Depositar", "Dinero-Retirar", "Dinero-Transferir"]
-
-            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
-            grafico=plt.show()
+            label = ["Prestamo", "Depositar","Retirar", "Transferir"]
+            plt.bar(label, operaciones)
+            plt.show()
         elif(Presta>=1 and Dep==0 and Ret==0 and Trans==0):
+            fig, ax = plt.subplots()
+            #Colocamos una etiqueta en el eje Y
+            ax.set_ylabel('Dinero')
+            #Colocamos una etiqueta en el eje X
+            ax.set_title('Cantidad de dinero por operaciones')
             operaciones = [Presta]
-            normdata = colors.Normalize(min(operaciones), max(operaciones))
-            colormap = cm.get_cmap("Blues")
-            colores =colormap(normdata(operaciones))
-            label = ["Dinero-Prestamo"]
-
-            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
-            grafico=plt.show()
+            label = ["Prestamo"]
+            plt.bar(label, operaciones)
+            plt.show()
         elif(Presta==0 and Dep>=1 and Ret==0 and Trans==0):
+            fig, ax = plt.subplots()
+            #Colocamos una etiqueta en el eje Y
+            ax.set_ylabel('Dinero')
+            #Colocamos una etiqueta en el eje X
+            ax.set_title('Cantidad de dinero por operaciones')
             operaciones = [Dep]
-            normdata = colors.Normalize(min(operaciones), max(operaciones))
-            colormap = cm.get_cmap("Blues")
-            colores =colormap(normdata(operaciones))
-            label = ["Dinero-Depositar"]
-
-            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
-            grafico=plt.show()
+            label = ["Depositar"]
+            plt.bar(label, operaciones)
+            plt.show()
         elif(Presta==0 and Dep==0 and Ret>=1 and Trans==0):
+            fig, ax = plt.subplots()
+            #Colocamos una etiqueta en el eje Y
+            ax.set_ylabel('Dinero')
+            #Colocamos una etiqueta en el eje X
+            ax.set_title('Cantidad de dinero por operaciones')
             operaciones = [Ret]
-            normdata = colors.Normalize(min(operaciones), max(operaciones))
-            colormap = cm.get_cmap("Blues")
-            colores =colormap(normdata(operaciones))
-            label = ["Dinero-Retiro"]
-
-            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
-            grafico=plt.show()
+            label = ["Retirar"]
+            plt.bar(label, operaciones)
+            plt.show()
         elif(Presta==0 and Dep==0 and Ret==0 and Trans>=1):
+            fig, ax = plt.subplots()
+            #Colocamos una etiqueta en el eje Y
+            ax.set_ylabel('Dinero')
+            #Colocamos una etiqueta en el eje X
+            ax.set_title('Cantidad de dinero por operaciones')
             operaciones = [Trans]
-            normdata = colors.Normalize(min(operaciones), max(operaciones))
-            colormap = cm.get_cmap("Blues")
-            colores =colormap(normdata(operaciones))
-            label = ["Dinero-Transferir"]
-
-            plt.pie(operaciones, labels=label, autopct="%0.1f %%")
-            grafico=plt.show()
+            label = ["Transferir"]
+            plt.bar(label, operaciones)
+            plt.show()
     def TotalClientes():
         global cont1,cont2,cont3,cont4,contadorfinal
         contadorfinal=contadorfinal+cont1+cont2+cont3+cont4
         Graficos=ttk.Label(ventanaGrafico,text=contadorfinal)
-        Graficos.place(x=50,y=180)
+        Graficos.place(x=50,y=125)
         contadorfinal=0
     def TotalDinero():
         global Dep,Ret,Trans,Presta,contadorfinal2
         contadorfinal2=contadorfinal2+Dep+Ret+Trans+Presta    
         Dinero=ttk.Label(ventanaGrafico,text=contadorfinal2)
-        Dinero.place(x=50,y=230)
+        Dinero.place(x=50,y=175)
         contadorfinal2=0
-    #def CalculosMat():
-        #global media,mediana,moda,desviacionEs,contadorfinal2,contadorfinal
-        #media=(media+contadorfinal2)/contadorfinal
-        #MediaD=ttk.Label(ventanaGrafico,text=media)
-        #mediaD.place(x=50,y=280)
-        #media=0
+    def CalculosMat():
+        global contadorfinal3,contadorfinal4,Dep,Ret,Trans,Presta,cont1,cont2,cont3,cont4
+        global contadorDep,contadorRet,contadorTrans,contadorPresta
+        global ListaDep,ListaRet,ListaTrans,ListaPresta,ListaTo
+        #Definiendo contadores dinero separado y juntos
+        contadorfinal3=contadorfinal3+Dep+Ret+Trans+Presta
+        contadorDep=contadorDep+Dep
+        contadorRet=contadorRet+Ret
+        contadorTrans=contadorTrans+Trans
+        contadorPresta=contadorPresta+Presta
+        #Definiendo contadores personjas separado y juntos
+        contadorfinal4=contadorfinal4+cont1+cont2+cont3+cont4
+        #Calculando medias de operacion
+        media=int(contadorfinal3/contadorfinal4)
+        mediaDep=int(contadorDep/cont1)
+        mediaRet=int(contadorRet/cont2)
+        mediaTrans=int(contadorTrans/cont3)
+        mediaPresta=int(contadorPresta/cont4)
+        #Medianas
+        medianaDep=(stats.median(ListaDep))
+        medianaRet=(stats.median(ListaRet))
+        medianaTrans=(stats.median(ListaTrans))
+        medianaPresta=(stats.median(ListaPresta))
+        medianaTo=(stats.median(ListaTo))
+        #MODAS
+        modaDep=(stats.mode(ListaDep))
+        modaRet=(stats.mode(ListaRet))
+        modaTrans=(stats.mode(ListaTrans))
+        modaPresta=(stats.mode(ListaPresta))
+        modaTo=(stats.mode(ListaTo))
+        #Desviacion estandar
+        DesvDep=(stats.mode(ListaDep))
+        DesvRet=(stats.mode(ListaRet))
+        DesvTrans=(stats.mode(ListaTrans))
+        DesvPresta=(stats.mode(ListaPresta))
+        DesvTo=(stats.mode(ListaTo))
+        #Llamando labels Media
+        mediaDep=ttk.Label(ventanaGrafico,text=mediaDep)
+        mediaDep.place(x=90,y=230)
+        mediaRet=ttk.Label(ventanaGrafico,text=mediaRet)
+        mediaRet.place(x=90,y=260)
+        mediaTrans=ttk.Label(ventanaGrafico,text=mediaTrans)
+        mediaTrans.place(x=90,y=290)
+        mediaPresta=ttk.Label(ventanaGrafico,text=mediaPresta)
+        mediaPresta.place(x=90,y=320)
+        mediaD=ttk.Label(ventanaGrafico,text=media)
+        mediaD.place(x=90,y=350)
+        #Llamando labels Mediana
+        medianaDepo=ttk.Label(ventanaGrafico,text=medianaDep)
+        medianaDepo.place(x=140,y=230)
+        medianaReti=ttk.Label(ventanaGrafico,text=medianaRet)
+        medianaReti.place(x=140,y=260)
+        medianaTransf=ttk.Label(ventanaGrafico,text=medianaTrans)
+        medianaTransf.place(x=140,y=290)
+        medianaPrestam=ttk.Label(ventanaGrafico,text=medianaPresta)
+        medianaPrestam.place(x=140,y=320)
+        medianaTot=ttk.Label(ventanaGrafico,text=medianaTo)
+        medianaTot.place(x=140,y=350)
+        #Llamando Labels Moda
+        modaDepo=ttk.Label(ventanaGrafico,text= modaDep)
+        modaDepo.place(x=220,y=230)
+        modaReti=ttk.Label(ventanaGrafico,text= modaRet)
+        modaReti.place(x=220,y=260)
+        modaTransf=ttk.Label(ventanaGrafico,text= modaTrans)
+        modaTransf.place(x=220,y=290)
+        modaPrestam=ttk.Label(ventanaGrafico,text= modaPresta)
+        modaPrestam.place(x=220,y=320)
+        modaTot=ttk.Label(ventanaGrafico,text= modaTo)
+        modaTot.place(x=220,y=350)
+        #Llamando labels desv estandar
+        DesDepo=ttk.Label(ventanaGrafico,text= DesvDep)
+        DesDepo.place(x=270,y=230)
+        DesReti=ttk.Label(ventanaGrafico,text= DesvRet)
+        DesReti.place(x=270,y=260)
+        DesTransf=ttk.Label(ventanaGrafico,text= DesvTrans)
+        DesTransf.place(x=270,y=290)
+        DesPrestam=ttk.Label(ventanaGrafico,text= DesvPresta)
+        DesPrestam.place(x=270,y=320)
+        DesTot=ttk.Label(ventanaGrafico,text= DesvTo)
+        DesTot.place(x=270,y=350)
+        #----------------------------------------
+        contadorfinal3=0
+        contadorfinal4=0
+        media=0
+        contadorDep=0
+        contadorRet=0
+        contadorTrans=0
+        contadorPresta=0
 
 
     botonMostrarGrafico = ttk.Button(ventanaGrafico,text="Mostrar grafico de operaciones realizadas", command = MostrarGrafico)
-    botonMostrarGrafico.place( x=50, y=50)
+    botonMostrarGrafico.place( x=50, y=20)
     botonMostrarDinero = ttk.Button(ventanaGrafico,text="Mostrar grafico de dinero trabajado", command = MovimientoDinero)
-    botonMostrarDinero.place( x=50, y=100)
+    botonMostrarDinero.place( x=50, y=50)
     botonMostrarClientes = ttk.Button(ventanaGrafico,text="Mostrar total clientes", command = TotalClientes)
-    botonMostrarClientes.place( x=50, y=150)
+    botonMostrarClientes.place( x=50, y=100)
     botonMostrardinerototal = ttk.Button(ventanaGrafico,text="Mostrar total dinero", command = TotalDinero)
-    botonMostrardinerototal.place( x=50, y=200)
-    #botonMostrarCalculos = ttk.Button(ventanaGrafico,text="Mostrar datos", command = CalculosMat)
-    #botonMostrarCalculos.place( x=50, y=250)
+    botonMostrardinerototal.place( x=50, y=150)
+    botonMostrarCalculos = ttk.Button(ventanaGrafico,text="Mostrar datos", command = CalculosMat)
+    botonMostrarCalculos.place( x=50, y=200)
+    #LABELS
+    MEDIAS=ttk.Label(ventanaGrafico,text="Media")
+    MEDIAS.place(x=90,y=380)
+    Mediana=ttk.Label(ventanaGrafico,text="Mediana")
+    Mediana.place(x=140,y=380)
+    Moda=ttk.Label(ventanaGrafico,text="Moda")
+    Moda.place(x=220,y=380)
+    Desv=ttk.Label(ventanaGrafico,text="Desv. Estandar")
+    Desv.place(x=270,y=380)
+    Depositos=ttk.Label(ventanaGrafico,text="Deposito")
+    Depositos.place(x=0,y=230)
+    Retiros=ttk.Label(ventanaGrafico,text="Retiro")
+    Retiros.place(x=0,y=260)
+    Transferencias=ttk.Label(ventanaGrafico,text="Transferencia")
+    Transferencias.place(x=0,y=290)
+    Prestamos=ttk.Label(ventanaGrafico,text="Prestamo")
+    Prestamos.place(x=0,y=320)
+    SUMADOS=ttk.Label(ventanaGrafico,text="Total")
+    SUMADOS.place(x=0,y=350)
 
     ventanaGrafico.mainloop()
 
@@ -685,33 +846,18 @@ def abrirMostrarCola():
     def elimina():
         x = tabla.selection()
         tabla.delete(x)
-        global contadortabla
-        contadortabla=True
     def finzalizaProceso():
+        global contadortabla
         seleccionado = tabla.focus()
-        if str(seleccionado)=="I001":
-          valuess = tabla.item(seleccionado, text="", values=(B[0],A[0],ru[0],"Finalizado"))
-        elif str(seleccionado)=="I002":
-          valuess = tabla.item(seleccionado, text="", values=(B[1],A[1],ru[1],"Finalizado"))
-        elif str(seleccionado)=="I003":
-          valuess = tabla.item(seleccionado, text="", values=(B[2],A[2],ru[2],"Finalizado"))
-        elif str(seleccionado)=="I004":
-          valuess = tabla.item(seleccionado, text="", values=(B[3],A[3],ru[3],"Finalizado"))
-        elif str(seleccionado)=="I005":
-          valuess = tabla.item(seleccionado, text="", values=(B[4],A[4],ru[4],"Finalizado"))
-        elif str(seleccionado)=="I006":
-          valuess = tabla.item(seleccionado, text="", values=(B[5],A[5],ru[5],"Finalizado"))
-        elif str(seleccionado)=="I007":
-          valuess = tabla.item(seleccionado, text="", values=(B[6],A[6],ru[6],"Finalizado"))
-        elif str(seleccionado)=="I008":
-          valuess = tabla.item(seleccionado, text="", values=(B[7],A[7],ru[7],"Finalizado"))
-        elif str(seleccionado)=="I009":
-          valuess = tabla.item(seleccionado, text="", values=(B[8],A[8],ru[8],"Finalizado"))
-        elif str(seleccionado)=="I010":
-          valuess = tabla.item(seleccionado, text="", values=(B[9],A[9],ru[9],"Finalizado"))
-        elif str(seleccionado)=="I011":
-          valuess = tabla.item(seleccionado, text="", values=(B[10],A[10],ru[10],"Finalizado"))
-    
+        id2=tabla.set(seleccionado, "Estado", "Finalizado")
+        return id2
+        contadortabla=True
+    def actualizarTabla():
+        global C
+        i=0
+        for x in get_children:
+            tabla.set(x,"Estado",C[i])    
+            i=i+1
 
 
     ventanaMostrarCola=Toplevel(root)
@@ -734,7 +880,7 @@ def abrirMostrarCola():
 
     imagenActualizar = Image.open("./actualizar.png")
     imagenActualizar = ImageTk.PhotoImage(imagenActualizar)
-    botonActualizar = ttk.Button(ventanaMostrarCola, image= imagenActualizar)
+    botonActualizar = ttk.Button(ventanaMostrarCola, image= imagenActualizar,command=actualizarTabla)
     botonActualizar.place( x=827, y=233)
 
 
@@ -764,7 +910,30 @@ def abrirMostrarCola():
     b=0
     m=0
     ru=[]
+    global contadortabla
     for persona in listadoPersonas.getListaTabla():
+        ru.append(persona.getRut())
+        num=n
+        est="En proceso"
+        fin="Finalizado"
+        id=tabla.insert("",END,text="",values=([B[m],A[I],ru[b],est]))
+        print(id)
+        n=n+1
+        I=I+1
+        b=b+1
+        m=m+1
+        
+
+
+
+    #***************FILTROS********************
+
+
+
+
+    def callbackFunc(event):
+     print("Seleccionó un nuevo elemento")
+     for persona in listadoPersonas.getListaTabla():
         ru.append(persona.getRut())
         num=n
         est="En proceso"
@@ -775,16 +944,7 @@ def abrirMostrarCola():
         b=b+1
         m=m+1
 
-
-    #***************FILTROS********************
-
-
-
-
-    def callbackFunc(event):
-     print("Seleccionó un nuevo elemento")
-
-    FiltrarOperaciones = ttk.Combobox(ventanaMostrarCola,values=("Mostrar todo","Depositar","Trasnferir","Retirar","Prestamo"),textvariable=FiltroOp, state="readonly")
+    FiltrarOperaciones = ttk.Combobox(ventanaMostrarCola,values=("Mostrar todo","Depositar","Transferir","Retirar","Prestamo"),textvariable=FiltroOp, state="readonly")
     FiltrarOperaciones.place_configure(x=199, y=326 , width=280, height=20)
     FiltrarOperaciones.bind("<<ComboboxSelected>>", callbackFunc)
 
