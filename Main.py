@@ -247,7 +247,7 @@ def abrirRetirar():
         imagen = PhotoImage (file = "./ventanaDepositar.png") 
         fondo=Label(ventanaRetirar, image = imagen).place( x=0, y=0)
 
-
+        
         ingresaCuentaRetiro = ttk.Entry(ventanaRetirar,text=rutv)
         ingresaCuentaRetiro.place_configure(x=400, y=220  , width=169, height=17)
 
