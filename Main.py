@@ -440,9 +440,13 @@ def abrirPrestamo():
 
 def abrirGrafico():
     ventanaGrafico=Toplevel(root)
-    ventanaGrafico.title("Análisis esttadísticos")
-    ventanaGrafico.geometry("600x400")
+    ventanaGrafico.title("Análisis estadísticos")
+    ventanaGrafico.geometry("950x500")
     ventanaGrafico.resizable(width=False, height=False)
+
+
+    imagen = PhotoImage (file = "./ventanaAnalisisE.png") 
+    fondo=Label(ventanaGrafico, image = imagen).place( x=0, y=0)
 
     def MostrarGrafico():
         global cont1,cont2,cont3,cont4
@@ -644,13 +648,13 @@ def abrirGrafico():
         global cont1,cont2,cont3,cont4,contadorfinal
         contadorfinal=contadorfinal+cont1+cont2+cont3+cont4
         Graficos=ttk.Label(ventanaGrafico,text=contadorfinal)
-        Graficos.place(x=50,y=125)
+        Graficos.place(x=282,y=130, width=99, height=15)
         contadorfinal=0
     def TotalDinero():
         global Dep,Ret,Trans,Presta,contadorfinal2
         contadorfinal2=contadorfinal2+Dep+Ret+Trans+Presta    
         Dinero=ttk.Label(ventanaGrafico,text=contadorfinal2)
-        Dinero.place(x=50,y=175)
+        Dinero.place(x=282,y=220, width=99, height=15)
         contadorfinal2=0
     def CalculosMat():
         global contadorfinal3,contadorfinal4,Dep,Ret,Trans,Presta,cont1,cont2,cont3,cont4
@@ -741,17 +745,36 @@ def abrirGrafico():
         contadorTrans=0
         contadorPresta=0
 
+    #gráfico por operaciones
+    imgMostrarGraficoOp = Image.open("./graficoOp.png")
+    imgMostrarGraficoOp = ImageTk.PhotoImage(imgMostrarGraficoOp)
+    botonMostrarGrafico = ttk.Button(ventanaGrafico, image= imgMostrarGraficoOp, command = MostrarGrafico)
+    botonMostrarGrafico.place( x=550, y=105)
 
-    botonMostrarGrafico = ttk.Button(ventanaGrafico,text="Mostrar grafico de operaciones realizadas", command = MostrarGrafico)
-    botonMostrarGrafico.place( x=50, y=20)
-    botonMostrarDinero = ttk.Button(ventanaGrafico,text="Mostrar grafico de dinero trabajado", command = MovimientoDinero)
-    botonMostrarDinero.place( x=50, y=50)
-    botonMostrarClientes = ttk.Button(ventanaGrafico,text="Mostrar total clientes", command = TotalClientes)
-    botonMostrarClientes.place( x=50, y=100)
-    botonMostrardinerototal = ttk.Button(ventanaGrafico,text="Mostrar total dinero", command = TotalDinero)
-    botonMostrardinerototal.place( x=50, y=150)
-    botonMostrarCalculos = ttk.Button(ventanaGrafico,text="Mostrar datos", command = CalculosMat)
-    botonMostrarCalculos.place( x=50, y=200)
+    #gráfico por dinero
+    imgMostrarGraficoDin = Image.open("./graficoDinero.png")
+    imgMostrarGraficoDin = ImageTk.PhotoImage(imgMostrarGraficoDin)
+    botonMostrarDinero = ttk.Button(ventanaGrafico, image= imgMostrarGraficoDin, command = MovimientoDinero)
+    botonMostrarDinero.place( x=550, y=196)
+
+    #total clientes
+    imgTotalClientes = Image.open("./totalPersonas.png")
+    imgTotalClientes = ImageTk.PhotoImage(imgTotalClientes)
+    botonMostrarClientes = ttk.Button(ventanaGrafico,image=imgTotalClientes, command = TotalClientes)
+    botonMostrarClientes.place( x=27, y=105)
+
+    #total dinero
+    imgTotalDin = Image.open("./totalDinero.png")
+    imgTotalDin = ImageTk.PhotoImage(imgTotalDin)
+    botonMostrardinerototal = ttk.Button(ventanaGrafico,image=imgTotalDin, command = TotalDinero)
+    botonMostrardinerototal.place( x=27, y=191)
+
+
+    #mostrar todo
+    imgMostrarTodo = Image.open("./mostrarTodo.png")
+    imgMostrarTodo = ImageTk.PhotoImage(imgMostrarTodo)
+    botonMostrarCalculos = ttk.Button(ventanaGrafico,image=imgMostrarTodo, command = CalculosMat)
+    botonMostrarCalculos.place( x=27, y=278)
     #LABELS
     MEDIAS=ttk.Label(ventanaGrafico,text="Media")
     MEDIAS.place(x=90,y=380)
