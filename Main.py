@@ -166,9 +166,10 @@ root.update()
 
 
 def abrirDepositar():
-    if(ingresaRutCliente.get()==""):
-        messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
-    else:
+    if(ingresaRutCliente.get()!="203770936" and ingresaRutCliente.get()!="202254772" and ingresaRutCliente.get()!="202175936" and ingresaRutCliente.get()!="202974058"):
+        messagebox.showerror("Error", "Ingrese un RUT válido antes de realizar una operación")
+    
+    elif(ingresaRutCliente.get()=="203770936" or ingresaRutCliente.get()=="202254772" or ingresaRutCliente.get()=="202175936" or ingresaRutCliente.get()=="202974058"):
         global cont1,ListaDep,ListaTo,C
         messagebox.showinfo(message="Usted es el n°"+str(cont1+1)+" en la cola", title="Depositar")  
         ventanaDepositar=Toplevel(root)
@@ -228,9 +229,10 @@ def abrirDepositar():
 
 
 def abrirRetirar():
-    if(ingresaRutCliente.get()==""):
-        messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
-    else:
+    if(ingresaRutCliente.get()!="203770936" and ingresaRutCliente.get()!="202254772" and ingresaRutCliente.get()!="202175936" and ingresaRutCliente.get()!="202974058"):
+        messagebox.showerror("Error", "Ingrese un RUT válido antes de realizar una operación")
+    
+    elif(ingresaRutCliente.get()=="203770936" or ingresaRutCliente.get()=="202254772" or ingresaRutCliente.get()=="202175936" or ingresaRutCliente.get()=="202974058"):
         global cont2,ListaRet,ListaTo,C
         messagebox.showinfo(message="Usted es el n°"+str(cont2+1)+" en la cola", title="Retirar")
         ventanaRetirar=Toplevel(root)
@@ -287,9 +289,10 @@ def abrirRetirar():
 
 
 def abrirTransferir():
-    if(ingresaRutCliente.get()==""):
-        messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
-    else:
+    if(ingresaRutCliente.get()!="203770936" and ingresaRutCliente.get()!="202254772" and ingresaRutCliente.get()!="202175936" and ingresaRutCliente.get()!="202974058"):
+        messagebox.showerror("Error", "Ingrese un RUT válido antes de realizar una operación")
+
+    elif(ingresaRutCliente.get()=="203770936" or ingresaRutCliente.get()=="202254772" or ingresaRutCliente.get()=="202175936" or ingresaRutCliente.get()=="202974058"):
         global cont3,ListaTrans,ListaTo,C
         messagebox.showinfo(message="Usted es el n°"+str(cont3+1)+" en la cola", title="Transferir")  
         ventanaTransferir=Toplevel(root)
@@ -380,9 +383,10 @@ def abrirTransferir():
 
 
 def abrirPrestamo():
-    if(ingresaRutCliente.get()==""):
-        messagebox.showerror("Error", "Ingrese su RUT antes de realizar una operación")
-    else:
+    if(ingresaRutCliente.get()!="203770936" and ingresaRutCliente.get()!="202254772" and ingresaRutCliente.get()!="202175936" and ingresaRutCliente.get()!="202974058"):
+        messagebox.showerror("Error", "Ingrese un RUT válido antes de realizar una operación")
+    
+    elif(ingresaRutCliente.get()=="203770936" or ingresaRutCliente.get()=="202254772" or ingresaRutCliente.get()=="202175936" or ingresaRutCliente.get()=="202974058"):
         global cont4,ListaPresta,ListaTo,C
         messagebox.showinfo(message="Usted es el n°"+str(cont4+1)+" en la cola", title="Préstamo") 
         ventanaPrestamo=Toplevel(root)
@@ -1098,12 +1102,16 @@ def abrirMostrarCola():
 
 
     def abrirConfirmaRutFinalizar():
-
+        
         def confirmaFinaliza():
+            n=0    
             for Funcionario in listadoPersonas.getListaFuncionarios():
                 if (confirmaRut.get()==Funcionario.getrutfuncionario()):
                     finzalizaProceso()
                     ventanaConfirmaRut.destroy()
+                elif(confirmaRut.get()!=Funcionario.getrutfuncionario() and n==0):
+                    messagebox.showerror("Error", "Ingrese RUT del Funcionario válido antes de realizar una operación")
+                    n=n+1
 
         ventanaConfirmaRut=Toplevel(root)
         ventanaConfirmaRut.title("RUT del Funcionario")
@@ -1127,12 +1135,16 @@ def abrirMostrarCola():
         ventanaConfirmaRut.mainloop()
 
     def abrirConfirmaRutElimina():
-
+        
         def confirmaElimina():
+            n=0    
             for Funcionario in listadoPersonas.getListaFuncionarios():
                 if (confirmaRut.get()==Funcionario.getrutfuncionario()):
                     elimina()
                     ventanaConfirmaRut.destroy()
+                elif(confirmaRut.get()!=Funcionario.getrutfuncionario() and n==0):
+                    messagebox.showerror("Error", "Ingrese RUT del Funcionario válido antes de realizar una operación")
+                    n=n+1
 
         ventanaConfirmaRut=Toplevel(root)
         ventanaConfirmaRut.title("RUT del Funcionario")
@@ -1193,8 +1205,8 @@ def abrirMostrarCola():
 
 
     ventanaMostrarCola=Toplevel(root)
-    ventanaMostrarCola.title("Mostrar Colas de Servicio")
-    ventanaMostrarCola.geometry("1000x400")
+    ventanaMostrarCola.title("Colas de Servicio")
+    ventanaMostrarCola.geometry("790x300")
     ventanaMostrarCola.resizable(width=False, height=False)
     #Fondo de la ventanaMostrarcola
     imagen = PhotoImage (file = "./ventanaCola.png") 
@@ -1203,17 +1215,17 @@ def abrirMostrarCola():
     imagenEliminar = Image.open("./eliminaServicio.png")
     imagenEliminar = ImageTk.PhotoImage(imagenEliminar)
     botonEliminar = ttk.Button(ventanaMostrarCola, image= imagenEliminar, command = abrirConfirmaRutElimina)
-    botonEliminar.place( x=827, y=70)
+    botonEliminar.place( x=724, y=59)
 
     imagenFinalizar = Image.open("./finalizarServicio.png")
     imagenFinalizar = ImageTk.PhotoImage(imagenFinalizar)
     botonFinalizar = ttk.Button(ventanaMostrarCola, image= imagenFinalizar, command = abrirConfirmaRutFinalizar)
-    botonFinalizar.place( x=827, y=153)
+    botonFinalizar.place( x=724, y=124)
 
     imagenActualizar = Image.open("./actualizar.png")
     imagenActualizar = ImageTk.PhotoImage(imagenActualizar)
     botonActualizar = ttk.Button(ventanaMostrarCola, image= imagenActualizar,command=actualizarTabla)
-    botonActualizar.place( x=827, y=233)
+    botonActualizar.place( x=724, y=189)
 
 
     
@@ -1236,7 +1248,7 @@ def abrirMostrarCola():
     
 
     
-    tabla.place(x=57,y=70)
+    tabla.place(x=29,y=41)
     n=1
     I=0
     b=0
