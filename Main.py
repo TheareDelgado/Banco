@@ -192,6 +192,7 @@ def abrirDepositar():
                     persona.setSaldo(A1)
                     A.append("Depositar")
                     C.append(Op.getEstado())
+
         
         
             global cont1
@@ -1156,12 +1157,30 @@ def abrirMostrarCola():
         ventanaConfirmaRut.mainloop()
 
     def elimina():
-        x = tabla.selection()
-        tabla.delete(x)
+        x = tabla.selection()[0]
+        global C,cont1,cont2,cont3,cont4
+        S=0
+        records = tabla.get_children()
+        for i in records:
+            if (str(x)==str(i)): 
+                tabla.delete(x)
+                C.pop(S)
+                ru.pop(S)
+                A.pop(S)
+                B.pop[S]
+
+
+
+            S=S+1
+            
+
     def finzalizaProceso():
         global contadortabla
+        Op.setEstado("Finalizado")
+        C.pop()
+        C.append(Op.getEstado())
         seleccionado = tabla.focus()
-        id2=tabla.set(seleccionado, "Estado", "Finalizado")
+        id2=tabla.set(seleccionado, "Estado", Op.getEstado())
         return id2
         contadortabla=True
     def actualizarTabla():
@@ -1222,24 +1241,20 @@ def abrirMostrarCola():
     I=0
     b=0
     m=0
+    a=0
     ru=[]
     global contadortabla
     for persona in listadoPersonas.getListaTabla():
         ru.append(persona.getRut())
         num=n
-        est="En proceso"
-        fin="Finalizado"
-        id=tabla.insert("",END,text="",values=([B[m],A[I],ru[b],est]))
+        id=tabla.insert("",END,text="",values=([B[m],A[I],ru[b],C[a]]))
         print(id)
         n=n+1
         I=I+1
         b=b+1
+        a=a+1
         m=m+1
-        
-
-
-
-    #***************FILTROS********************
+         #***************FILTROS********************
 
 
 
