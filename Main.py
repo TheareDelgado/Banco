@@ -497,6 +497,14 @@ def abrirGrafico():
                 label = ["Depositar", "Transferir", "Retirar", "Préstamo"]
                 plt.pie(operaciones, labels=label, autopct="%0.1f %%")
                 plt.show()
+             
+            elif(cont4>=0 and cont1>=1 and cont2>=1 and cont3>=0):
+                fig, ax = plt.subplots()
+                ax.set_title('Cantidad de operaciones')
+                operaciones = [cont1, cont2, ]
+                label = ["Depositar", "Retirar"]
+                plt.pie(operaciones, labels=label, autopct="%0.1f %%")
+                plt.show()
 
             elif(cont4>=1 and cont1==0 and cont2==0 and cont3==0):
                 fig, ax = plt.subplots()
@@ -516,7 +524,7 @@ def abrirGrafico():
                 fig, ax = plt.subplots()
                 ax.set_title('Cantidad de operaciones')
                 operaciones = [cont2]
-                label = ["PRetirar"]
+                label = ["Retirar"]
                 plt.pie(operaciones, labels=label, autopct="%0.1f %%")
                 plt.show()
             elif(cont4==0 and cont1==0 and cont2==0 and cont3>=1):
@@ -536,6 +544,16 @@ def abrirGrafico():
                 ax.set_title('Cantidad de dinero por operaciones')
                 operaciones = [Dep, Ret, Trans]
                 label = ["Depositar", "Retirar", "Transferir"]
+                plt.bar(label, operaciones)
+                plt.show()
+            elif(Presta==0 and Dep>=1 and Ret>=1 and Trans>=0):
+                fig, ax = plt.subplots()
+                #Colocamos una etiqueta en el eje Y
+                ax.set_ylabel('Dinero')
+                #Colocamos una etiqueta en el eje X
+                ax.set_title('Cantidad de dinero por operaciones')
+                operaciones = [Dep, Ret]
+                label = ["Depositar", "Retirar"]
                 plt.bar(label, operaciones)
                 plt.show()
             elif(Presta>=1 and Dep==0 and Ret>=1 and Trans>=1):
@@ -644,65 +662,388 @@ def abrirGrafico():
             contadorfinal4=contadorfinal4+cont1+cont2+cont3+cont4
             #Calculando medias de operacion
             media=int(contadorfinal3/contadorfinal4)
-            mediaDep=int(contadorDep/cont1)
-            mediaRet=int(contadorRet/cont2)
-            mediaTrans=int(contadorTrans/cont3)
-            mediaPresta=int(contadorPresta/cont4)
+            #mediaDep=int(contadorDep/cont1)
+            #mediaRet=int(contadorRet/cont2)
+            #mediaTrans=int(contadorTrans/cont3)
+            #mediaPresta=int(contadorPresta/cont4)
+            
             #Medianas
-            medianaDep=(stats.median(ListaDep))
-            medianaRet=(stats.median(ListaRet))
-            medianaTrans=(stats.median(ListaTrans))
-            medianaPresta=(stats.median(ListaPresta))
+            #medianaDep=(stats.median(ListaDep))
+            #medianaRet=(stats.median(ListaRet))
+            #medianaTrans=(stats.median(ListaTrans))
+            #medianaPresta=(stats.median(ListaPresta))
             medianaTo=(stats.median(ListaTo))
             #MODAS
-            modaDep=(stats.mode(ListaDep))
-            modaRet=(stats.mode(ListaRet))
-            modaTrans=(stats.mode(ListaTrans))
-            modaPresta=(stats.mode(ListaPresta))
+            #modaDep=(stats.mode(ListaDep))
+            #modaRet=(stats.mode(ListaRet))
+            #modaTrans=(stats.mode(ListaTrans))
+            #modaPresta=(stats.mode(ListaPresta))
             modaTo=(stats.mode(ListaTo))
+            
             #Desviacion estandar
-            DesvDep=(stats.mode(ListaDep))
-            DesvRet=(stats.mode(ListaRet))
-            DesvTrans=(stats.mode(ListaTrans))
-            DesvPresta=(stats.mode(ListaPresta))
+            #DesvDep=(stats.mode(ListaDep))
+            #DesvRet=(stats.mode(ListaRet))
+            #DesvTrans=(stats.mode(ListaTrans))
+            #DesvPresta=(stats.mode(ListaPresta))
             DesvTo=(stats.mode(ListaTo))
-            #Llamando labels Media
-            mediaDep=ttk.Label(ventanaGrafico,text=mediaDep)
-            mediaDep.place(x=195,y=400, width=140, height=16)
-            mediaRet=ttk.Label(ventanaGrafico,text=mediaRet)
-            mediaRet.place(x=195,y=424, width=140, height=16)
-            mediaTrans=ttk.Label(ventanaGrafico,text=mediaTrans)
-            mediaTrans.place(x=195,y=445, width=140, height=16)
-            mediaPresta=ttk.Label(ventanaGrafico,text=mediaPresta)
-            mediaPresta.place(x=195,y=468, width=140, height=16)
-            #Llamando labels Mediana
-            medianaDepo=ttk.Label(ventanaGrafico,text=medianaDep)
-            medianaDepo.place(x=359,y=400, width=135, height=16)
-            medianaReti=ttk.Label(ventanaGrafico,text=medianaRet)
-            medianaReti.place(x=359,y=424, width=135, height=16)
-            medianaTransf=ttk.Label(ventanaGrafico,text=medianaTrans)
-            medianaTransf.place(x=359,y=445, width=135, height=16)
-            medianaPrestam=ttk.Label(ventanaGrafico,text=medianaPresta)
-            medianaPrestam.place(x=359,y=468, width=135, height=16)
-            #Llamando Labels Moda
-            modaDepo=ttk.Label(ventanaGrafico,text= modaDep)
-            modaDepo.place(x=518,y=400, width=113, height=16)
-            modaReti=ttk.Label(ventanaGrafico,text= modaRet)
-            modaReti.place(x=518,y=424, width=113, height=16)
-            modaTransf=ttk.Label(ventanaGrafico,text= modaTrans)
-            modaTransf.place(x=518,y=445, width=113, height=16)
-            modaPrestam=ttk.Label(ventanaGrafico,text= modaPresta)
-            modaPrestam.place(x=518,y=468, width=113, height=16)
-            #Llamando labels desv estandar
-            DesDepo=ttk.Label(ventanaGrafico,text= DesvDep)
-            DesDepo.place(x=654,y=400, width=240, height=16)
-            DesReti=ttk.Label(ventanaGrafico,text= DesvRet)
-            DesReti.place(x=654,y=424, width=240, height=16)
-            DesTransf=ttk.Label(ventanaGrafico,text= DesvTrans)
-            DesTransf.place(x=654,y=445, width=240, height=16)
-            DesPrestam=ttk.Label(ventanaGrafico,text= DesvPresta)
-            DesPrestam.place(x=654,y=468, width=240, height=16)
-            #----------------------------------------
+
+
+            if(cont1>=1 and cont2>=1 and cont3>=1 and cont4>=1):
+                #Media
+                mediaDep=int(contadorDep/cont1)
+                mediaRet=int(contadorRet/cont2)
+                mediaTrans=int(contadorTrans/cont3)
+                mediaPresta=int(contadorPresta/cont4)
+
+                #             label media
+                mediaDep=ttk.Label(ventanaGrafico,text=mediaDep)
+                mediaDep.place(x=195,y=400, width=140, height=16)
+                mediaRet=ttk.Label(ventanaGrafico,text=mediaRet)
+                mediaRet.place(x=195,y=424, width=140, height=16)
+                mediaTrans=ttk.Label(ventanaGrafico,text=mediaTrans)
+                mediaTrans.place(x=195,y=445, width=140, height=16)
+                mediaPresta=ttk.Label(ventanaGrafico,text=mediaPresta)
+                mediaPresta.place(x=195,y=468, width=140, height=16)
+                #Mediana
+                medianaDep=(stats.median(ListaDep))
+                medianaRet=(stats.median(ListaRet))
+                medianaTrans=(stats.median(ListaTrans))
+                medianaPresta=(stats.median(ListaPresta))
+
+                medianaDepo=ttk.Label(ventanaGrafico,text=medianaDep)
+                medianaDepo.place(x=359,y=400, width=135, height=16)
+                medianaReti=ttk.Label(ventanaGrafico,text=medianaRet)
+                medianaReti.place(x=359,y=424, width=135, height=16)
+                medianaTransf=ttk.Label(ventanaGrafico,text=medianaTrans)
+                medianaTransf.place(x=359,y=445, width=135, height=16)
+                medianaPrestam=ttk.Label(ventanaGrafico,text=medianaPresta)
+                medianaPrestam.place(x=359,y=468, width=135, height=16)
+                #Moda
+                modaDep=(stats.mode(ListaDep))
+                modaRet=(stats.mode(ListaRet))
+                modaTrans=(stats.mode(ListaTrans))
+                modaPresta=(stats.mode(ListaPresta))
+
+                modaDepo=ttk.Label(ventanaGrafico,text= modaDep)
+                modaDepo.place(x=518,y=400, width=113, height=16)
+                modaReti=ttk.Label(ventanaGrafico,text= modaRet)
+                modaReti.place(x=518,y=424, width=113, height=16)
+                modaTransf=ttk.Label(ventanaGrafico,text= modaTrans)
+                modaTransf.place(x=518,y=445, width=113, height=16)
+                modaPrestam=ttk.Label(ventanaGrafico,text= modaPresta)
+                modaPrestam.place(x=518,y=468, width=113, height=16)
+                #desv estandar
+                DesvDep=(stats.mode(ListaDep))
+                DesvRet=(stats.mode(ListaRet))
+                DesvTrans=(stats.mode(ListaTrans))
+                DesvPresta=(stats.mode(ListaPresta))
+
+                DesDepo=ttk.Label(ventanaGrafico,text= DesvDep)
+                DesDepo.place(x=654,y=400, width=240, height=16)
+                DesReti=ttk.Label(ventanaGrafico,text= DesvRet)
+                DesReti.place(x=654,y=424, width=240, height=16)
+                DesTransf=ttk.Label(ventanaGrafico,text= DesvTrans)
+                DesTransf.place(x=654,y=445, width=240, height=16)
+                DesPrestam=ttk.Label(ventanaGrafico,text= DesvPresta)
+                DesPrestam.place(x=654,y=468, width=240, height=16)
+            #-------------LISTO-----------------
+            elif(cont1>=1 and cont2>=1 and cont3>=0 and cont4>=0):
+                #Media
+                mediaDep=int(contadorDep/cont1)
+                mediaRet=int(contadorRet/cont2)
+
+                #             label media
+                mediaDep=ttk.Label(ventanaGrafico,text=mediaDep)
+                mediaDep.place(x=195,y=400, width=140, height=16)
+                mediaRet=ttk.Label(ventanaGrafico,text=mediaRet)
+                mediaRet.place(x=195,y=424, width=140, height=16)
+
+                #Mediana
+                medianaDep=(stats.median(ListaDep))
+                medianaRet=(stats.median(ListaRet))
+
+
+                medianaDepo=ttk.Label(ventanaGrafico,text=medianaDep)
+                medianaDepo.place(x=359,y=400, width=135, height=16)
+                medianaReti=ttk.Label(ventanaGrafico,text=medianaRet)
+                medianaReti.place(x=359,y=424, width=135, height=16)
+
+                #Moda
+                modaDep=(stats.mode(ListaDep))
+                modaRet=(stats.mode(ListaRet))
+
+
+                modaDepo=ttk.Label(ventanaGrafico,text= modaDep)
+                modaDepo.place(x=518,y=400, width=113, height=16)
+                modaReti=ttk.Label(ventanaGrafico,text= modaRet)
+                modaReti.place(x=518,y=424, width=113, height=16)
+
+                #desv estandar
+                DesvDep=(stats.mode(ListaDep))
+                DesvRet=(stats.mode(ListaRet))
+
+                DesDepo=ttk.Label(ventanaGrafico,text= DesvDep)
+                DesDepo.place(x=654,y=400, width=240, height=16)
+                DesReti=ttk.Label(ventanaGrafico,text= DesvRet)
+                DesReti.place(x=654,y=424, width=240, height=16)
+
+            #-------------LISTO-----------------
+            elif(cont1==0 and cont2>=1 and cont3>=1 and cont4>=1):
+                #Media
+                mediaRet=int(contadorRet/cont2)
+                mediaTrans=int(contadorTrans/cont3)
+                mediaPresta=int(contadorPresta/cont4)
+                
+                mediaRet=ttk.Label(ventanaGrafico,text=mediaRet)
+                mediaRet.place(x=195,y=424, width=140, height=16)
+                mediaTrans=ttk.Label(ventanaGrafico,text=mediaTrans)
+                mediaTrans.place(x=195,y=445, width=140, height=16)
+                mediaPresta=ttk.Label(ventanaGrafico,text=mediaPresta)
+                mediaPresta.place(x=195,y=468, width=140, height=16)
+                #Mediana
+                medianaRet=(stats.median(ListaRet))
+                medianaTrans=(stats.median(ListaTrans))
+                medianaPresta=(stats.median(ListaPresta))
+
+                medianaReti=ttk.Label(ventanaGrafico,text=medianaRet)
+                medianaReti.place(x=359,y=424, width=135, height=16)
+                medianaTransf=ttk.Label(ventanaGrafico,text=medianaTrans)
+                medianaTransf.place(x=359,y=445, width=135, height=16)
+                medianaPrestam=ttk.Label(ventanaGrafico,text=medianaPresta)
+                medianaPrestam.place(x=359,y=468, width=135, height=16)
+                #Moda
+                modaRet=(stats.mode(ListaRet))
+                modaTrans=(stats.mode(ListaTrans))
+                modaPresta=(stats.mode(ListaPresta))
+
+                modaReti=ttk.Label(ventanaGrafico,text= modaRet)
+                modaReti.place(x=518,y=424, width=113, height=16)
+                modaTransf=ttk.Label(ventanaGrafico,text= modaTrans)
+                modaTransf.place(x=518,y=445, width=113, height=16)
+                modaPrestam=ttk.Label(ventanaGrafico,text= modaPresta)
+                modaPrestam.place(x=518,y=468, width=113, height=16)
+                #Desv. Estandar
+                DesvRet=(stats.mode(ListaRet))
+                DesvTrans=(stats.mode(ListaTrans))
+                DesvPresta=(stats.mode(ListaPresta))
+
+                DesReti=ttk.Label(ventanaGrafico,text= DesvRet)
+                DesReti.place(x=654,y=424, width=240, height=16)
+                DesTransf=ttk.Label(ventanaGrafico,text= DesvTrans)
+                DesTransf.place(x=654,y=445, width=240, height=16)
+                DesPrestam=ttk.Label(ventanaGrafico,text= DesvPresta)
+                DesPrestam.place(x=654,y=468, width=240, height=16)
+
+                #listo 
+
+            elif(cont1>=1 and cont2==0 and cont3>=1 and cont4>=1):
+                #Media
+                mediaDep=int(contadorDep/cont1)
+                mediaTrans=int(contadorTrans/cont3)
+                mediaPresta=int(contadorPresta/cont4)
+
+                mediaDep=ttk.Label(ventanaGrafico,text=mediaDep)
+                mediaDep.place(x=195,y=400, width=140, height=16)
+                mediaTrans=ttk.Label(ventanaGrafico,text=mediaTrans)
+                mediaTrans.place(x=195,y=445, width=140, height=16)
+                mediaPresta=ttk.Label(ventanaGrafico,text=mediaPresta)
+                mediaPresta.place(x=195,y=468, width=140, height=16)
+
+                #Mediana
+                medianaDep=(stats.median(ListaDep))
+                medianaTrans=(stats.median(ListaTrans))
+                medianaPresta=(stats.median(ListaPresta))
+
+                medianaDepo=ttk.Label(ventanaGrafico,text=medianaDep)
+                medianaDepo.place(x=359,y=400, width=135, height=16)
+                medianaTransf=ttk.Label(ventanaGrafico,text=medianaTrans)
+                medianaTransf.place(x=359,y=445, width=135, height=16)
+                medianaPrestam=ttk.Label(ventanaGrafico,text=medianaPresta)
+                medianaPrestam.place(x=359,y=468, width=135, height=16)
+                #Moda
+                modaDep=(stats.mode(ListaDep))
+                modaTrans=(stats.mode(ListaTrans))
+                modaPresta=(stats.mode(ListaPresta))
+
+                modaDepo=ttk.Label(ventanaGrafico,text= modaDep)
+                modaDepo.place(x=518,y=400, width=113, height=16)
+                modaTransf=ttk.Label(ventanaGrafico,text= modaTrans)
+                modaTransf.place(x=518,y=445, width=113, height=16)
+                modaPrestam=ttk.Label(ventanaGrafico,text= modaPresta)
+                modaPrestam.place(x=518,y=468, width=113, height=16)
+                #Desv. Estandar
+                DesvDep=(stats.mode(ListaDep))
+                DesvTrans=(stats.mode(ListaTrans))
+                DesvPresta=(stats.mode(ListaPresta))
+
+                DesDepo=ttk.Label(ventanaGrafico,text= DesvDep)
+                DesDepo.place(x=654,y=400, width=240, height=16)
+                DesTransf=ttk.Label(ventanaGrafico,text= DesvTrans)
+                DesTransf.place(x=654,y=445, width=240, height=16)
+                DesPrestam=ttk.Label(ventanaGrafico,text= DesvPresta)
+                DesPrestam.place(x=654,y=468, width=240, height=16)
+
+                #listo
+
+            elif(cont1>=1 and cont2>=1 and cont3==0 and cont4>=1):
+                mediaDep=int(contadorDep/cont1)
+                mediaRet=int(contadorRet/cont2)
+                mediaPresta=int(contadorPresta/cont4)
+
+                mediaDep=ttk.Label(ventanaGrafico,text=mediaDep)
+                mediaDep.place(x=195,y=400, width=140, height=16)
+                mediaRet=ttk.Label(ventanaGrafico,text=mediaRet)
+                mediaRet.place(x=195,y=424, width=140, height=16)
+                mediaPresta=ttk.Label(ventanaGrafico,text=mediaPresta)
+                mediaPresta.place(x=195,y=468, width=140, height=16)
+                #Mediana
+                medianaDep=(stats.median(ListaDep))
+                medianaRet=(stats.median(ListaRet))
+                medianaPresta=(stats.median(ListaPresta))
+
+                medianaDepo=ttk.Label(ventanaGrafico,text=medianaDep)
+                medianaDepo.place(x=359,y=400, width=135, height=16)
+                medianaReti=ttk.Label(ventanaGrafico,text=medianaRet)
+                medianaReti.place(x=359,y=424, width=135, height=16)
+                medianaPrestam=ttk.Label(ventanaGrafico,text=medianaPresta)
+                medianaPrestam.place(x=359,y=468, width=135, height=16)
+                #Labels Moda
+                modaDep=(stats.mode(ListaDep))
+                modaRet=(stats.mode(ListaRet))
+                modaPresta=(stats.mode(ListaPresta))
+
+                modaDepo=ttk.Label(ventanaGrafico,text= modaDep)
+                modaDepo.place(x=518,y=400, width=113, height=16)
+                modaReti=ttk.Label(ventanaGrafico,text= modaRet)
+                modaReti.place(x=518,y=424, width=113, height=16)
+                modaPrestam=ttk.Label(ventanaGrafico,text= modaPresta)
+                modaPrestam.place(x=518,y=468, width=113, height=16)
+                #desv estandar
+                DesvDep=(stats.mode(ListaDep))
+                DesvRet=(stats.mode(ListaRet))
+                DesvPresta=(stats.mode(ListaPresta))
+
+                DesDepo=ttk.Label(ventanaGrafico,text= DesvDep)
+                DesDepo.place(x=654,y=400, width=240, height=16)
+                DesReti=ttk.Label(ventanaGrafico,text= DesvRet)
+                DesReti.place(x=654,y=424, width=240, height=16)
+                DesPrestam=ttk.Label(ventanaGrafico,text= DesvPresta)
+                DesPrestam.place(x=654,y=468, width=240, height=16)
+                #listo
+                
+            elif(cont1>=1 and cont2>=1 and cont3>=1 and cont4==0):
+                mediaDep=int(contadorDep/cont1)
+                mediaRet=int(contadorRet/cont2)
+                mediaTrans=int(contadorTrans/cont3)
+
+                mediaDep=ttk.Label(ventanaGrafico,text=mediaDep)
+                mediaDep.place(x=195,y=400, width=140, height=16)
+                mediaRet=ttk.Label(ventanaGrafico,text=mediaRet)
+                mediaRet.place(x=195,y=424, width=140, height=16)
+                mediaTrans=ttk.Label(ventanaGrafico,text=mediaTrans)
+                mediaTrans.place(x=195,y=445, width=140, height=16)
+                #Mediana
+                medianaDep=(stats.median(ListaDep))
+                medianaRet=(stats.median(ListaRet))
+                medianaTrans=(stats.median(ListaTrans))
+
+                medianaDepo=ttk.Label(ventanaGrafico,text=medianaDep)
+                medianaDepo.place(x=359,y=400, width=135, height=16)
+                medianaReti=ttk.Label(ventanaGrafico,text=medianaRet)
+                medianaReti.place(x=359,y=424, width=135, height=16)
+                medianaTransf=ttk.Label(ventanaGrafico,text=medianaTrans)
+                medianaTransf.place(x=359,y=445, width=135, height=16)
+                #Moda
+                modaDep=(stats.mode(ListaDep))
+                modaRet=(stats.mode(ListaRet))
+                modaTrans=(stats.mode(ListaTrans))
+
+                modaDepo=ttk.Label(ventanaGrafico,text= modaDep)
+                modaDepo.place(x=518,y=400, width=113, height=16)
+                modaReti=ttk.Label(ventanaGrafico,text= modaRet)
+                modaReti.place(x=518,y=424, width=113, height=16)
+                modaTransf=ttk.Label(ventanaGrafico,text= modaTrans)
+                modaTransf.place(x=518,y=445, width=113, height=16)
+                #desv estandar
+                DesvDep=(stats.mode(ListaDep))
+                DesvRet=(stats.mode(ListaRet))
+                DesvTrans=(stats.mode(ListaTrans))
+
+                DesDepo=ttk.Label(ventanaGrafico,text= DesvDep)
+                DesDepo.place(x=654,y=400, width=240, height=16)
+                DesReti=ttk.Label(ventanaGrafico,text= DesvRet)
+                DesReti.place(x=654,y=424, width=240, height=16)
+                DesTransf=ttk.Label(ventanaGrafico,text= DesvTrans)
+                DesTransf.place(x=654,y=445, width=240, height=16)
+                #listo
+            elif(cont1>=1 and cont2==0 and cont3==0 and cont4==0):
+                mediaDep=int(contadorDep/cont1)
+                mediaDep=ttk.Label(ventanaGrafico,text=mediaDep)
+                mediaDep.place(x=195,y=400, width=140, height=16)
+                #Mediana
+                medianaDep=(stats.median(ListaDep))
+                medianaDepo=ttk.Label(ventanaGrafico,text=medianaDep)
+                medianaDepo.place(x=359,y=400, width=135, height=16)
+                #Moda
+                modaDep=(stats.mode(ListaDep))
+                modaDepo=ttk.Label(ventanaGrafico,text= modaDep)
+                modaDepo.place(x=518,y=400, width=113, height=16)
+                #desv estandar
+                DesvDep=(stats.mode(ListaDep))
+                DesDepo=ttk.Label(ventanaGrafico,text= DesvDep)
+                DesDepo.place(x=654,y=400, width=240, height=16)
+
+                
+            elif(cont1==0 and cont2>=1 and cont3==0 and cont4==0):
+                mediaRet=int(contadorRet/cont2)
+                mediaRet=ttk.Label(ventanaGrafico,text=mediaRet)
+                mediaRet.place(x=195,y=424, width=140, height=16)
+                #Mediana
+                medianaRet=(stats.median(ListaRet))
+                medianaReti=ttk.Label(ventanaGrafico,text=medianaRet)
+                medianaReti.place(x=359,y=424, width=135, height=16)
+                #Moda
+                modaRet=(stats.mode(ListaRet))
+                modaReti=ttk.Label(ventanaGrafico,text= modaRet)
+                modaReti.place(x=518,y=424, width=113, height=16)
+                #desv estandar
+                DesvRet=(stats.mode(ListaRet))
+                DesReti=ttk.Label(ventanaGrafico,text= DesvRet)
+                DesReti.place(x=654,y=424, width=240, height=16)
+            elif(cont1==0 and cont2==0 and cont3>=1 and cont4==0):
+                mediaTrans=int(contadorTrans/cont3)
+                mediaTrans=ttk.Label(ventanaGrafico,text=mediaTrans)
+                mediaTrans.place(x=195,y=445, width=140, height=16)
+                #Mediana
+                medianaTrans=(stats.median(ListaTrans))
+                medianaTransf=ttk.Label(ventanaGrafico,text=medianaTrans)
+                medianaTransf.place(x=359,y=445, width=135, height=16)
+                #Moda
+                modaTrans=(stats.mode(ListaTrans))
+                modaTransf=ttk.Label(ventanaGrafico,text= modaTrans)
+                modaTransf.place(x=518,y=445, width=113, height=16)
+                #Desv estandar
+                DesvTrans=(stats.mode(ListaTrans))
+                DesTransf=ttk.Label(ventanaGrafico,text= DesvTrans)
+                DesTransf.place(x=654,y=445, width=240, height=16)
+
+            elif(cont1==0 and cont2==0 and cont3==0 and cont4>=1):
+                mediaPresta=int(contadorPresta/cont4)
+                mediaPresta=ttk.Label(ventanaGrafico,text=mediaPresta)
+                mediaPresta.place(x=195,y=468, width=140, height=16)
+                #Mediana
+                medianaPresta=(stats.median(ListaPresta))
+                medianaPrestam=ttk.Label(ventanaGrafico,text=medianaPresta)
+                medianaPrestam.place(x=359,y=468, width=135, height=16)
+                #Moda
+                modaPresta=(stats.mode(ListaPresta))
+                modaPrestam=ttk.Label(ventanaGrafico,text= modaPresta)
+                modaPrestam.place(x=518,y=468, width=113, height=16)
+                #desv estandar
+                DesvPresta=(stats.mode(ListaPresta))
+                DesPrestam=ttk.Label(ventanaGrafico,text= DesvPresta)
+                DesPrestam.place(x=654,y=468, width=240, height=16)
+                
             contadorfinal3=0
             contadorfinal4=0
             media=0
