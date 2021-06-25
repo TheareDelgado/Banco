@@ -11,11 +11,14 @@ root.title("Menú Jerárquico Banco")
 root.geometry("450x400")
 root.resizable(width=False, height=False)
 
+imagenBanco = Image.open("./banco.png")
+imagenBanco =imagenBanco.resize((24,27),Image.ANTIALIAS)
+imagenBanco = ImageTk.PhotoImage(imagenBanco)
 
 
 #crea treeview
 arbol = ttk.Treeview(root)
-arbol.heading("#0", text="Banco", anchor="nw")
+arbol.heading("#0", text="Banco", anchor="nw", image=imagenBanco)
 
 #opciones                       
 arbol.insert("", END, text="Operaciones", iid=0, open=False)
@@ -145,9 +148,9 @@ arbol.move(41,1,14)
 arbol.move(42,1,15)
 
 #sub-opciones funcionarios
-arbol.insert("", END, text="Funcionario 1", iid=11, open=False, values=("Nombre ","Apellido ", "1-1"), image=imagenFuncionario)
-arbol.insert("", END, text="Funcionario 2", iid=12, open=False, values=("Nombre ","Apellido ", "2-2"), image=imagenFuncionario)
-arbol.insert("", END, text="Funcionario 3", iid=13, open=False, values=("Nombre ","Apellido ", "3-3"), image=imagenFuncionario)
+arbol.insert("", END, text="Funcionario 1", iid=11, open=False, values=("Cesar ","Mora ", "20377093-6"), image=imagenFuncionario)
+arbol.insert("", END, text="Funcionario 2", iid=12, open=False, values=("Theare ","Delgado ", "20225477-2"), image=imagenFuncionario)
+arbol.insert("", END, text="Funcionario 3", iid=13, open=False, values=("Diego ","Gonzalez ", "20297405-8"), image=imagenFuncionario)
 
 arbol.move(11,2,0)  
 arbol.move(12,2,1)
@@ -214,9 +217,9 @@ def itemSeleccionado(event):
         if iid=="11":
             messagebox.showinfo("Datos Funcionario 1", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2]))
         if iid=="12":
-            messagebox.showinfo("Datos Funcionario 1", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2]))
+            messagebox.showinfo("Datos Funcionario 2", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2]))
         if iid=="13":
-            messagebox.showinfo("Datos Funcionario 1", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2]))
+            messagebox.showinfo("Datos Funcionario 3", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2]))
         
         #IF Para los CLIENTES
         if iid=="7":
