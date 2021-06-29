@@ -101,10 +101,10 @@ arbol.move(26,5,3)
 
 #sub opciones prestamo
                                                                     #NOMBRE  MONTO CUOTAS
-arbol.insert("", END, text="Cliente n°1", iid=27, open=False, values=("Alan Cortes","$1.000.000","12"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°2", iid=28, open=False, values=("Daniela Muñoz","$500.000","6"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°3", iid=29, open=False, values=("Felipe Ortiz","$300.000","3"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°4", iid=30, open=False, values=("Bryan Carrasco","$700.000","9"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°1", iid=27, open=False, values=(" Alan Cortes"," $1.000.000"," 12"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°2", iid=28, open=False, values=(" Daniela Muñoz"," $500.000"," 6"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°3", iid=29, open=False, values=(" Felipe Ortiz"," $300.000"," 3"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°4", iid=30, open=False, values=(" Bryan Carrasco"," $700.000"," 9"), image=imagenCliente)
 
 arbol.move(27,6,0)
 arbol.move(28,6,1)
@@ -172,88 +172,88 @@ def itemSeleccionado(event):
         
         #IF para los Clientes de DEPOSITAR
         if iid=="15":
-             messagebox.showinfo("Datos Deposito n°1", "Nombre:"+valor[0]+"     Rut:"+str(valor[1])+"     Monto:"+str(valor[2]))
+             messagebox.showinfo("Datos Deposito n°1", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
         if iid=="16":
-             messagebox.showinfo("Datos Deposito n°2", "Nombre:"+valor[0]+"     Rut:"+str(valor[1])+"     Monto:"+str(valor[2]))
+             messagebox.showinfo("Datos Deposito n°2", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
         if iid=="17":
-             messagebox.showinfo("Datos Deposito n°3", "Nombre:"+valor[0]+"     Rut:"+str(valor[1])+"     Monto:"+str(valor[2]))
+             messagebox.showinfo("Datos Deposito n°3", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
         if iid=="18":
-             messagebox.showinfo("Datos Deposito n°4", "Nombre:"+valor[0]+"     Rut:"+str(valor[1])+"     Monto:"+str(valor[2]))
+             messagebox.showinfo("Datos Deposito n°4", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
 
         #IF para los Clientes de RETIRAR
         if iid=="19":
-             messagebox.showinfo("Datos Deposito n°1", "Nombre:"+valor[0]+"     Rut:"+str(valor[1])+"     Monto:"+str(valor[2]))
+             messagebox.showinfo("Datos Deposito n°1", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
         if iid=="20":
-             messagebox.showinfo("Datos Deposito n°2", "Nombre:"+valor[0]+"     Rut:"+str(valor[1])+"     Monto:"+str(valor[2]))
+             messagebox.showinfo("Datos Deposito n°2", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
         if iid=="21":
-             messagebox.showinfo("Datos Deposito n°3", "Nombre:"+valor[0]+"     Rut:"+str(valor[1])+"     Monto:"+str(valor[2]))
+             messagebox.showinfo("Datos Deposito n°3", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
         if iid=="22":
-             messagebox.showinfo("Datos Deposito n°4", "Nombre:"+valor[0]+"     Rut:"+str(valor[1])+"     Monto:"+str(valor[2]))
+             messagebox.showinfo("Datos Deposito n°4", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
 
         #IF para los Clientes de TRANSFERENCIA
         if iid=="23":
-             messagebox.showinfo("Datos Transferencia n°1", "Nombre:"+valor[0]+"    Rut:"+str(valor[1])+"     Monto:"+str(valor[2])+"-------->"+valor[3])
+             messagebox.showinfo("Datos Transferencia n°1", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2])+"--------> "+valor[3])
         if iid=="24":
-             messagebox.showinfo("Datos Transferencia n°2", "Nombre:"+valor[0]+"    Rut:"+str(valor[1])+"     Monto:"+str(valor[2])+"-------->"+valor[3])
+             messagebox.showinfo("Datos Transferencia n°2", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2])+"--------> "+valor[3])
         if iid=="25":
-             messagebox.showinfo("Datos Transferencia n°3", "Nombre:"+valor[0]+"    Rut:"+str(valor[1])+"     Monto:"+str(valor[2])+"-------->"+valor[3])
+             messagebox.showinfo("Datos Transferencia n°3", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2])+"--------> "+valor[3])
         if iid=="26":
-             messagebox.showinfo("Datos Transferencia n°4", "Nombre:"+valor[0]+"    Rut:"+str(valor[1])+"     Monto:"+str(valor[2])+"-------->"+valor[3])
+             messagebox.showinfo("Datos Transferencia n°4", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2])+"--------> "+valor[3])
 
         #IF para los Clientes de PRÉSTAMO
         if iid=="27":
-             messagebox.showinfo("Datos Préstamo n°1", "Nombre:"+valor[0]+"     Monto solicitado:"+str(valor[1])+"     N° Cuotas:"+str(valor[2]))
+             messagebox.showinfo("Datos Préstamo n°1", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
         if iid=="28":
-             messagebox.showinfo("Datos Préstamo n°2", "Nombre:"+valor[0]+"     Monto solicitado:"+str(valor[1])+"     N° Cuotas:"+str(valor[2]))
+             messagebox.showinfo("Datos Préstamo n°2", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
         if iid=="29":
-             messagebox.showinfo("Datos Préstamo n°3", "Nombre:"+valor[0]+"     Monto solicitado:"+str(valor[1])+"     N° Cuotas:"+str(valor[2]))
+             messagebox.showinfo("Datos Préstamo n°3", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
         if iid=="30":
-             messagebox.showinfo("Datos Préstamo n°4", "Nombre:"+valor[0]+"     Monto solicitado:"+str(valor[1])+"     N° Cuotas:"+str(valor[2]))
+             messagebox.showinfo("Datos Préstamo n°4", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
 
 
 
 
         #IF para los FUNCIONARIOS
         if iid=="11":
-            messagebox.showinfo("Datos Funcionario 1", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2]))
+            messagebox.showinfo("Datos Funcionario 1", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2]))
         if iid=="12":
-            messagebox.showinfo("Datos Funcionario 2", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2]))
+            messagebox.showinfo("Datos Funcionario 2", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2]))
         if iid=="13":
-            messagebox.showinfo("Datos Funcionario 3", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2]))
+            messagebox.showinfo("Datos Funcionario 3", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2]))
         
         #IF Para los CLIENTES
         if iid=="7":
-            messagebox.showinfo("Datos Cliente 1", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 1", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="8":
-            messagebox.showinfo("Datos Cliente 2", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 2", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="9":
-            messagebox.showinfo("Datos Cliente 3", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 3", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="10":
-            messagebox.showinfo("Datos Cliente 4", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 4", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="31":
-            messagebox.showinfo("Datos Cliente 5", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 5", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="32":
-            messagebox.showinfo("Datos Cliente 6", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 6", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="33":
-            messagebox.showinfo("Datos Cliente 7", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 7", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="34":
-            messagebox.showinfo("Datos Cliente 8", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 8", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="35":
-            messagebox.showinfo("Datos Cliente 9", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 9", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="36":
-            messagebox.showinfo("Datos Cliente 10", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 10", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="37":
-            messagebox.showinfo("Datos Cliente 11", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 11", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="38":
-            messagebox.showinfo("Datos Cliente 12", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 12", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="39":
-            messagebox.showinfo("Datos Cliente 13", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 13", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="40":
-            messagebox.showinfo("Datos Cliente 14", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 14", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="41":
-            messagebox.showinfo("Datos Cliente 15", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 15", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
         if iid=="42":
-            messagebox.showinfo("Datos Cliente 16", "Nombre:" +valor[0]+"  Apellido:"+valor[1]+"  Rut:"+str(valor[2])+"   Saldo:"+str(valor[3]))
+            messagebox.showinfo("Datos Cliente 16", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
 
 
 
