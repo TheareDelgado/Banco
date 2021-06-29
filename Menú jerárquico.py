@@ -65,10 +65,10 @@ arbol.move(6,0,3)
 
 #sub opciones depositar
                                                                     #NOMBRE     RUT  MONTO
-arbol.insert("", END, text="Cliente n°1", iid=15, open=False, values=("Nombre","1-1","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°2", iid=16, open=False, values=("Nombre","2-2","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°3", iid=17, open=False, values=("Nombre","3-3","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°4", iid=18, open=False, values=("Nombre","4-4","1"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°1", iid=15, open=False, values=("Nicolas Rubio","13.078.680-4","$120.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°2", iid=16, open=False, values=("Martin Galvez","11.027.247-2","$300.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°3", iid=17, open=False, values=("Eduardo Molina","26.680.492-K","$550.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°4", iid=18, open=False, values=("Susana Gomez","10.433.522-5","$1.000.000"), image=imagenCliente)
 
 arbol.move(15,3,0)
 arbol.move(16,3,1)
@@ -77,10 +77,10 @@ arbol.move(18,3,3)
 
 #sub opciones retirar
                                                                     #NOMBRE     RUT  MONTO
-arbol.insert("", END, text="Cliente n°1", iid=19, open=False, values=("Nombre","1-1","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°2", iid=20, open=False, values=("Nombre","2-2","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°3", iid=21, open=False, values=("Nombre","3-3","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°4", iid=22, open=False, values=("Nombre","4-4","1"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°1", iid=19, open=False, values=("Alejandro Perez","18.769.066-8","$700.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°2", iid=20, open=False, values=("Marcela Valenzuela","9.675.192-3","$950.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°3", iid=21, open=False, values=("Moises Cruz","13.005.382-3","$200.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°4", iid=22, open=False, values=("Angela Vera","18.351.461-K","$100.000"), image=imagenCliente)
 
 arbol.move(19,4,0)
 arbol.move(20,4,1)
@@ -89,10 +89,10 @@ arbol.move(22,4,3)
 
 #sub opciones transferir
                                                                  #DE: NOMBRE     RUT  MONTO----->NOMBRE
-arbol.insert("", END, text="Cliente n°1", iid=23, open=False, values=("Nombre 1","1-1","1","Nombre 2"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°2", iid=24, open=False, values=("Nombre 1","2-2","1","Nombre 2"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°3", iid=25, open=False, values=("Nombre 1","3-3","1","Nombre 2"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°4", iid=26, open=False, values=("Nombre 1","4-4","1","Nombre 2"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°1", iid=23, open=False, values=("Antonio Alvarez","21.480.890-0","$150.000","Angela Vera"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°2", iid=24, open=False, values=("Manuel Estrada","16.002.895-5","$250.000","Moises Cruz"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°3", iid=25, open=False, values=("Mauro Hernandez","18.329.054-1","$400.000","Martin Galvez"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°4", iid=26, open=False, values=("Leticia Mora","11.777.803-7","$550.000","Susana Gomez"), image=imagenCliente)
 
 arbol.move(23,5,0)
 arbol.move(24,5,1)
@@ -101,10 +101,10 @@ arbol.move(26,5,3)
 
 #sub opciones prestamo
                                                                     #NOMBRE  MONTO CUOTAS
-arbol.insert("", END, text="Cliente n°1", iid=27, open=False, values=("Nombre","1","12"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°2", iid=28, open=False, values=("Nombre","1","6"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°3", iid=29, open=False, values=("Nombre","1","3"), image=imagenCliente)
-arbol.insert("", END, text="Cliente n°4", iid=30, open=False, values=("Nombre","1","9"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°1", iid=27, open=False, values=("Alan Cortes","$1.000.000","12"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°2", iid=28, open=False, values=("Daniela Muñoz","$500.000","6"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°3", iid=29, open=False, values=("Felipe Ortiz","$300.000","3"), image=imagenCliente)
+arbol.insert("", END, text="Cliente n°4", iid=30, open=False, values=("Bryan Carrasco","$700.000","9"), image=imagenCliente)
 
 arbol.move(27,6,0)
 arbol.move(28,6,1)
@@ -113,22 +113,22 @@ arbol.move(30,6,3)
 
 
 #sub-opciones clientes
-arbol.insert("", END, text="Cliente 1", iid=7, open=False, values=("Nombre ","Apellido ", "1-1","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 2", iid=8, open=False, values=("Nombre ","Apellido ", "2-2","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 3", iid=9, open=False, values=("Nombre ","Apellido ", "3-3","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 4", iid=10, open=False, values=("Nombre ","Apellido ", "4-4","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 5", iid=31, open=False, values=("Nombre ","Apellido ", "5-5","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 6", iid=32, open=False, values=("Nombre ","Apellido ", "6-6","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 7", iid=33, open=False, values=("Nombre ","Apellido ", "7-7","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 8", iid=34, open=False, values=("Nombre ","Apellido ", "8-8","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 9", iid=35, open=False, values=("Nombre ","Apellido ", "9-9","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 10", iid=36, open=False, values=("Nombre ","Apellido ", "10-1","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 11", iid=37, open=False, values=("Nombre ","Apellido ", "11-1","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 12", iid=38, open=False, values=("Nombre ","Apellido ", "12-2","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 13", iid=39, open=False, values=("Nombre ","Apellido ", "13-3","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 14", iid=40, open=False, values=("Nombre ","Apellido ", "14-4","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 15", iid=41, open=False, values=("Nombre ","Apellido ", "15-5","1"), image=imagenCliente)
-arbol.insert("", END, text="Cliente 16", iid=42, open=False, values=("Nombre ","Apellido ", "16-6","1"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 1", iid=7, open=False, values=("Nicolas", "Rubio","13.078.680-4","$80.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 2", iid=8, open=False, values=("Martin", "Galvez","11.027.247-2","$150.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 3", iid=9, open=False, values=("Eduardo", "Molina","26.680.492-K","$340.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 4", iid=10, open=False, values=("Susana", "Gomez","10.433.522-5","$200.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 5", iid=31, open=False, values=("Alejandro", "Perez","18.769.066-8","$1.000.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 6", iid=32, open=False, values=("Marcela", "Valenzuela","9.675.192-3","$1.250.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 7", iid=33, open=False, values=("Moises", "Cruz","13.005.382-3","$500.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 8", iid=34, open=False, values=("Angela", "Vera","18.351.461-K","$230.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 9", iid=35, open=False, values=("Antonio", "Alvarez","21.480.890-0","$750.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 10", iid=36, open=False, values=("Manuel", "Estrada","16.002.895-5","$400.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 11", iid=37, open=False, values=("Mauro", "Hernandez","18.329.054-1","$800.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 12", iid=38, open=False, values=("Leticia", "Mora","11.777.803-7","$980.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 13", iid=39, open=False, values=("Alan", "Cortes","15.376.718-1","$320.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 14", iid=40, open=False, values=("Daniela", "Muñoz","21.705.714-0","$175.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 15", iid=41, open=False, values=("Felipe", "Ortiz","24.163.364-0","$250.000"), image=imagenCliente)
+arbol.insert("", END, text="Cliente 16", iid=42, open=False, values=("Bryan", "Carrasco","19.834.112-6","$435.000"), image=imagenCliente)
 
 arbol.move(7,1,0)  
 arbol.move(8,1,1)
