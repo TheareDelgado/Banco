@@ -156,6 +156,27 @@ arbol.move(11,2,0)
 arbol.move(12,2,1)
 arbol.move(13,2,2)
 
+
+#DASHBOARD
+imagenOpReal = Image.open("./pie-chart.png")
+imagenOpReal =imagenOpReal.resize((18,21),Image.ANTIALIAS)
+imagenOpReal = ImageTk.PhotoImage(imagenOpReal)
+
+imagenDinero = Image.open("./profits.png")
+imagenDinero =imagenDinero.resize((18,21),Image.ANTIALIAS)
+imagenDinero = ImageTk.PhotoImage(imagenDinero)
+
+arbol.insert("", END, text="Dashboard", iid=43, open=False)
+
+#sub-opciones dashboard
+
+
+arbol.insert("", END, text="Operaciones realizadas", iid=44, open=False, image=imagenOpReal)
+arbol.insert("", END, text="Dinero trabajado", iid=45, open=False, image=imagenDinero)
+
+arbol.move(44,43,0)
+arbol.move(45,43,1)
+
 #posición
 arbol.place(x=0,y=0)
 
