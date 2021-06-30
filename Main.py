@@ -29,55 +29,68 @@ p1=Persona()
 p2=Persona()
 p3=Persona()
 p4=Persona()
+p5=Persona()
+p6=Persona()
 
 #creando funcionarios
 
-p5=Funcionario()
-p6=Funcionario()
 p7=Funcionario()
 p8=Funcionario()
+p9=Funcionario()
+p10=Funcionario()
 
 #falta administrar las claves de cada usuario
-p1.setNombre("Cesar")
-p1.setApellido("Mora")
-p1.setRut("203770936")
-p1.setSaldo(300000)
+p1.setNombre("Julio")
+p1.setApellido("Martinez")
+p1.setRut("129721146")
+p1.setSaldo(350000)
 p1.setClave("3535")
 
-p2.setNombre("Felipe")
-p2.setApellido("Vera")
-p2.setRut("202175936")
-p2.setSaldo(600000)
+p2.setNombre("Ulises")
+p2.setApellido("Reyes")
+p2.setRut("203698335")
+p2.setSaldo(125000)
 p2.setClave("0213")
 
-p3.setNombre("Diego")
-p3.setApellido("Gonzalez")
-p3.setRut("202974058")
-p3.setSaldo(10000000)
+p3.setNombre("Sebastian")
+p3.setApellido("Campos")
+p3.setRut("117446123")
+p3.setSaldo(75000)
 p3.setClave("1010")
 
-p4.setNombre("Theare")
-p4.setApellido("Delgado")
-p4.setRut("202254772")
-p4.setSaldo(500000)
+p4.setNombre("Mario")
+p4.setApellido("Rojas")
+p4.setRut("308425169")
+p4.setSaldo(190000)
 p4.setClave("2020")
 
+p5.setNombre("Alexis")
+p5.setApellido("Sanchez")
+p5.setRut("321012590")
+p5.setSaldo(245000)
+p5.setClave("2020")
+
+p6.setNombre("Humberto")
+p6.setApellido("Suazo")
+p6.setRut("252312285")
+p6.setSaldo(120000)
+p6.setClave("2020")
 ###################################
-p5.setnombrefuncionario("Albo")
-p5.setapellidofuncionario("Fix")
-p5.setrutfuncionario("203770456")
+p7.setnombrefuncionario("Albo")
+p7.setapellidofuncionario("Fix")
+p7.setrutfuncionario("203770456")
 
-p6.setnombrefuncionario("Cesar")
-p6.setapellidofuncionario("Perez")
-p6.setrutfuncionario("203770325")
+p8.setnombrefuncionario("Cesar")
+p8.setapellidofuncionario("Perez")
+p8.setrutfuncionario("203770325")
 
-p7.setnombrefuncionario("There")
-p7.setapellidofuncionario("Smith")
-p7.setrutfuncionario("203754623")
+p9.setnombrefuncionario("There")
+p9.setapellidofuncionario("Smith")
+p9.setrutfuncionario("203754623")
 
-p8.setnombrefuncionario("Felipino")
-p8.setapellidofuncionario("Ortiz")
-p8.setrutfuncionario("202172345")
+p10.setnombrefuncionario("Felipino")
+p10.setapellidofuncionario("Ortiz")
+p10.setrutfuncionario("202172345")
 
 
 
@@ -88,10 +101,12 @@ listadoPersonas.agregarPersonas(p1)
 listadoPersonas.agregarPersonas(p2)
 listadoPersonas.agregarPersonas(p3)
 listadoPersonas.agregarPersonas(p4)
-listadoPersonas.agregarFuncionarios(p5)
-listadoPersonas.agregarFuncionarios(p6)
+listadoPersonas.agregarPersonas(p5)
+listadoPersonas.agregarPersonas(p6)
 listadoPersonas.agregarFuncionarios(p7)
 listadoPersonas.agregarFuncionarios(p8)
+listadoPersonas.agregarFuncionarios(p9)
+listadoPersonas.agregarFuncionarios(p10)
 
 operaciones=["Sin Operacion","Depositar","Retirar","Transferir","Prestamo"]
 
@@ -116,6 +131,18 @@ Dep=0
 Ret=0
 Trans=0
 Presta=0
+y1=52
+ñ=4
+ñ1=5
+r=56
+r1=4
+r2=5
+t=60
+t1=4
+t2=5
+p=64
+p1=4
+p2=5
 #LLAMANDO A CLASES
 
 #DATOS PRESTAMO
@@ -165,13 +192,7 @@ root.update()
 
 
 
-def abrirDepositar():
-    if(ingresaRutCliente.get()!="203770936" and ingresaRutCliente.get()!="202254772" and ingresaRutCliente.get()!="202175936" and ingresaRutCliente.get()!="202974058"):
-        messagebox.showerror("Error", "Ingrese un RUT válido antes de realizar una operación")
-    
-    elif(ingresaRutCliente.get()=="203770936" or ingresaRutCliente.get()=="202254772" or ingresaRutCliente.get()=="202175936" or ingresaRutCliente.get()=="202974058"):
-        global cont1,ListaDep,ListaTo,C
-        messagebox.showinfo(message="Usted es el n°"+str(cont1+1)+" en la cola", title="Depositar")  
+def abrirDepositar(): 
         ventanaDepositar=Toplevel(root)
         ventanaDepositar.title("Depositar")
         ventanaDepositar.geometry("600x400")
@@ -229,12 +250,6 @@ def abrirDepositar():
 
 
 def abrirRetirar():
-    if(ingresaRutCliente.get()!="203770936" and ingresaRutCliente.get()!="202254772" and ingresaRutCliente.get()!="202175936" and ingresaRutCliente.get()!="202974058"):
-        messagebox.showerror("Error", "Ingrese un RUT válido antes de realizar una operación")
-    
-    elif(ingresaRutCliente.get()=="203770936" or ingresaRutCliente.get()=="202254772" or ingresaRutCliente.get()=="202175936" or ingresaRutCliente.get()=="202974058"):
-        global cont2,ListaRet,ListaTo,C
-        messagebox.showinfo(message="Usted es el n°"+str(cont2+1)+" en la cola", title="Retirar")
         ventanaRetirar=Toplevel(root)
         ventanaRetirar.title("Retirar")
         ventanaRetirar.geometry("600x400")
@@ -288,13 +303,7 @@ def abrirRetirar():
         ventanaRetirar.mainloop()
 
 
-def abrirTransferir():
-    if(ingresaRutCliente.get()!="203770936" and ingresaRutCliente.get()!="202254772" and ingresaRutCliente.get()!="202175936" and ingresaRutCliente.get()!="202974058"):
-        messagebox.showerror("Error", "Ingrese un RUT válido antes de realizar una operación")
-
-    elif(ingresaRutCliente.get()=="203770936" or ingresaRutCliente.get()=="202254772" or ingresaRutCliente.get()=="202175936" or ingresaRutCliente.get()=="202974058"):
-        global cont3,ListaTrans,ListaTo,C
-        messagebox.showinfo(message="Usted es el n°"+str(cont3+1)+" en la cola", title="Transferir")  
+def abrirTransferir(): 
         ventanaTransferir=Toplevel(root)
         ventanaTransferir.title("Transferir")
         ventanaTransferir.geometry("600x400")
@@ -308,33 +317,8 @@ def abrirTransferir():
             for persona in listadoPersonas.getLista():
                 if (ingresaRutCliente.get()==persona.getRut()):
                     persona.setOperacion(operaciones[3])
-                    listadoPersonas.agregarTransferir(persona)
-                    listadoPersonas.agregarTabla(persona)
-                    Op.setClave(persona.getClave())
-                    Op.setSaldoop(persona.getSaldo())
-                    Op.setMontor(int(ingresaMontoTransferir.get()))
-                    if (Op.getMontor()<=Op.getSaldoop()):
-                        C1=Op.TransferirUsuario(rutv.get(), Op.getClave(), Op.getSaldoop(), Op.getMontor())
-                        C2=True
-                        Op.setEstado("Aceptado")
-                        persona.setSaldo(C1)
-                    else:
-                        C2=False
-                        Op.setEstado("Rechazado")   
-                    print(C1)
-            for persona in listadoPersonas.getLista():
-                if rutv.get()==persona.getRut() and C2==True:
-                    Op.setSaldoop(persona.getSaldo())
-                    Op.setMontor(int(ingresaMontoTransferir.get()))
-                    C1=Op.TransferirCliente(rutv.get(), Op.getSaldoop(), Op.getMontor())
-                    print(C1)
-                    persona.setSaldo(C1)
-                    C2=False
-                    A.append("Transferir")
-                    C.append(Op.getEstado())
-                else:
-                    A.append("Transferir")
-                    C.append(Op.getEstado())
+                    
+            
                     
             global cont3
             global Trans,ListaTrans,ListaTo
@@ -383,12 +367,6 @@ def abrirTransferir():
 
 
 def abrirPrestamo():
-    if(ingresaRutCliente.get()!="203770936" and ingresaRutCliente.get()!="202254772" and ingresaRutCliente.get()!="202175936" and ingresaRutCliente.get()!="202974058"):
-        messagebox.showerror("Error", "Ingrese un RUT válido antes de realizar una operación")
-    
-    elif(ingresaRutCliente.get()=="203770936" or ingresaRutCliente.get()=="202254772" or ingresaRutCliente.get()=="202175936" or ingresaRutCliente.get()=="202974058"):
-        global cont4,ListaPresta,ListaTo,C
-        messagebox.showinfo(message="Usted es el n°"+str(cont4+1)+" en la cola", title="Préstamo") 
         ventanaPrestamo=Toplevel(root)
         ventanaPrestamo.title("Préstamo")
         ventanaPrestamo.geometry("600x400")
@@ -418,7 +396,6 @@ def abrirPrestamo():
             ListaPresta.append(int(ingresaMontoPrestamo.get()))
             ListaTo.append(int(ingresaMontoPrestamo.get()))
             Presta=Presta+(int(ingresaMontoPrestamo.get()))
-            blancos()
             ingresaCuotaPrestamo.delete(0,"end")
             ingresaMontoPrestamo.delete(0,"end")
             ventanaPrestamo.destroy()
@@ -1302,7 +1279,7 @@ def abrirMostrarCola():
 
                              #DEF RANDOMS
 def blancos():
-    ingresaRutCliente.delete(0,"end")
+    #ingresaCuentaDeposito.delete(0,"end")
     ingresaApellidoCliente.destroy()
     ingresaNombreCliente.destroy()
     ingresaSaldoCliente.destroy()
