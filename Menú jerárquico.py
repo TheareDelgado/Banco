@@ -231,14 +231,12 @@ def abrirDepositar():
                         MontoFinal="$"+MontoDestino[0:3]+"."+MontoDestino[3:6]
                     if LargoMonto==7:
                         MontoFinal="$"+MontoDestino[0:1]+"."+MontoDestino[1:4]+"."+MontoDestino[4:7]
-                    #saldonuevo=persona.getSaldo()+
                     persona.setOperacion(operaciones[1])
                     listadoPersonas.agregarDeposito(persona)
                     listadoPersonas.agregarTabla(persona)
                     A.append("Depositar")
                     C.append(Op.getEstado())
-                    #arbol.insert("", END, text="Cliente n°"+ñ1, iid=y1, open=False, values=(NombreClienteNuevo,RutClienteNuevo,SaldoClienteNuevo), image=imagenCliente)
-                    #arbol.move(y1,3,ñ)
+                
 
             arbol.insert("", END, text="Cliente n°"+str(ñ1), iid=y1, open=False, values=(NombreClienteNuevo+" "+ApellidoClienteNuevo,rutFinal,MontoFinal), image=imagenCliente)
             arbol.move(y1,3,ñ)
@@ -446,7 +444,7 @@ def abrirPrestamo():
                     listadoPersonas.agregarPrestamo(persona)
                     listadoPersonas.agregarTabla(persona)
                     
-            arbol.insert("", END, text="Cliente n°"+str(p2), iid=p, open=False, values=(NombreClienteNuevo+" "+ApellidoClienteNuevo,rutFinal,MontoFinal+"-------->"+" "+NombreDestino+" "+ApellidoDestino), image=imagenCliente)
+            arbol.insert("", END, text="Cliente n°"+str(p2), iid=p, open=False, values=(NombreClienteNuevo+" "+ApellidoClienteNuevo,MontoFinal,nCuotas), image=imagenCliente)
             arbol.move(p,6,p1)
                     
             global cont4
@@ -464,21 +462,17 @@ def abrirPrestamo():
             ventanaPrestamo.destroy()
 
 
-        imagen = PhotoImage (file = "./ventanaPrestamo.png") 
+        imagen = PhotoImage (file = "./ventanaPrestamo2.png") 
         fondo=Label(ventanaPrestamo, image = imagen).place( x=0, y=0)
 
 
         ingresaMotivoPrestamo = ttk.Entry(ventanaPrestamo)
-        ingresaMotivoPrestamo.place_configure(x=416, y=201 , width=169, height=17)
+        ingresaMotivoPrestamo.place_configure(x=416, y=223 , width=169, height=17)
 
-        ingresaMontoPrestamo = ttk.Combobox(ventanaPrestamo,values=("150000","300000","600000"),textvariable=prestamosol)
-        ingresaMontoPrestamo.place_configure(x=416, y=227 , width=169, height=17)
-        for persona in listadoPersonas.getLista():
-            if (ingresaMotivoPrestamo.get()==persona.getRut()):
-                ingresaPresupuestoPrestamo = ttk.Label(ventanaPrestamo,text=persona.getSaldo())
-                ingresaPresupuestoPrestamo.place_configure(x=416, y=253 , width=169, height=17)
+        ingresaMontoPrestamo = ttk.Combobox(ventanaPrestamo,values=("$150.000","$300.000","$600.000"),textvariable=prestamosol)
+        ingresaMontoPrestamo.place_configure(x=416, y=249 , width=169, height=17)
         ingresaCuotaPrestamo = ttk.Combobox(ventanaPrestamo,values=("3","6","9"),textvariable=cantidadcuotas)
-        ingresaCuotaPrestamo.place_configure(x=417, y=282 , width=169, height=17)
+        ingresaCuotaPrestamo.place_configure(x=416, y=276 , width=169, height=17)
         
 
         imagenConfirmaCliente5 = Image.open("./confirmarPrestamo.png")
@@ -486,7 +480,6 @@ def abrirPrestamo():
         botonConfirmarCliente5 = ttk.Button(ventanaPrestamo, image= imagenConfirmaCliente5, command = enPrestamo)
         botonConfirmarCliente5.place( x=435, y=315)
         ventanaPrestamo.mainloop()
-
 def abrirGrafico():
         ventanaGrafico=Toplevel(root)
         ventanaGrafico.title("Análisis estadísticos")
@@ -538,7 +531,7 @@ def abrirGrafico():
                 label = ["Depositar", "Transferir", "Retirar", "Préstamo"]
                 plt.pie(operaciones, labels=label, autopct="%0.1f %%")
                 plt.show()
-             
+
             elif(cont4>=0 and cont1>=1 and cont2>=1 and cont3>=0):
                 fig, ax = plt.subplots()
                 ax.set_title('Cantidad de operaciones')
@@ -685,8 +678,18 @@ def abrirGrafico():
             contadorfinal=0
         def TotalDinero():
             global Dep,Ret,Trans,Presta,contadorfinal2
-            contadorfinal2=contadorfinal2+Dep+Ret+Trans+Presta    
-            Dinero=ttk.Label(ventanaGrafico,text=contadorfinal2)
+            contadorfinal2=contadorfinal2+Dep+Ret+Trans+Presta
+            
+            LargoContadorFinal=len(str(contadorfinal2))
+
+            if LargoContadorFinal==7:
+                contadorfinal5="$"+str(contadorfinal2)[0:1]+"."+str(contadorfinal2)[1:4]+"."+str(contadorfinal2)[4:7]              
+            if LargoContadorFinal==8:
+                contadorfinal5="$"+str(contadorfinal2)[0:2]+"."+str(contadorfinal2)[2:5]+"."+str(contadorfinal2)[5:8] 
+            if LargoContadorFinal==9:
+                contadorfinal5="$"+str(contadorfinal2)[0:3]+"."+str(contadorfinal2)[3:6]+"."+str(contadorfinal2)[6:9] 
+                  
+            Dinero=ttk.Label(ventanaGrafico,text=contadorfinal5)
             Dinero.place(x=282,y=220, width=99, height=15)
             contadorfinal2=0
         def CalculosMat():
@@ -707,7 +710,7 @@ def abrirGrafico():
             #mediaRet=int(contadorRet/cont2)
             #mediaTrans=int(contadorTrans/cont3)
             #mediaPresta=int(contadorPresta/cont4)
-            
+
             #Medianas
             #medianaDep=(stats.median(ListaDep))
             #medianaRet=(stats.median(ListaRet))
@@ -720,7 +723,7 @@ def abrirGrafico():
             #modaTrans=(stats.mode(ListaTrans))
             #modaPresta=(stats.mode(ListaPresta))
             #modaTo=(stats.mode(ListaTo))
-            
+
             #Desviacion estandar
             #DesvDep=(stats.mode(ListaDep))
             #DesvRet=(stats.mode(ListaRet))
@@ -834,7 +837,7 @@ def abrirGrafico():
                 mediaRet=int(contadorRet/cont2)
                 mediaTrans=int(contadorTrans/cont3)
                 mediaPresta=int(contadorPresta/cont4)
-                
+
                 mediaRet=ttk.Label(ventanaGrafico,text=mediaRet)
                 mediaRet.place(x=195,y=424, width=140, height=16)
                 mediaTrans=ttk.Label(ventanaGrafico,text=mediaTrans)
@@ -971,7 +974,7 @@ def abrirGrafico():
                 DesPrestam=ttk.Label(ventanaGrafico,text= DesvPresta)
                 DesPrestam.place(x=654,y=468, width=240, height=16)
                 #listo
-                
+
             elif(cont1>=1 and cont2>=1 and cont3>=1 and cont4==0):
                 mediaDep=int(contadorDep/cont1)
                 mediaRet=int(contadorRet/cont2)
@@ -1034,7 +1037,7 @@ def abrirGrafico():
                 DesDepo=ttk.Label(ventanaGrafico,text= DesvDep)
                 DesDepo.place(x=654,y=400, width=240, height=16)
 
-                
+
             elif(cont1==0 and cont2>=1 and cont3==0 and cont4==0):
                 mediaRet=int(contadorRet/cont2)
                 mediaRet=ttk.Label(ventanaGrafico,text=mediaRet)
@@ -1084,7 +1087,7 @@ def abrirGrafico():
                 DesvPresta=(stats.mode(ListaPresta))
                 DesPrestam=ttk.Label(ventanaGrafico,text= DesvPresta)
                 DesPrestam.place(x=654,y=468, width=240, height=16)
-                
+
             contadorfinal3=0
             contadorfinal4=0
             media=0
@@ -1124,7 +1127,6 @@ def abrirGrafico():
         botonMostrarCalculos = ttk.Button(ventanaGrafico,image=imgMostrarTodo, command = CalculosMat)
         botonMostrarCalculos.place( x=27, y=278)
         ventanaGrafico.mainloop()
-
 def itemSeleccionado(event):
     for selected_item in arbol.selection():
         item = arbol.item(selected_item)
@@ -1150,6 +1152,8 @@ def itemSeleccionado(event):
             abrirPrestamo()
         if iid=="49":
             abrirGrafico()
+        
+            
 
 
 
@@ -1215,10 +1219,15 @@ def itemSeleccionado(event):
              messagebox.showinfo("Datos Préstamo n°3", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
         if iid=="30":
              messagebox.showinfo("Datos Préstamo n°4", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
-        
-        #IF PARA DASHBOARD
-        if iid=="50":
-            abrirGrafico.MostrarGrafico()
+        if iid=="64":
+            messagebox.showinfo("Datos Préstamo n°5", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
+        if iid=="65":
+            messagebox.showinfo("Datos Préstamo n°6", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
+        if iid=="66":
+            messagebox.showinfo("Datos Préstamo n°8", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
+        if iid=="67":
+            messagebox.showinfo("Datos Préstamo n°9", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
+
 
 
         #IF para los FUNCIONARIOS
