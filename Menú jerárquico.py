@@ -10,6 +10,7 @@ import statistics as stats
 from numpy import mat
 import matplotlib.pyplot as plt
 
+
 NombreClienteNuevo=""
 RutClienteNuevo=""
 SaldoClienteNuevo=""
@@ -26,6 +27,10 @@ root = Tk()
 root.title("Menú Jerárquico Banco")
 root.geometry("450x400")
 root.resizable(width=False, height=False)
+img = PhotoImage (file = "./ventanaMenu.png") 
+fondoMenu=Label(root, image = img).place( x=0, y=0)
+
+
 
 imagenBanco = Image.open("./banco.png")
 imagenBanco =imagenBanco.resize((24,27),Image.ANTIALIAS)
@@ -204,7 +209,7 @@ arbol.insert("", END, text="Dashboard", iid=49, open=False)
 
 
 #posición
-arbol.place(x=0,y=0)
+arbol.place(x=30,y=65)
 def abrirDepositar(): 
         ventanaDepositar=Toplevel(root)
         ventanaDepositar.title("Depositar")
@@ -487,196 +492,113 @@ def abrirGrafico():
         ventanaGrafico.resizable(width=False, height=False)
 
 
-        imagen = PhotoImage (file = "./ventanaAnalisisE.png") 
+        imagen = PhotoImage (file = "./ventanaAnalisis2.png") 
         fondo=Label(ventanaGrafico, image = imagen).place( x=0, y=0)
 
         def MostrarGrafico():
             global cont1,cont2,cont3,cont4
+            global cont1,cont2,cont3,cont4,contadorfinal
+            contadorfinal=contadorfinal+cont1+cont2+cont3+cont4
+            Graficos=ttk.Label(ventanaGrafico,text=contadorfinal)
+            Graficos.place(x=87,y=278, width=136, height=15)
+            contadorfinal=0
             if(cont4==0 and cont1>=1 and cont2>=1 and cont3>=1):
-                fig, ax = plt.subplots()
-                ax.set_title('Cantidad de operaciones')
+                fig=plt.figure("Cantidad de operaciones realizadas")
+
+                plt.title("Gráfico de operaciones realizadas")
+                
                 operaciones = [cont1, cont2, cont3]
                 label = ["Depositar", "Retirar", "Transferir"]
                 plt.pie(operaciones, labels=label, autopct="%0.1f %%")
                 grafico=plt.show()
 
             elif(cont4>=1 and cont1==0 and cont2>=1 and cont3>=1):
-                fig, ax = plt.subplots()
-                ax.set_title('Cantidad de operaciones')
+                fig=plt.figure("Cantidad de operaciones realizadas")
+
+                plt.title("Gráfico de operaciones realizadas")
+
                 operaciones = [cont3, cont2, cont4]
                 label = ["Transferir", "Retirar", "Préstamo"]
                 plt.pie(operaciones, labels=label, autopct="%0.1f %%")
                 plt.show()
 
             elif(cont4>=1 and cont1>=1 and cont3>=1 and cont2==0):
-                fig, ax = plt.subplots()
-                ax.set_title('Cantidad de operaciones')
+                fig=plt.figure("Cantidad de operaciones realizadas")
+
+                plt.title("Gráfico de operaciones realizadas")
+                
                 operaciones = [cont1,cont3,cont4]
                 label = ["Depositar", "Transferir", "Préstamo"]
                 plt.pie(operaciones, labels=label, autopct="%0.1f %%", colors= colores)
                 plt.show()
 
             elif(cont4>=1 and cont1>=1 and cont2>=1 and cont3==0):
-                fig, ax = plt.subplots()
-                ax.set_title('Cantidad de operaciones')
+                fig=plt.figure("Cantidad de operaciones realizadas")
+
+                plt.title("Gráfico de operaciones realizadas")
+               
                 operaciones = [cont1, cont2, cont4]
                 label = ["Depositar", "Retirar", "Préstamo"]
                 plt.pie(operaciones, labels=label, autopct="%0.1f %%")
                 plt.show()
 
             elif(cont4>=1 and cont1>=1 and cont2>=1 and cont3>=1):
-                fig, ax = plt.subplots()
-                ax.set_title('Cantidad de operaciones')
+                fig=plt.figure("Cantidad de operaciones realizadas")
+
+                plt.title("Gráfico de operaciones realizadas")
+                
                 operaciones = [cont1, cont3, cont2, cont4]
                 label = ["Depositar", "Transferir", "Retirar", "Préstamo"]
                 plt.pie(operaciones, labels=label, autopct="%0.1f %%")
                 plt.show()
 
             elif(cont4>=0 and cont1>=1 and cont2>=1 and cont3>=0):
-                fig, ax = plt.subplots()
-                ax.set_title('Cantidad de operaciones')
+                fig=plt.figure("Cantidad de operaciones realizadas")
+
+                plt.title("Gráfico de operaciones realizadas")
+                
                 operaciones = [cont1, cont2, ]
                 label = ["Depositar", "Retirar"]
                 plt.pie(operaciones, labels=label, autopct="%0.1f %%")
                 plt.show()
 
             elif(cont4>=1 and cont1==0 and cont2==0 and cont3==0):
-                fig, ax = plt.subplots()
-                ax.set_title('Cantidad de operaciones')
+                fig=plt.figure("Cantidad de operaciones realizadas")
+
+                plt.title("Gráfico de operaciones realizadas")
+                
                 operaciones = [cont4]
                 label = ["Préstamo"]
                 plt.pie(operaciones, labels=label, autopct="%0.1f %%")
                 plt.show()
             elif(cont4==0 and cont1>=1 and cont2==0 and cont3==0):
-                fig, ax = plt.subplots()
-                ax.set_title('Cantidad de operaciones')
+                fig=plt.figure("Cantidad de operaciones realizadas")
+
+                plt.title("Gráfico de operaciones realizadas")
+                
                 operaciones = [cont1]
                 label = ["Depositar"]
                 plt.pie(operaciones, labels=label, autopct="%0.1f %%")
                 plt.show()
             elif(cont4==0 and cont1==0 and cont2>=1 and cont3==0):
-                fig, ax = plt.subplots()
-                ax.set_title('Cantidad de operaciones')
+                fig=plt.figure("Cantidad de operaciones realizadas")
+
+                plt.title("Gráfico de operaciones realizadas")
+      
                 operaciones = [cont2]
                 label = ["Retirar"]
                 plt.pie(operaciones, labels=label, autopct="%0.1f %%")
                 plt.show()
             elif(cont4==0 and cont1==0 and cont2==0 and cont3>=1):
-                fig, ax = plt.subplots()
-                ax.set_title('Cantidad de operaciones')
+                fig=plt.figure("Cantidad de operaciones realizadas")
+
+                plt.title("Gráfico de operaciones realizadas")
+
                 operaciones = [cont3]
                 label = ["Transferir"]
                 plt.pie(operaciones, labels=label, autopct="%0.1f %%")
                 plt.show()
         def MovimientoDinero():
-            global Dep,Ret,Trans,Presta
-            if(Presta==0 and Dep>=1 and Ret>=1 and Trans>=1):
-                fig, ax = plt.subplots()
-                #Colocamos una etiqueta en el eje Y
-                ax.set_ylabel('Dinero')
-                #Colocamos una etiqueta en el eje X
-                ax.set_title('Cantidad de dinero por operaciones')
-                operaciones = [Dep, Ret, Trans]
-                label = ["Depositar", "Retirar", "Transferir"]
-                plt.bar(label, operaciones)
-                plt.show()
-            elif(Presta==0 and Dep>=1 and Ret>=1 and Trans>=0):
-                fig, ax = plt.subplots()
-                #Colocamos una etiqueta en el eje Y
-                ax.set_ylabel('Dinero')
-                #Colocamos una etiqueta en el eje X
-                ax.set_title('Cantidad de dinero por operaciones')
-                operaciones = [Dep, Ret]
-                label = ["Depositar", "Retirar"]
-                plt.bar(label, operaciones)
-                plt.show()
-            elif(Presta>=1 and Dep==0 and Ret>=1 and Trans>=1):
-                fig, ax = plt.subplots()
-                #Colocamos una etiqueta en el eje Y
-                ax.set_ylabel('Dinero')
-                #Colocamos una etiqueta en el eje X
-                ax.set_title('Cantidad de dinero por operaciones')
-                operaciones = [Presta, Ret, Trans]
-                label = ["Prestamo", "Retirar", "Transferir"]
-                plt.bar(label, operaciones)
-                plt.show()
-            elif(Presta>=1 and Dep>=1 and Ret==0 and Trans>=1):
-                fig, ax = plt.subplots()
-                #Colocamos una etiqueta en el eje Y
-                ax.set_ylabel('Dinero')
-                #Colocamos una etiqueta en el eje X
-                ax.set_title('Cantidad de dinero por operaciones')
-                operaciones = [Presta,Dep, Trans]
-                label = ["Prestamo", "Depositar", "Transferir"]
-                plt.bar(label, operaciones)
-                plt.show()
-            elif(Presta>=1 and Dep>=1 and Ret>=1 and Trans==0):
-                fig, ax = plt.subplots()
-                #Colocamos una etiqueta en el eje Y
-                ax.set_ylabel('Dinero')
-                #Colocamos una etiqueta en el eje X
-                ax.set_title('Cantidad de dinero por operaciones')
-                operaciones = [Presta,Dep, Ret]
-                label = ["Prestamo", "Depositar", "Retirar"]
-                plt.bar(label, operaciones)
-                plt.show()
-            elif(Presta>=1 and Dep>=1 and Ret>=1 and Trans>=1):
-                fig, ax = plt.subplots()
-                #Colocamos una etiqueta en el eje Y
-                ax.set_ylabel('Dinero')
-                #Colocamos una etiqueta en el eje X
-                ax.set_title('Cantidad de dinero por operaciones')
-                operaciones = [Presta,Dep,Ret, Trans]
-                label = ["Prestamo", "Depositar","Retirar", "Transferir"]
-                plt.bar(label, operaciones)
-                plt.show()
-            elif(Presta>=1 and Dep==0 and Ret==0 and Trans==0):
-                fig, ax = plt.subplots()
-                #Colocamos una etiqueta en el eje Y
-                ax.set_ylabel('Dinero')
-                #Colocamos una etiqueta en el eje X
-                ax.set_title('Cantidad de dinero por operaciones')
-                operaciones = [Presta]
-                label = ["Prestamo"]
-                plt.bar(label, operaciones)
-                plt.show()
-            elif(Presta==0 and Dep>=1 and Ret==0 and Trans==0):
-                fig, ax = plt.subplots()
-                #Colocamos una etiqueta en el eje Y
-                ax.set_ylabel('Dinero')
-                #Colocamos una etiqueta en el eje X
-                ax.set_title('Cantidad de dinero por operaciones')
-                operaciones = [Dep]
-                label = ["Depositar"]
-                plt.bar(label, operaciones)
-                plt.show()
-            elif(Presta==0 and Dep==0 and Ret>=1 and Trans==0):
-                fig, ax = plt.subplots()
-                #Colocamos una etiqueta en el eje Y
-                ax.set_ylabel('Dinero')
-                #Colocamos una etiqueta en el eje X
-                ax.set_title('Cantidad de dinero por operaciones')
-                operaciones = [Ret]
-                label = ["Retirar"]
-                plt.bar(label, operaciones)
-                plt.show()
-            elif(Presta==0 and Dep==0 and Ret==0 and Trans>=1):
-                fig, ax = plt.subplots()
-                #Colocamos una etiqueta en el eje Y
-                ax.set_ylabel('Dinero')
-                #Colocamos una etiqueta en el eje X
-                ax.set_title('Cantidad de dinero por operaciones')
-                operaciones = [Trans]
-                label = ["Transferir"]
-                plt.bar(label, operaciones)
-                plt.show()
-        def TotalClientes():
-            global cont1,cont2,cont3,cont4,contadorfinal
-            contadorfinal=contadorfinal+cont1+cont2+cont3+cont4
-            Graficos=ttk.Label(ventanaGrafico,text=contadorfinal)
-            Graficos.place(x=282,y=130, width=99, height=15)
-            contadorfinal=0
-        def TotalDinero():
             global Dep,Ret,Trans,Presta,contadorfinal2
             contadorfinal2=contadorfinal2+Dep+Ret+Trans+Presta
             
@@ -690,8 +612,131 @@ def abrirGrafico():
                 contadorfinal5="$"+str(contadorfinal2)[0:3]+"."+str(contadorfinal2)[3:6]+"."+str(contadorfinal2)[6:9] 
                   
             Dinero=ttk.Label(ventanaGrafico,text=contadorfinal5)
-            Dinero.place(x=282,y=220, width=99, height=15)
+            Dinero.place(x=387,y=278, width=136, height=15)
             contadorfinal2=0
+
+            if(Presta==0 and Dep>=1 and Ret>=1 and Trans>=1):
+
+                fig=plt.figure("Cantidad de dinero por operaciones")
+
+                plt.title("Gráfico de dinero por operación")
+            
+                plt.ylabel('Dinero')
+            
+                operaciones = [Dep, Ret, Trans]
+                label = ["Depositar", "Retirar", "Transferir"]
+                plt.bar(label, operaciones)
+
+                plt.show()
+            elif(Presta==0 and Dep>=1 and Ret>=1 and Trans>=0):
+
+                fig=plt.figure("Cantidad de dinero por operaciones")
+
+                plt.title("Gráfico de dinero por operación")
+                
+                plt.ylabel('Dinero')
+                
+                operaciones = [Dep, Ret]
+                label = ["Depositar", "Retirar"]
+                plt.bar(label, operaciones)
+
+                plt.show()
+            elif(Presta>=1 and Dep==0 and Ret>=1 and Trans>=1):
+
+
+                fig=plt.figure("Cantidad de dinero por operaciones")
+
+                plt.title("Gráfico de dinero por operación")
+                
+                plt.ylabel('Dinero')
+                
+                operaciones = [Presta, Ret, Trans]
+                label = ["Prestamo", "Retirar", "Transferir"]
+                plt.bar(label, operaciones)
+
+                plt.show()
+            elif(Presta>=1 and Dep>=1 and Ret==0 and Trans>=1):
+
+                fig=plt.figure("Cantidad de dinero por operaciones")
+
+                plt.title("Gráfico de dinero por operación")
+
+                plt.ylabel('Dinero')
+                
+                operaciones = [Presta,Dep, Trans]
+                label = ["Prestamo", "Depositar", "Transferir"]
+                plt.bar(label, operaciones)
+                plt.show()
+            elif(Presta>=1 and Dep>=1 and Ret>=1 and Trans==0):
+
+                fig=plt.figure("Cantidad de dinero por operaciones")
+
+                plt.title("Gráfico de dinero por operación")
+                
+                operaciones = [Presta,Dep, Ret]
+                plt.ylabel('Dinero')
+                label = ["Prestamo", "Depositar", "Retirar"]
+                plt.bar(label, operaciones)
+
+                plt.show()
+            elif(Presta>=1 and Dep>=1 and Ret>=1 and Trans>=1):
+                
+                fig=plt.figure("Cantidad de dinero por operaciones")
+
+                plt.title("Gráfico de dinero por operación")
+            
+                operaciones = [Presta,Dep,Ret, Trans]
+                plt.ylabel('Dinero')
+                label = ["Prestamo", "Depositar","Retirar", "Transferir"]
+                plt.bar(label, operaciones)
+
+                plt.show()
+            elif(Presta>=1 and Dep==0 and Ret==0 and Trans==0):
+
+                fig=plt.figure("Cantidad de dinero por operaciones")
+
+                plt.title("Gráfico de dinero por operación")
+
+                plt.ylabel('Dinero')
+                operaciones = [Presta]
+                label = ["Prestamo"]
+                plt.bar(label, operaciones)
+                plt.show()
+            elif(Presta==0 and Dep>=1 and Ret==0 and Trans==0):
+
+                fig=plt.figure("Cantidad de dinero por operaciones")
+
+                plt.title("Gráfico de dinero por operación")
+
+                plt.ylabel('Dinero')
+                operaciones = [Dep]
+                label = ["Depositar"]
+                plt.bar(label, operaciones)
+                plt.show()
+            elif(Presta==0 and Dep==0 and Ret>=1 and Trans==0):
+
+                fig=plt.figure("Cantidad de dinero por operaciones")
+
+                plt.title("Gráfico de dinero por operación")
+
+                plt.ylabel('Dinero')
+                operaciones = [Ret]
+                label = ["Retirar"]
+                plt.bar(label, operaciones)
+                plt.show()
+            elif(Presta==0 and Dep==0 and Ret==0 and Trans>=1):
+
+                fig=plt.figure("Cantidad de dinero por operaciones")
+                
+                plt.title("Gráfico de dinero por operación")
+
+                plt.ylabel('Dinero')
+                operaciones = [Trans]
+                label = ["Transferir"]
+                plt.bar(label, operaciones)
+                plt.show()
+
+
         def CalculosMat():
             global contadorfinal3,contadorfinal4,Dep,Ret,Trans,Presta,cont1,cont2,cont3,cont4
             global contadorDep,contadorRet,contadorTrans,contadorPresta
@@ -704,33 +749,8 @@ def abrirGrafico():
             contadorPresta=contadorPresta+Presta
             #Definiendo contadores personjas separado y juntos
             contadorfinal4=contadorfinal4+cont1+cont2+cont3+cont4
-            #Calculando medias de operacion
             media=int(contadorfinal3/contadorfinal4)
-            #mediaDep=int(contadorDep/cont1)
-            #mediaRet=int(contadorRet/cont2)
-            #mediaTrans=int(contadorTrans/cont3)
-            #mediaPresta=int(contadorPresta/cont4)
-
-            #Medianas
-            #medianaDep=(stats.median(ListaDep))
-            #medianaRet=(stats.median(ListaRet))
-            #medianaTrans=(stats.median(ListaTrans))
-            #medianaPresta=(stats.median(ListaPresta))
-            #medianaTo=(stats.median(ListaTo))
-            #MODAS
-            #modaDep=(stats.mode(ListaDep))
-            #modaRet=(stats.mode(ListaRet))
-            #modaTrans=(stats.mode(ListaTrans))
-            #modaPresta=(stats.mode(ListaPresta))
-            #modaTo=(stats.mode(ListaTo))
-
-            #Desviacion estandar
-            #DesvDep=(stats.mode(ListaDep))
-            #DesvRet=(stats.mode(ListaRet))
-            #DesvTrans=(stats.mode(ListaTrans))
-            #DesvPresta=(stats.mode(ListaPresta))
-            #DesvTo=(stats.mode(ListaTo))
-
+            
 
             if(cont1>=1 and cont2>=1 and cont3>=1 and cont4>=1):
                 #Media
@@ -1097,35 +1117,24 @@ def abrirGrafico():
             contadorPresta=0
 
         #gráfico por operaciones
-        imgMostrarGraficoOp = Image.open("./graficoOp.png")
+        imgMostrarGraficoOp = Image.open("./operacionesRealizadas.png")
         imgMostrarGraficoOp = ImageTk.PhotoImage(imgMostrarGraficoOp)
         botonMostrarGrafico = ttk.Button(ventanaGrafico, image= imgMostrarGraficoOp, command = MostrarGrafico)
-        botonMostrarGrafico.place( x=550, y=105)
+        botonMostrarGrafico.place( x=88, y=107)
 
         #gráfico por dinero
-        imgMostrarGraficoDin = Image.open("./graficoDinero.png")
+        imgMostrarGraficoDin = Image.open("./dineroTrabajado.png")
         imgMostrarGraficoDin = ImageTk.PhotoImage(imgMostrarGraficoDin)
         botonMostrarDinero = ttk.Button(ventanaGrafico, image= imgMostrarGraficoDin, command = MovimientoDinero)
-        botonMostrarDinero.place( x=550, y=196)
+        botonMostrarDinero.place( x=385, y=107)
 
-        #total clientes
-        imgTotalClientes = Image.open("./totalPersonas.png")
-        imgTotalClientes = ImageTk.PhotoImage(imgTotalClientes)
-        botonMostrarClientes = ttk.Button(ventanaGrafico,image=imgTotalClientes, command = TotalClientes)
-        botonMostrarClientes.place( x=27, y=105)
-
-        #total dinero
-        imgTotalDin = Image.open("./totalDinero.png")
-        imgTotalDin = ImageTk.PhotoImage(imgTotalDin)
-        botonMostrardinerototal = ttk.Button(ventanaGrafico,image=imgTotalDin, command = TotalDinero)
-        botonMostrardinerototal.place( x=27, y=191)
 
 
         #mostrar todo
-        imgMostrarTodo = Image.open("./mostrarTodo.png")
+        imgMostrarTodo = Image.open("./mostrarDatos.png")
         imgMostrarTodo = ImageTk.PhotoImage(imgMostrarTodo)
         botonMostrarCalculos = ttk.Button(ventanaGrafico,image=imgMostrarTodo, command = CalculosMat)
-        botonMostrarCalculos.place( x=27, y=278)
+        botonMostrarCalculos.place( x=678, y=107)
         ventanaGrafico.mainloop()
 def itemSeleccionado(event):
     for selected_item in arbol.selection():
@@ -1285,8 +1294,6 @@ def itemSeleccionado(event):
             messagebox.showinfo("Datos Cliente 22", " Nombre: " +valor[0]+"\n Apellido: "+valor[1]+"\n Rut: "+str(valor[2])+"\n Saldo: "+str(valor[3]))
 
 
-
-arbol.bind("<<TreeviewSelect>>", itemSeleccionado)
-
+arbol.bind("<Double-1>", itemSeleccionado)
 
 root.mainloop()
