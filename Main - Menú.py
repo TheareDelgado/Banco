@@ -342,9 +342,9 @@ arbol.move(47,1,20)
 arbol.move(48,1,21)
 
 #sub-opciones funcionarios
-arbol.insert("", END, text="Funcionario 1", iid=11, open=False, values=("Cesar ","Mora ", "20377093-6"), image=imagenFuncionario)
-arbol.insert("", END, text="Funcionario 2", iid=12, open=False, values=("Theare ","Delgado ", "20225477-2"), image=imagenFuncionario)
-arbol.insert("", END, text="Funcionario 3", iid=13, open=False, values=("Diego ","Gonzalez ", "20297405-8"), image=imagenFuncionario)
+arbol.insert("", END, text="Funcionario 1", iid=11, open=False, values=("Elon ","Mora ", "20377093-6"), image=imagenFuncionario)
+arbol.insert("", END, text="Funcionario 2", iid=12, open=False, values=("Kylie ","Delgado ", "20225477-2"), image=imagenFuncionario)
+arbol.insert("", END, text="Funcionario 3", iid=13, open=False, values=("Lionel ","Gonzalez ", "20297405-8"), image=imagenFuncionario)
 
 arbol.move(11,2,0)  
 arbol.move(12,2,1)
@@ -1409,7 +1409,7 @@ def itemSeleccionado(event):
             img = PhotoImage (file = "./ventanaFuncionarios.png") 
             fondo=Label(ventanaFuncionario, image = img).place( x=0, y=0)
 
-            imagenF = Image.open("./profile.png")
+            imagenF = Image.open("./elon.jpg")
             imagenF = imagenF.resize((130,144),Image.ANTIALIAS)
             imagenF = ImageTk.PhotoImage(imagenF)
             label = ttk.Label(ventanaFuncionario,image=imagenF)
@@ -1442,7 +1442,7 @@ def itemSeleccionado(event):
             img = PhotoImage (file = "./ventanaFuncionarios.png") 
             fondo=Label(ventanaFuncionario, image = img).place( x=0, y=0)
 
-            imagenF = Image.open("./profile.png")
+            imagenF = Image.open("./kylie.jpg")
             imagenF = imagenF.resize((130,144),Image.ANTIALIAS)
             imagenF = ImageTk.PhotoImage(imagenF)
             label = ttk.Label(ventanaFuncionario,image=imagenF)
@@ -1475,7 +1475,7 @@ def itemSeleccionado(event):
             img = PhotoImage (file = "./ventanaFuncionarios.png") 
             fondo=Label(ventanaFuncionario, image = img).place( x=0, y=0)
 
-            imagenF = Image.open("./profile.png")
+            imagenF = Image.open("./messi.jpg")
             imagenF = imagenF.resize((130,144),Image.ANTIALIAS)
             imagenF = ImageTk.PhotoImage(imagenF)
             label = ttk.Label(ventanaFuncionario,image=imagenF)
@@ -2160,7 +2160,7 @@ def itemSeleccionado(event):
             img = PhotoImage (file = "./ventanaClientes.png") 
             fondo=Label(ventanaClientes, image = img).place( x=0, y=0)
 
-            imagenCliente = Image.open("./man.png")
+            imagenCliente = Image.open("./vin.jpg")
             imagenCliente = imagenCliente.resize((130,144),Image.ANTIALIAS)
             imagenCliente = ImageTk.PhotoImage(imagenCliente)
             label = ttk.Label(ventanaClientes,image=imagenCliente)
@@ -2196,7 +2196,7 @@ def itemSeleccionado(event):
             img = PhotoImage (file = "./ventanaClientes.png") 
             fondo=Label(ventanaClientes, image = img).place( x=0, y=0)
 
-            imagenCliente = Image.open("./man.png")
+            imagenCliente = Image.open("./roca.webp")
             imagenCliente = imagenCliente.resize((130,144),Image.ANTIALIAS)
             imagenCliente = ImageTk.PhotoImage(imagenCliente)
             label = ttk.Label(ventanaClientes,image=imagenCliente)
@@ -2232,7 +2232,7 @@ def itemSeleccionado(event):
             img = PhotoImage (file = "./ventanaClientes.png") 
             fondo=Label(ventanaClientes, image = img).place( x=0, y=0)
 
-            imagenCliente = Image.open("./man.png")
+            imagenCliente = Image.open("./alexis.jpg")
             imagenCliente = imagenCliente.resize((130,144),Image.ANTIALIAS)
             imagenCliente = ImageTk.PhotoImage(imagenCliente)
             label = ttk.Label(ventanaClientes,image=imagenCliente)
@@ -2268,7 +2268,7 @@ def itemSeleccionado(event):
             img = PhotoImage (file = "./ventanaClientes.png") 
             fondo=Label(ventanaClientes, image = img).place( x=0, y=0)
 
-            imagenCliente = Image.open("./man.png")
+            imagenCliente = Image.open("./suazo.jpg")
             imagenCliente = imagenCliente.resize((130,144),Image.ANTIALIAS)
             imagenCliente = ImageTk.PhotoImage(imagenCliente)
             label = ttk.Label(ventanaClientes,image=imagenCliente)

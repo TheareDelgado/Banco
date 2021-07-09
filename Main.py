@@ -224,7 +224,7 @@ def abrirDepositar():
             ListaDep.append(int(ingresaMontoDeposito.get()))
             ListaTo.append(int(ingresaMontoDeposito.get()))
             Dep=Dep+(int(ingresaMontoDeposito.get()))
-            blancos()
+            #blancos()
             ingresaCuentaDeposito.delete(0,"end")
             ventanaDepositar.destroy()
 
@@ -1278,11 +1278,11 @@ def abrirMostrarCola():
 #-------------------------------------------------------------------
 
                              #DEF RANDOMS
-def blancos():
+#def blancos():
     #ingresaCuentaDeposito.delete(0,"end")
-    ingresaApellidoCliente.destroy()
-    ingresaNombreCliente.destroy()
-    ingresaSaldoCliente.destroy()
+    #ingresaApellidoCliente.destroy()
+    #ingresaNombreCliente.destroy()
+    #ingresaSaldoCliente.destroy()
 
 def blancosfu():
     ingresaRutFuncionario.delete(0,"end")
