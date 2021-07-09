@@ -955,10 +955,10 @@ def abrirGrafico():
                 modaPrestam=ttk.Label(ventanaGrafico,text= modaPresta, anchor="center")
                 modaPrestam.place(x=545,y=441, width=188, height=25)
                 #desv estandar
-                DesvDep=(stats.mode(ListaDep))
-                DesvRet=(stats.mode(ListaRet))
-                DesvTrans=(stats.mode(ListaTrans))
-                DesvPresta=(stats.mode(ListaPresta))
+                DesvDep="{0:.2f}".format(stats.stdev(ListaDep))
+                DesvRet="{0:.2f}".format(stats.stdev(ListaRet))
+                DesvTrans="{0:.2f}".format(stats.stdev(ListaTrans))
+                DesvPresta="{0:.2f}".format(stats.stdev(ListaPresta))
 
                 DesDepo=ttk.Label(ventanaGrafico,text= DesvDep, anchor="center")
                 DesDepo.place(x=736,y=360, width=188, height=25)
