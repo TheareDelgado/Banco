@@ -1324,79 +1324,190 @@ def itemSeleccionado(event):
             abrirGrafico()
         
             
+        def baseDepositar(n, nombre, rut, monto):
+            ventanaClienteD=Toplevel(root)
+            ventanaClienteD.title("Deposito n°"+n)
+            ventanaClienteD.geometry("500x250")
+            ventanaClienteD.resizable(width=False, height=False)
+
+            img = PhotoImage (file = "./ventanaClienteD.png") 
+            fondo=Label(ventanaClienteD, image = img).place( x=0, y=0)
 
 
+            imagenAceptar = Image.open("./AceptaCliente.png")
+            imagenAceptar = ImageTk.PhotoImage(imagenAceptar)
+
+
+            botonAceptar = ttk.Button(ventanaClienteD, image= imagenAceptar, command = ventanaClienteD.destroy)
+            botonAceptar.place( x=357, y=189)
+
+            NombreClienteD = ttk.Label(ventanaClienteD, text=nombre)                         
+            NombreClienteD.place( x=149, y=57, width=171, height=16)  
+
+            rutClienteD = ttk.Label(ventanaClienteD, text=rut)
+            rutClienteD.place( x=149, y=85, width=171, height=16)
+
+            MontoClienteD = ttk.Label(ventanaClienteD, text=monto)
+            MontoClienteD.place( x=149, y=115, width=171, height=16)
+            ventanaClienteD.mainloop()
+
+        def baseRetirar(n, nombre, rut, monto):
+            ventanaClienteR=Toplevel(root)
+            ventanaClienteR.title("Retiro n°"+n)
+            ventanaClienteR.geometry("500x250")
+            ventanaClienteR.resizable(width=False, height=False)
+
+            img = PhotoImage (file = "./ventanaClienteD.png") 
+            fondo=Label(ventanaClienteR, image = img).place( x=0, y=0)
+
+
+            imagenAceptar = Image.open("./AceptaCliente.png")
+            imagenAceptar = ImageTk.PhotoImage(imagenAceptar)
+
+
+            botonAceptar = ttk.Button(ventanaClienteR, image= imagenAceptar, command = ventanaClienteR.destroy)
+            botonAceptar.place( x=357, y=189)
+
+            NombreClienteR = ttk.Label(ventanaClienteR, text=nombre)                         
+            NombreClienteR.place( x=149, y=57, width=171, height=16)  
+
+            rutClienteR = ttk.Label(ventanaClienteR, text=rut)
+            rutClienteR.place( x=149, y=85, width=171, height=16)
+
+            MontoClienteR = ttk.Label(ventanaClienteR, text=monto)
+            MontoClienteR.place( x=149, y=115, width=171, height=16)
+            ventanaClienteR.mainloop()
+
+        def baseTransferir(n, nombre1, rut1, monto, nombre2):
+            ventanaClienteT=Toplevel(root)
+            ventanaClienteT.title("Transferencia n°"+n)
+            ventanaClienteT.geometry("700x250")
+            ventanaClienteT.resizable(width=False, height=False)
+
+            img = PhotoImage (file = "./ventanaClienteT.png") 
+            fondo=Label(ventanaClienteT, image = img).place( x=0, y=0)
+
+
+            imagenAceptar = Image.open("./AceptaCliente.png")
+            imagenAceptar = ImageTk.PhotoImage(imagenAceptar)
+
+
+            botonAceptar = ttk.Button(ventanaClienteT, image= imagenAceptar, command = ventanaClienteT.destroy)
+            botonAceptar.place( x=550, y=195)
+
+            NombreClienteT1 = ttk.Label(ventanaClienteT, text=nombre1)                         
+            NombreClienteT1.place( x=150, y=80, width=171, height=16)  
+
+            rutClienteT1 = ttk.Label(ventanaClienteT, text=rut1)
+            rutClienteT1.place( x=150, y=107, width=171, height=16)
+
+            MontoClienteT = ttk.Label(ventanaClienteT, text=monto)
+            MontoClienteT.place( x=150, y=138, width=171, height=16)
+
+            NombreClienteT2 = ttk.Label(ventanaClienteT, text=nombre2)
+            NombreClienteT2.place( x=519, y=80, width=171, height=16)
+
+            
+
+            ventanaClienteT.mainloop()
+
+        def basePrestamo(n, nombre, monto, cuotas):
+            ventanaClienteP=Toplevel(root)
+            ventanaClienteP.title("Prestamo n°"+n)
+            ventanaClienteP.geometry("500x250")
+            ventanaClienteP.resizable(width=False, height=False)
+
+            img = PhotoImage (file = "./ventanaClienteP.png") 
+            fondo=Label(ventanaClienteP, image = img).place( x=0, y=0)
+
+
+            imagenAceptar = Image.open("./AceptaCliente.png")
+            imagenAceptar = ImageTk.PhotoImage(imagenAceptar)
+
+
+            botonAceptar = ttk.Button(ventanaClienteP, image= imagenAceptar, command = ventanaClienteP.destroy)
+            botonAceptar.place( x=357, y=189)
+
+            NombreClienteP = ttk.Label(ventanaClienteP, text=nombre)                         
+            NombreClienteP.place( x=270, y=57, width=171, height=16)  
+
+            montoClienteP = ttk.Label(ventanaClienteP, text=monto)
+            montoClienteP.place( x=270, y=85, width=171, height=16)
+
+            cuotasClienteP = ttk.Label(ventanaClienteP, text=cuotas)
+            cuotasClienteP.place( x=270, y=115, width=171, height=16)
+            ventanaClienteP.mainloop()
 
         #IF para los Clientes de DEPOSITAR
         if iid=="15":
-             messagebox.showinfo("Datos Deposito n°1", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+             baseDepositar("1", valor[0], str(valor[1]), str(valor[2]))
         if iid=="16":
-             messagebox.showinfo("Datos Deposito n°2", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+             baseDepositar("2", valor[0], str(valor[1]), str(valor[2]))
         if iid=="17":
-             messagebox.showinfo("Datos Deposito n°3", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+             baseDepositar("3", valor[0], str(valor[1]), str(valor[2]))
         if iid=="18":
-             messagebox.showinfo("Datos Deposito n°4", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+             baseDepositar("4", valor[0], str(valor[1]), str(valor[2]))
         if iid=="52":
-            messagebox.showinfo("Datos Deposito n°5", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+            baseDepositar("5", valor[0], str(valor[1]), str(valor[2]))
         if iid=="53":
-            messagebox.showinfo("Datos Deposito n°6", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+            baseDepositar("6", valor[0], str(valor[1]), str(valor[2]))
         if iid=="54":
-            messagebox.showinfo("Datos Deposito n°7", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+            baseDepositar("7", valor[0], str(valor[1]), str(valor[2]))
         if iid=="55":
-            messagebox.showinfo("Datos Deposito n°8", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+            baseDepositar("8", valor[0], str(valor[1]), str(valor[2]))
 
         #IF para los Clientes de RETIRAR
         if iid=="19":
-             messagebox.showinfo("Datos Retiro n°1", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+             baseRetirar("1", valor[0], str(valor[1]), str(valor[2]))
         if iid=="20":
-             messagebox.showinfo("Datos Retiro n°2", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+             baseRetirar("2", valor[0], str(valor[1]), str(valor[2]))
         if iid=="21":
-             messagebox.showinfo("Datos Retiro n°3", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+             baseRetirar("3", valor[0], str(valor[1]), str(valor[2]))
         if iid=="22":
-             messagebox.showinfo("Datos Retiro n°4", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+             baseRetirar("4", valor[0], str(valor[1]), str(valor[2]))
         if iid=="56":
-            messagebox.showinfo("Datos Retiro n°5", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+            baseRetirar("5", valor[0], str(valor[1]), str(valor[2]))
         if iid=="57":
-            messagebox.showinfo("Datos Retiro n°6", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+            baseRetirar("6", valor[0], str(valor[1]), str(valor[2]))
         if iid=="58":
-            messagebox.showinfo("Datos Retiro n°7", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+            baseRetirar("7", valor[0], str(valor[1]), str(valor[2]))
         if iid=="59":
-            messagebox.showinfo("Datos Retiro n°8", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+            baseRetirar("8", valor[0], str(valor[1]), str(valor[2]))
 
         #IF para los Clientes de TRANSFERENCIA
         if iid=="23":
-             messagebox.showinfo("Datos Transferencia n°1", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2])+"--------> "+valor[3])
+             baseTransferir("1", valor[0], str(valor[1]), str(valor[2]), valor[3])
         if iid=="24":
-             messagebox.showinfo("Datos Transferencia n°2", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2])+"--------> "+valor[3])
+             baseTransferir("2", valor[0], str(valor[1]), str(valor[2]), valor[3])
         if iid=="25":
-             messagebox.showinfo("Datos Transferencia n°3", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2])+"--------> "+valor[3])
+             baseTransferir("3", valor[0], str(valor[1]), str(valor[2]), valor[3])
         if iid=="26":
-             messagebox.showinfo("Datos Transferencia n°4", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2])+"--------> "+valor[3])
+             baseTransferir("4", valor[0], str(valor[1]), str(valor[2]), valor[3])
         if iid=="60":
-            messagebox.showinfo("Datos Transferencia n°5", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+             baseTransferir("5", valor[0], str(valor[1]), str(valor[2]), valor[3])
         if iid=="61":
-            messagebox.showinfo("Datos Transferencia n°6", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+            baseTransferir("6", valor[0], str(valor[1]), str(valor[2]), valor[3])
         if iid=="62":
-            messagebox.showinfo("Datos Transferencia n°7", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+            baseTransferir("7", valor[0], str(valor[1]), str(valor[2]), valor[3])
         if iid=="63":
-            messagebox.showinfo("Datos Transferencia n°8", " Nombre: "+valor[0]+"\n Rut: "+str(valor[1])+"\n Monto: "+str(valor[2]))
+            baseTransferir("8", valor[0], str(valor[1]), str(valor[2]), valor[3])
         #IF para los Clientes de PRÉSTAMO
         if iid=="27":
-             messagebox.showinfo("Datos Préstamo n°1", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
+             basePrestamo("1", valor[0], valor[1], valor[2])
         if iid=="28":
-             messagebox.showinfo("Datos Préstamo n°2", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
+             basePrestamo("2", valor[0], valor[1], valor[2])
         if iid=="29":
-             messagebox.showinfo("Datos Préstamo n°3", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
+             basePrestamo("3", valor[0], valor[1], valor[2])
         if iid=="30":
-             messagebox.showinfo("Datos Préstamo n°4", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
+             basePrestamo("4", valor[0], valor[1], valor[2])
         if iid=="64":
-            messagebox.showinfo("Datos Préstamo n°5", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
+            basePrestamo("5", valor[0], valor[1], valor[2])
         if iid=="65":
-            messagebox.showinfo("Datos Préstamo n°6", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
+            basePrestamo("6", valor[0], valor[1], valor[2])
         if iid=="66":
-            messagebox.showinfo("Datos Préstamo n°8", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
+           basePrestamo("7", valor[0], valor[1], valor[2])
         if iid=="67":
-            messagebox.showinfo("Datos Préstamo n°9", " Nombre: "+valor[0]+"\n Monto solicitado: "+str(valor[1])+"\n N° Cuotas: "+str(valor[2]))
+            basePrestamo("8", valor[0], valor[1], valor[2])
 
 
 
