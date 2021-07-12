@@ -384,7 +384,9 @@ def abrirDepositar():
                     ApellidoClienteNuevo=persona.getApellido()
                     rutFinal=RutClienteNuevo[0:2]+"."+RutClienteNuevo[2:5]+"."+RutClienteNuevo[5:8]+"-"+RutClienteNuevo[8]
                     MontoDestino=ingresaMontoDeposito.get()
-                    LargoMonto=len(MontoDestino)                  
+                    LargoMonto=len(MontoDestino) 
+                    if LargoMonto==3:
+                        MontoFinal="$"+MontoDestino[0:3]                
                     if LargoMonto==4:
                         MontoFinal="$"+MontoDestino[0:1]+"."+MontoDestino[1:4]
                     if LargoMonto==5:
@@ -393,6 +395,10 @@ def abrirDepositar():
                         MontoFinal="$"+MontoDestino[0:3]+"."+MontoDestino[3:6]
                     if LargoMonto==7:
                         MontoFinal="$"+MontoDestino[0:1]+"."+MontoDestino[1:4]+"."+MontoDestino[4:7]
+                    if LargoMonto==8:
+                        MontoFinal="$"+MontoDestino[0:2]+"."+MontoDestino[2:5]+"."+MontoDestino[5:8]
+                    if LargoMonto==9:
+                        MontoFinal="$"+MontoDestino[0:3]+"."+MontoDestino[3:6]+"."+MontoDestino[6:9]
                     persona.setOperacion(operaciones[1])
                     listadoPersonas.agregarDeposito(persona)
                     listadoPersonas.agregarTabla(persona)
@@ -453,6 +459,8 @@ def abrirRetirar():
                     rutFinal=RutClienteNuevo[0:2]+"."+RutClienteNuevo[2:5]+"."+RutClienteNuevo[5:8]+"-"+RutClienteNuevo[8]
                     MontoDestino=ingresaMontoRetiro.get()
                     LargoMonto=len(MontoDestino)
+                    if LargoMonto==3:
+                        MontoFinal="$"+MontoDestino[0:3]
                     if LargoMonto==4:
                         MontoFinal="$"+MontoDestino[0:1]+"."+MontoDestino[1:4]
                     if LargoMonto==5:
@@ -461,6 +469,10 @@ def abrirRetirar():
                         MontoFinal="$"+MontoDestino[0:3]+"."+MontoDestino[3:6]
                     if LargoMonto==7:
                         MontoFinal="$"+MontoDestino[0:1]+"."+MontoDestino[1:4]+"."+MontoDestino[4:7]
+                    if LargoMonto==8:
+                        MontoFinal="$"+MontoDestino[0:2]+"."+MontoDestino[2:5]+"."+MontoDestino[5:8]
+                    if LargoMonto==9:
+                        MontoFinal="$"+MontoDestino[0:2]+"."+MontoDestino[3:6]+"."+MontoDestino[6:9]
 
                     A.append("Retirar")
                     C.append(Op.getEstado())
@@ -513,13 +525,19 @@ def abrirTransferir():
             for persona in listadoPersonas.getLista():
                 if (ingresaCuentaTransferir.get()==persona.getRut()):
                     NombreClienteNuevo=persona.getNombre()
+                    ApellidoClienteNuevo=persona.getApellido()
                     RutClienteNuevo=persona.getRut()
                     rutFinal=RutClienteNuevo[0:2]+"."+RutClienteNuevo[2:5]+"."+RutClienteNuevo[5:8]+"-"+RutClienteNuevo[8]
-                    NombreDestino=ingresaNombreTransferir.get()
-                    ApellidoDestino=ingresaApellidoTransferir.get()
+                if (ingresaBancoTransferir.get()==persona.getRut()):
+                    NombreDestino=persona.getNombre()
+                    ApellidoDestino=persona.getApellido()
                     MontoDestino=ingresaMontoTransferir.get()
                     LargoMonto=len(MontoDestino)
                     #MontoFinal=MontoDestino[0:3]+"."+[3:5]
+                    if LargoMonto==2:
+                        MontoFinal="$"+MontoDestino[0:2]
+                    if LargoMonto==3:
+                        MontoFinal="$"+MontoDestino[0:3]
                     if LargoMonto==4:
                         MontoFinal="$"+MontoDestino[0:1]+"."+MontoDestino[1:4]
                     if LargoMonto==5:
@@ -528,12 +546,17 @@ def abrirTransferir():
                         MontoFinal="$"+MontoDestino[0:3]+"."+MontoDestino[3:6]
                     if LargoMonto==7:
                         MontoFinal="$"+MontoDestino[0:1]+"."+MontoDestino[1:4]+"."+MontoDestino[4:7]
+                    if LargoMonto==8:
+                        MontoFinal="$"+MontoDestino[0:2]+"."+MontoDestino[2:5]+"."+MontoDestino[5:8]
+                    if LargoMonto==9:
+                        MontoFinal="$"+MontoDestino[0:3]+"."+MontoDestino[3:6]+"."+MontoDestino[6:9]
+
 
                     SaldoClienteNuevo=persona.getSaldo()
-                    ApellidoClienteNuevo=persona.getApellido()
                     persona.setOperacion(operaciones[3])
-                    
-            arbol.insert("", END, text="Cliente n°"+str(t2), iid=t, open=False, values=(NombreClienteNuevo+" "+ApellidoClienteNuevo,rutFinal,MontoFinal+"-------->"+" "+NombreDestino+" "+ApellidoDestino), image=imagenCliente)
+            Nombrefinal=NombreClienteNuevo+" "+ApellidoClienteNuevo    
+            Nombrefinal2=NombreDestino+" "+ApellidoDestino    
+            arbol.insert("", END, text="Cliente n°"+str(t2), iid=t, open=False, values=(Nombrefinal,RutClienteNuevo,MontoDestino,Nombrefinal2), image=imagenCliente)
             arbol.move(t,5,t1)
                     
             global cont3
@@ -550,30 +573,18 @@ def abrirTransferir():
             ventanaTransferir.destroy()
 
 
-        imagen = PhotoImage (file = "./ventanaTransferir.png") 
+        imagen = PhotoImage (file = "./ventanaTransferir2.png") 
         fondo=Label(ventanaTransferir, image = imagen).place( x=0, y=0)
 
 
-
-
-
-        ingresaNombreTransferir = ttk.Entry(ventanaTransferir)
-        ingresaNombreTransferir.place_configure(x=416, y=133 , width=169, height=17)
-
-        ingresaApellidoTransferir = ttk.Entry(ventanaTransferir)
-        ingresaApellidoTransferir.place_configure(x=416, y=160 , width=169, height=17)
-
-        ingresaCorreoTransferir = ttk.Entry(ventanaTransferir)
-        ingresaCorreoTransferir.place_configure(x=416, y=190 , width=169, height=17)
-
         ingresaCuentaTransferir = ttk.Entry(ventanaTransferir,text=rutv)
-        ingresaCuentaTransferir.place_configure(x=416, y=218 , width=169, height=17)
+        ingresaCuentaTransferir.place_configure(x=124, y=214 , width=121, height=17)
 
         ingresaMontoTransferir = ttk.Entry(ventanaTransferir)
-        ingresaMontoTransferir.place_configure(x=417, y=248 , width=169, height=17)
+        ingresaMontoTransferir.place_configure(x=122, y=241 , width=123, height=17)
 
         ingresaBancoTransferir = ttk.Entry(ventanaTransferir)
-        ingresaBancoTransferir.place_configure(x=417, y=276 , width=169, height=17)
+        ingresaBancoTransferir.place_configure(x=461, y=214 , width=121, height=17)
 
 
         imagenConfirmaCliente4 = Image.open("./confirmarPrestamo.png")
@@ -631,7 +642,7 @@ def abrirPrestamo():
         ingresaMotivoPrestamo = ttk.Entry(ventanaPrestamo)
         ingresaMotivoPrestamo.place_configure(x=416, y=223 , width=169, height=17)
 
-        ingresaMontoPrestamo = ttk.Combobox(ventanaPrestamo,values=("$150.000","$300.000","$600.000"),textvariable=prestamosol)
+        ingresaMontoPrestamo = ttk.Combobox(ventanaPrestamo,values=("150000","300000","600000"),textvariable=prestamosol)
         ingresaMontoPrestamo.place_configure(x=416, y=249 , width=169, height=17)
         ingresaCuotaPrestamo = ttk.Combobox(ventanaPrestamo,values=("3","6","9"),textvariable=cantidadcuotas)
         ingresaCuotaPrestamo.place_configure(x=416, y=276 , width=169, height=17)
